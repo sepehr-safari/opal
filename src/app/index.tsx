@@ -14,7 +14,15 @@ export const App = () => {
   const { loginFromLocalStorage } = useLogin();
 
   useEffect(() => {
-    initNdk({ explicitRelayUrls: ['wss://nos.lol', 'wss://relay.primal.net'] });
+    initNdk({
+      explicitRelayUrls: [
+        'wss://nos.lol',
+        'wss://relay.primal.net',
+        'wss://relay.damus.io',
+        'wss://relay.nostr.band',
+      ],
+      clientName: 'opal',
+    });
   }, [initNdk]);
 
   useEffect(() => {
