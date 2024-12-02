@@ -1,7 +1,7 @@
 {
-  "name": "osty",
-  "short_name": "osty",
-  "description": "osty",
+  "name": "opal",
+  "short_name": "opal",
+  "description": "opal",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000",
