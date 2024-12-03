@@ -4,6 +4,7 @@ import { Spinner } from '@/shared/components/spinner';
 
 import { useRealtimeProfile } from '@/shared/hooks';
 
+import { PehHousing } from '@/features/peh/peh-housing';
 import { UserProfileSetup } from '@/features/user-profile-setup';
 
 export const PehDashboard = ({ user }: { user: NDKUser }) => {
@@ -20,6 +21,8 @@ export const PehDashboard = ({ user }: { user: NDKUser }) => {
   return (
     <div className="m-4">
       <h3>PEH Dashboard</h3>
+
+      <PehHousing />
     </div>
   );
 };

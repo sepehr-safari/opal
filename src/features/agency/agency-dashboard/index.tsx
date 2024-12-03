@@ -4,6 +4,7 @@ import { Spinner } from '@/shared/components/spinner';
 
 import { useRealtimeProfile } from '@/shared/hooks';
 
+import { AgencyHousing } from '@/features/agency/agency-housing';
 import { UserProfileSetup } from '@/features/user-profile-setup';
 
 export const AgencyDashboard = ({ user }: { user: NDKUser }) => {
@@ -20,6 +21,8 @@ export const AgencyDashboard = ({ user }: { user: NDKUser }) => {
   return (
     <div className="m-4">
       <h3>Agency Dashboard</h3>
+
+      <AgencyHousing />
     </div>
   );
 };
