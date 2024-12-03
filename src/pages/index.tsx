@@ -3,7 +3,9 @@ import { Outlet, createBrowserRouter } from 'react-router-dom';
 const Layout = () => {
   return (
     <>
-      <Outlet />
+      <div className="max-w-md mx-auto w-full h-full">
+        <Outlet />
+      </div>
     </>
   );
 };
