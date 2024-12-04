@@ -19,7 +19,9 @@ export const HomePage = () => {
           <h4>Not logged in</h4>
         </div>
       ) : (
-        <UserRoleSwitcher user={activeUser} />
+        <div className="m-4 flex flex-col gap-4">
+          <UserRoleSwitcher user={activeUser} />
+        </div>
       )}
     </>
   );

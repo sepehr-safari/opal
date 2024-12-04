@@ -19,10 +19,8 @@ export const PehDashboard = ({ user }: { user: NDKUser }) => {
   }
 
   return (
-    <div className="m-4">
-      <h3>PEH Dashboard</h3>
-
+    <>
       <PehHousing />
-    </div>
+    </>
   );
 };

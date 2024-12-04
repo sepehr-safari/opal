@@ -1,27 +1,11 @@
-import { useHousingList } from '@/shared/hooks';
+import { PehHousingList } from '@/features/peh/peh-housing-list';
 
 export const PehHousing = () => {
-  const { housingList } = useHousingList();
-
   return (
     <>
-      <h4>PEH Housing</h4>
+      <h4 className="underline-offset-8 underline">Housing List</h4>
 
-      {housingList ? (
-        <ul>
-          {housingList.map((housing) => (
-            <li key={housing.id}>
-              <h5>{housing.name}</h5>
-              <p>{housing.description}</p>
-              <p>{housing.location}</p>
-              <p>{housing.isAvailable ? 'Available' : 'Not Available'}</p>
-              <p>{housing.contact}</p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No housing available</p>
-      )}
+      <PehHousingList />
     </>
   );
 };

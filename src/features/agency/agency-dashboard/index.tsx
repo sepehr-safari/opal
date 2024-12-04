@@ -19,10 +19,8 @@ export const AgencyDashboard = ({ user }: { user: NDKUser }) => {
   }
 
   return (
-    <div className="m-4">
-      <h3>Agency Dashboard</h3>
-
+    <>
       <AgencyHousing />
-    </div>
+    </>
   );
 };

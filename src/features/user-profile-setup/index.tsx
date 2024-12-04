@@ -91,7 +91,7 @@ export const UserProfileSetup = ({ user }: { user: NDKUser }) => {
   };
 
   return (
-    <div className="m-4 flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <h3>Set up your profile</h3>
 
       <Form {...form}>
