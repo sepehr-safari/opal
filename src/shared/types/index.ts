@@ -15,3 +15,10 @@ export type Housing = {
   contact: string;
   housingEvent: NDKEvent;
 };
+
+export type HousingRequest = {
+  id: string;
+  pehPubkey: string;
+  status: string;
+  housingRequestEvent: NDKEvent;
+};
