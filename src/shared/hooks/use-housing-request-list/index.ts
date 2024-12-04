@@ -6,8 +6,8 @@ import { Housing, HousingRequest } from '@/shared/types';
 
 import { housingRequestFromEvent } from './utils';
 
-export const useHousingRequestList = (housing: Housing) => {
-  const subId = `housing-requests-${housing.id}`;
+export const useHousingRequestList = (housing: Housing, pehPubkey?: string) => {
+  const subId = `housing-requests-${housing.id}-${pehPubkey}`;
 
   const { createSubscription, removeSubscription, isLoading, events } = useSubscription(subId);
 
@@ -31,6 +31,7 @@ export const useHousingRequestList = (housing: Housing) => {
       {
         kinds: [NDKKind.AppSpecificData],
         limit: 100,
+        authors: pehPubkey ? [pehPubkey] : undefined,
         '#T': ['opal/v0/housing-request'],
         '#a': [housing.housingEvent.tagAddress()],
         '#s': ['Enabled'],
@@ -40,7 +41,7 @@ export const useHousingRequestList = (housing: Housing) => {
     return () => {
       removeSubscription();
     };
-  }, [housing, createSubscription, removeSubscription]);
+  }, [housing, pehPubkey, createSubscription, removeSubscription]);
 
   return { housingRequestList };
 };
