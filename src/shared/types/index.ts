@@ -1,3 +1,5 @@
+import { NDKEvent } from '@nostr-dev-kit/ndk';
+
 export enum UserRole {
   Peh = 'peh',
   Agency = 'agency',
@@ -5,9 +7,11 @@ export enum UserRole {
 
 export type Housing = {
   id: string;
+  agencyPubkey: string;
   name: string;
   description: string;
   location: string;
-  isAvailable: boolean;
+  status: string;
   contact: string;
+  housingEvent: NDKEvent;
 };
