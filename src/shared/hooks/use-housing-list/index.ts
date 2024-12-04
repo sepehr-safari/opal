@@ -10,7 +10,6 @@ export const useHousingList = (housingId?: string) => {
   const subId = `housing-${housingId}`;
 
   const { createSubscription, removeSubscription, isLoading, events } = useSubscription(subId);
-  console.log(events);
 
   const housingList = useMemo(() => {
     if (isLoading) return undefined;
@@ -41,7 +40,7 @@ export const useHousingList = (housingId?: string) => {
     return () => {
       removeSubscription();
     };
-  }, [createSubscription, removeSubscription]);
+  }, [housingId, createSubscription, removeSubscription]);
 
   return { housingList };
 };
