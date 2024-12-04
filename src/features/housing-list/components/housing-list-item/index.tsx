@@ -3,8 +3,16 @@ import { CircleXIcon, EditIcon } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
 import { Separator } from '@/shared/components/ui/separator';
 
-import { useHousingList, useRealtimeProfile, useUpdateHousing } from '@/shared/hooks';
+import {
+  useHousingList,
+  useHousingRequestList,
+  useRealtimeProfile,
+  useRequestHousing,
+  useUpdateHousing,
+} from '@/shared/hooks';
 import { Housing, UserRole } from '@/shared/types';
+
+import { HousingRequestList } from '@/features/housing-request-list';
 
 export const HousingListItem = ({
   housing,
@@ -18,6 +26,10 @@ export const HousingListItem = ({
   const { updateHousing } = useUpdateHousing();
 
   const { housingList } = useHousingList(housing.id);
+
+  const { housingRequestList } = useHousingRequestList(housing);
+
+  const { requestHousing } = useRequestHousing();
 
   const realtimeHousing =
     housingList === undefined
@@ -49,7 +61,12 @@ export const HousingListItem = ({
               </Button>
             </div>
           ) : (
-            <Button variant="default" size="sm" disabled={realtimeHousing.status !== 'Enabled'}>
+            <Button
+              variant="default"
+              size="sm"
+              disabled={realtimeHousing.status !== 'Enabled'}
+              onClick={() => requestHousing(housing)}
+            >
               {realtimeHousing.status === 'Enabled' ? 'Request' : 'Unavailable'}
             </Button>
           )}
@@ -58,7 +75,7 @@ export const HousingListItem = ({
         <p>{realtimeHousing.description}</p>
         <p>{realtimeHousing.location}</p>
 
-        {userRole == UserRole.Agency && <p>{realtimeHousing.status}</p>}
+        {/* {userRole == UserRole.Agency && <p>{realtimeHousing.status}</p>} */}
 
         <div className="flex items-center justify-between">
           <p>{realtimeHousing.contact}</p>
@@ -70,6 +87,10 @@ export const HousingListItem = ({
             </p>
           )}
         </div>
+
+        {userRole == UserRole.Agency && housingRequestList && (
+          <HousingRequestList housingRequestList={housingRequestList} />
+        )}
       </div>
 
       <Separator />
