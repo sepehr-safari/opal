@@ -8,22 +8,22 @@ export const useAddHousing = () => {
   const { ndk } = useNdk();
 
   const addHousing = useCallback(
-    (housing: Omit<Housing, 'id'>) => {
+    (housing: Omit<Housing, 'id' | 'agencyPubkey' | 'housingEvent'>) => {
       if (!ndk) return;
       if (!ndk.signer) return;
 
-      const _h = new NDKEvent(ndk);
-      _h.kind = NDKKind.AppSpecificData;
-      _h.tags = [
-        ['t', 'opal/v0/housing'],
-        ['name', housing.name],
+      const e = new NDKEvent(ndk);
+      e.kind = NDKKind.AppSpecificData;
+      e.tags = [
+        ['T', 'opal/v0/housing'],
+        ['N', housing.name],
         ['description', housing.description],
         ['location', housing.location],
-        ['isAvailable', housing.isAvailable.toString()],
+        ['s', housing.status],
         ['contact', housing.contact],
       ];
 
-      _h.publish();
+      e.publish();
     },
     [ndk],
   );

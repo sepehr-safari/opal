@@ -1,62 +1,41 @@
-import { NDKEvent, NDKKind } from '@nostr-dev-kit/ndk';
+import { NDKKind } from '@nostr-dev-kit/ndk';
 import { useSubscription } from 'nostr-hooks';
 import { useEffect, useMemo } from 'react';
 
 import { Housing } from '@/shared/types';
 
-const housingFromEvent = (event: NDKEvent) => {
-  const dTag = event.dTag;
-  if (!dTag) return null;
+import { housingFromEvent } from './utils';
 
-  const name = event.getMatchingTags('name')?.[0]?.[1] || undefined;
-  if (!name) return null;
-
-  const description = event.getMatchingTags('description')?.[0]?.[1] || undefined;
-  if (!description) return null;
-
-  const location = event.getMatchingTags('location')?.[0]?.[1] || undefined;
-  if (!location) return null;
-
-  const isAvailableStr = event.getMatchingTags('isAvailable')?.[0]?.[1] || undefined;
-  if (!isAvailableStr) return null;
-
-  const isAvailable = isAvailableStr === 'true';
-
-  const contact = event.getMatchingTags('contact')?.[0]?.[1] || undefined;
-  if (!contact) return null;
-
-  return {
-    id: dTag,
-    name,
-    description,
-    location,
-    isAvailable,
-    contact,
-    housingEvent: event,
-  } as Housing;
-};
-
-export const useHousingList = () => {
-  const subId = 'housing';
+export const useHousingList = (housingId?: string) => {
+  const subId = `housing-${housingId}`;
 
   const { createSubscription, removeSubscription, isLoading, events } = useSubscription(subId);
+  console.log(events);
 
   const housingList = useMemo(() => {
     if (isLoading) return undefined;
     if (!events || !events.length) return null;
 
-    return events.reduce((list: Housing[], event) => {
+    const list = events.reduce((list: Housing[], event) => {
       const housing = housingFromEvent(event);
       if (housing) {
         list.push(housing);
       }
       return list;
     }, []);
+
+    return list.length ? list : null;
   }, [events, isLoading]);
 
   useEffect(() => {
     createSubscription([
-      { kinds: [NDKKind.AppSpecificData], limit: 100, '#t': ['opal/v0/housing'] },
+      {
+        kinds: [NDKKind.AppSpecificData],
+        limit: 100,
+        '#T': ['opal/v0/housing'],
+        '#d': housingId ? [housingId] : undefined,
+        '#s': !housingId ? ['Enabled'] : undefined,
+      },
     ]);
 
     return () => {
