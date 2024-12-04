@@ -8,7 +8,7 @@ export const HousingRequestList = ({
   housingRequestList: HousingRequest[];
 }) => {
   return (
-    <div className="">
+    <div className="flex flex-col gap-2">
       <p>{housingRequestList.length} requests</p>
 
       <div className="flex gap-2 flex-wrap">

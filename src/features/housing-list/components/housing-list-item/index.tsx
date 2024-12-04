@@ -1,4 +1,5 @@
 import { CircleXIcon, EditIcon } from 'lucide-react';
+import { useActiveUser } from 'nostr-hooks';
 
 import { Button } from '@/shared/components/ui/button';
 import { Separator } from '@/shared/components/ui/separator';
@@ -7,12 +8,13 @@ import {
   useHousingList,
   useHousingRequestList,
   useRealtimeProfile,
-  useRequestHousing,
   useUpdateHousing,
 } from '@/shared/hooks';
 import { Housing, UserRole } from '@/shared/types';
 
 import { HousingRequestList } from '@/features/housing-request-list';
+
+import { PehHousingRequestButton } from './components';
 
 export const HousingListItem = ({
   housing,
@@ -21,6 +23,8 @@ export const HousingListItem = ({
   housing: Housing;
   userRole: UserRole;
 }) => {
+  const { activeUser } = useActiveUser();
+
   const { profile } = useRealtimeProfile(housing.agencyPubkey);
 
   const { updateHousing } = useUpdateHousing();
@@ -28,8 +32,6 @@ export const HousingListItem = ({
   const { housingList } = useHousingList(housing.id);
 
   const { housingRequestList } = useHousingRequestList(housing);
-
-  const { requestHousing } = useRequestHousing();
 
   const realtimeHousing =
     housingList === undefined
@@ -61,14 +63,12 @@ export const HousingListItem = ({
               </Button>
             </div>
           ) : (
-            <Button
-              variant="default"
-              size="sm"
-              disabled={realtimeHousing.status !== 'Enabled'}
-              onClick={() => requestHousing(housing)}
-            >
-              {realtimeHousing.status === 'Enabled' ? 'Request' : 'Unavailable'}
-            </Button>
+            activeUser && (
+              <PehHousingRequestButton
+                realtimeHousing={realtimeHousing}
+                pehPubkey={activeUser.pubkey}
+              />
+            )
           )}
         </div>
 
