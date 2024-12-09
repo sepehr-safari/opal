@@ -17,7 +17,7 @@ export const useUpdateUserRole = () => {
 
       const event = new NDKEvent(ndk);
       event.kind = NDKKind.AppSpecificData;
-      event.dTag = 'opal/v0/user-role';
+      event.dTag = 'opal/v0.1/user-role';
       event.tags.push(['r', role.toString()]);
 
       event.publish().then(

@@ -16,7 +16,7 @@ export const useUpdateHousing = () => {
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
         ['d', housing.id],
-        ['T', 'opal/v0/housing'],
+        ['T', 'opal/v0.1/housing'],
         ['N', housing.name],
         ['description', housing.description],
         ['location', housing.location],

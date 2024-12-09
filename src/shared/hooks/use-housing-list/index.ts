@@ -31,7 +31,7 @@ export const useHousingList = (housingId?: string) => {
       {
         kinds: [NDKKind.AppSpecificData],
         limit: 100,
-        '#T': ['opal/v0/housing'],
+        '#T': ['opal/v0.1/housing'],
         '#d': housingId ? [housingId] : undefined,
         '#s': !housingId ? ['Enabled'] : undefined,
       },

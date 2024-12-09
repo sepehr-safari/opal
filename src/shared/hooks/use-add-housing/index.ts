@@ -15,7 +15,7 @@ export const useAddHousing = () => {
       const e = new NDKEvent(ndk);
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
-        ['T', 'opal/v0/housing'],
+        ['T', 'opal/v0.1/housing'],
         ['N', housing.name],
         ['description', housing.description],
         ['location', housing.location],
