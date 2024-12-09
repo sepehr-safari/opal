@@ -148,7 +148,7 @@ export const UserProfileSetup = ({ user }: { user: NDKUser }) => {
             )}
           />
 
-          <FormField
+          {/* <FormField
             control={form.control}
             name="nip05"
             render={({ field }) => (
@@ -159,7 +159,7 @@ export const UserProfileSetup = ({ user }: { user: NDKUser }) => {
                 </FormControl>
               </FormItem>
             )}
-          />
+          /> */}
 
           <Button type="submit" className="w-full">
             Save
