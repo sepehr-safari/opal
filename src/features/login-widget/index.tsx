@@ -9,23 +9,20 @@ import {
   DialogTrigger,
 } from '@/shared/components/ui/dialog';
 import { Input } from '@/shared/components/ui/input';
-import { Label } from '@/shared/components/ui/label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
 import { Muted } from '@/shared/components/ui/typography/muted';
 
 import { useLoginWidget } from './hooks';
 
-// Check out the `example-components` folder to see how to use this component
-
 export const LoginWidget = () => {
   const {
     loading,
-    nip46Input,
-    setNip46Input,
+    // nip46Input,
+    // setNip46Input,
     nsecInput,
     setNsecInput,
-    handleRemoteSigner,
-    handleExtensionSigner,
+    // handleRemoteSigner,
+    // handleExtensionSigner,
     handlePrivateKeySigner,
     handlePrivateKeyGenerate,
     isModalOpen,
@@ -44,7 +41,35 @@ export const LoginWidget = () => {
             <DialogTitle>Login</DialogTitle>
           </DialogHeader>
 
-          <Tabs defaultValue="remote-signer" className="mt-2">
+          <div className="flex flex-col gap-4">
+            <div>
+              <p className="mb-2">Your Secret Key:</p>
+
+              <Input
+                placeholder="nsec..."
+                value={nsecInput}
+                onChange={(e) => setNsecInput(e.target.value)}
+                onKeyUp={(e) => e.key === 'Enter' && handlePrivateKeySigner()}
+              />
+            </div>
+
+            <Button className="w-full" disabled={loading} onClick={handlePrivateKeySigner}>
+              {loading ? <Loader2 className="animate-spin" /> : `Login With Secret Key`}
+            </Button>
+
+            <div className="text-center">
+              <Muted>Don't have a secret key yet?</Muted>
+
+              <button
+                className="text-sm font-semibold text-blue-600 hover:underline"
+                onClick={handlePrivateKeyGenerate}
+              >
+                Generate a new secret key
+              </button>
+            </div>
+          </div>
+
+          {/* <Tabs defaultValue="remote-signer" className="mt-2">
             <TabsList className="w-full">
               <TabsTrigger value="extension" className="w-full">
                 Extension
@@ -150,7 +175,7 @@ export const LoginWidget = () => {
                 </div>
               </TabsContent>
             </div>
-          </Tabs>
+          </Tabs> */}
         </DialogContent>
       </Dialog>
     </>
