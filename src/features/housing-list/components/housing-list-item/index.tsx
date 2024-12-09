@@ -48,7 +48,14 @@ export const HousingListItem = ({
         <div className="flex items-center justify-between">
           <b>{realtimeHousing.name}</b>
 
-          {userRole == UserRole.Agency && activeUser?.pubkey === realtimeHousing.agencyPubkey ? (
+          {userRole == UserRole.Peh && realtimeHousing && activeUser?.pubkey && (
+            <PehHousingRequestButton
+              realtimeHousing={realtimeHousing}
+              pehPubkey={activeUser.pubkey}
+            />
+          )}
+
+          {userRole == UserRole.Agency && activeUser?.pubkey === realtimeHousing.agencyPubkey && (
             <div className="flex gap-1">
               <Button
                 variant="ghost"
@@ -63,14 +70,6 @@ export const HousingListItem = ({
                 <EditIcon size={18} />
               </Button>
             </div>
-          ) : (
-            realtimeHousing &&
-            activeUser?.pubkey && (
-              <PehHousingRequestButton
-                realtimeHousing={realtimeHousing}
-                pehPubkey={activeUser.pubkey}
-              />
-            )
           )}
         </div>
 
