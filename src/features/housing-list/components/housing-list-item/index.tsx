@@ -48,7 +48,7 @@ export const HousingListItem = ({
         <div className="flex items-center justify-between">
           <b>{realtimeHousing.name}</b>
 
-          {userRole == UserRole.Agency ? (
+          {userRole == UserRole.Agency && activeUser?.pubkey === realtimeHousing.agencyPubkey ? (
             <div className="flex gap-1">
               <Button
                 variant="ghost"
@@ -58,12 +58,14 @@ export const HousingListItem = ({
               >
                 <CircleXIcon size={18} />
               </Button>
+
               <Button variant="ghost" size="icon" className="text-muted-foreground">
                 <EditIcon size={18} />
               </Button>
             </div>
           ) : (
-            activeUser && (
+            realtimeHousing &&
+            activeUser?.pubkey && (
               <PehHousingRequestButton
                 realtimeHousing={realtimeHousing}
                 pehPubkey={activeUser.pubkey}
@@ -83,7 +85,9 @@ export const HousingListItem = ({
           {profile && (
             <p className="text-sm text-muted-foreground">
               <span className="">by: </span>
-              <button className="hover:underline hover:text-primary">{profile.name}</button>
+              <button className="hover:underline hover:text-primary">
+                {activeUser?.pubkey === realtimeHousing.agencyPubkey ? 'You' : profile.name}
+              </button>
             </p>
           )}
         </div>
