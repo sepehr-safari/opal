@@ -3,6 +3,7 @@ import { useNdk } from 'nostr-hooks';
 import { useCallback } from 'react';
 
 import { useToast } from '@/shared/components/ui/use-toast';
+
 import { UserRole } from '@/shared/types';
 
 export const useUpdateUserRole = () => {

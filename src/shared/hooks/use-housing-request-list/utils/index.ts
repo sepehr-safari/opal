@@ -1,5 +1,6 @@
-import { HousingRequest } from '@/shared/types';
 import { NDKEvent } from '@nostr-dev-kit/ndk';
+
+import { HousingRequest } from '@/shared/types';
 
 export const housingRequestFromEvent = (event: NDKEvent) => {
   const dTag = event.dTag;

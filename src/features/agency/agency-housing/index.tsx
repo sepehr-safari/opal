@@ -2,8 +2,8 @@ import { Separator } from '@/shared/components/ui/separator';
 
 import { useAddHousing } from '@/shared/hooks';
 
-import { AgencyHousingList } from '@/features/agency//agency-housing-list';
 import { AgencyHousingForm } from '@/features/agency/agency-housing-form';
+import { AgencyHousingList } from '@/features/agency/agency-housing-list';
 
 export const AgencyHousing = () => {
   const { addHousing } = useAddHousing();

@@ -1,5 +1,6 @@
-import { Spinner } from '@/shared/components/spinner';
 import { Button } from '@/shared/components/ui/button';
+
+import { Spinner } from '@/shared/components/spinner';
 
 import { useHousingRequestList, useRequestHousing } from '@/shared/hooks';
 import { Housing } from '@/shared/types';

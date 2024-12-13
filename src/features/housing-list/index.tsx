@@ -1,4 +1,5 @@
 import { Housing, UserRole } from '@/shared/types';
+
 import { HousingListItem } from './components';
 
 export const HousingList = ({
