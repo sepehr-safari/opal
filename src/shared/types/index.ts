@@ -1,9 +1,6 @@
 import { NDKEvent } from '@nostr-dev-kit/ndk';
 
-export enum UserRole {
-  Peh = 'peh',
-  Agency = 'agency',
-}
+export type UserRole = 'agency' | 'peh';
 
 export type Housing = {
   id: string;
