@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { NDKUserProfile } from '@nostr-dev-kit/ndk';
 import { UploadIcon } from '@radix-ui/react-icons';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -19,7 +20,9 @@ import { useToast } from '@/shared/components/ui/use-toast';
 import { Spinner } from '@/shared/components/spinner';
 
 import { useUpdateUserProfile } from '@/shared/hooks';
-import { NDKUserProfile } from '@nostr-dev-kit/ndk';
+
+import { ProfileAvatar } from '../profile-avatar';
+import { ProfileBanner } from '../profile-banner';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -102,101 +105,106 @@ export const ProfileEditor = ({
   };
 
   return (
-    <div className="p-4 pt-16 flex flex-col gap-4">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="John Doe" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    <>
+      <ProfileBanner banner={form.watch().banner} />
 
-          <FormField
-            control={form.control}
-            name="about"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>About Me</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-              </FormItem>
-            )}
-          />
+      <ProfileAvatar image={form.watch().image} />
 
-          <FormField
-            control={form.control}
-            name="image"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Avatar Image Url</FormLabel>
-                <div className="flex items-center space-x-2">
+      <div className="p-4 pt-16 flex flex-col gap-4">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="John Doe" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="about"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>About Me</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
+                </FormItem>
+              )}
+            />
 
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    className="flex items-center"
-                    onClick={() => openUploadMediaDialog('image')}
-                    disabled={isUploadingMedia}
-                  >
-                    {isUploadingMedia ? (
-                      <Spinner />
-                    ) : (
-                      <>
-                        <UploadIcon className="mr-2" />
-                        <span>Upload Avatar</span>
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </FormItem>
-            )}
-          />
+            <FormField
+              control={form.control}
+              name="image"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Avatar Image Url</FormLabel>
+                  <div className="flex items-center space-x-2">
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
 
-          <FormField
-            control={form.control}
-            name="banner"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Banner Image Url</FormLabel>
-                <div className="flex items-center space-x-2">
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      className="flex items-center"
+                      onClick={() => openUploadMediaDialog('image')}
+                      disabled={isUploadingMedia}
+                    >
+                      {isUploadingMedia ? (
+                        <Spinner />
+                      ) : (
+                        <>
+                          <UploadIcon className="mr-2" />
+                          <span>Upload Avatar</span>
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </FormItem>
+              )}
+            />
 
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    className="flex items-center"
-                    onClick={() => openUploadMediaDialog('banner')}
-                    disabled={isUploadingMedia}
-                  >
-                    {isUploadingMedia ? (
-                      <Spinner />
-                    ) : (
-                      <>
-                        <UploadIcon className="mr-2" />
-                        <span>Upload Banner</span>
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </FormItem>
-            )}
-          />
+            <FormField
+              control={form.control}
+              name="banner"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Banner Image Url</FormLabel>
+                  <div className="flex items-center space-x-2">
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
 
-          {/* <FormField
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      className="flex items-center"
+                      onClick={() => openUploadMediaDialog('banner')}
+                      disabled={isUploadingMedia}
+                    >
+                      {isUploadingMedia ? (
+                        <Spinner />
+                      ) : (
+                        <>
+                          <UploadIcon className="mr-2" />
+                          <span>Upload Banner</span>
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </FormItem>
+              )}
+            />
+
+            {/* <FormField
             control={form.control}
             name="nip05"
             render={({ field }) => (
@@ -209,22 +217,23 @@ export const ProfileEditor = ({
             )}
           /> */}
 
-          <div className="flex items-center gap-2">
-            <Button
-              type="button"
-              variant="secondary"
-              className="w-1/3"
-              onClick={() => setEditMode(false)}
-            >
-              Cancel
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                type="button"
+                variant="secondary"
+                className="w-1/3"
+                onClick={() => setEditMode(false)}
+              >
+                Cancel
+              </Button>
 
-            <Button type="submit" className="w-2/3">
-              Save
-            </Button>
-          </div>
-        </form>
-      </Form>
-    </div>
+              <Button type="submit" className="w-2/3">
+                Save
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </div>
+    </>
   );
 };

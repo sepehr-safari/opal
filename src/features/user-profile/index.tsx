@@ -34,16 +34,16 @@ export const UserProfile = ({
   return (
     <>
       <div className="relative">
-        <ProfileBanner profile={profile} />
-
-        <ProfileAvatar profile={profile} />
-
         {editMode ? (
           <>
             <ProfileEditor setEditMode={setEditMode} initialProfile={profile} />
           </>
         ) : (
           <>
+            <ProfileBanner banner={profile?.banner} />
+
+            <ProfileAvatar image={profile?.image} />
+
             <ProfileActions targetUser={user} setEditMode={setEditMode} />
 
             <ProfileSummary user={user} profile={profile} />
