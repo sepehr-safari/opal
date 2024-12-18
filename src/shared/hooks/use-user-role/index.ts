@@ -4,7 +4,7 @@ import { useEffect, useMemo } from 'react';
 
 import { UserRole } from '@/shared/types';
 
-const VALID_ROLES: string[] = Object.values(UserRole);
+const VALID_ROLES: UserRole[] = ['agency', 'peh'];
 
 export const useUserRole = ({ pubkey }: { pubkey: string }) => {
   const subId = `user-role-${pubkey}`;
@@ -23,7 +23,7 @@ export const useUserRole = ({ pubkey }: { pubkey: string }) => {
     const userRoleTag = userRoleTags[0];
     if (userRoleTag.length < 2) return null;
 
-    if (!VALID_ROLES.includes(userRoleTag[1])) return null;
+    if (!VALID_ROLES.includes(userRoleTag[1] as UserRole)) return null;
 
     return userRoleTag[1] as UserRole;
   }, [events, isLoading]);
