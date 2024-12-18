@@ -1,21 +1,26 @@
-import { NDKUser } from '@nostr-dev-kit/ndk';
-import { useLogin } from 'nostr-hooks';
+import { useActiveUser, useLogin } from 'nostr-hooks';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/shared/components/ui/dropdown-menu';
 
 import { useRealtimeProfile } from '@/shared/hooks';
 
 import { LoginWidget } from '@/features/login-widget';
+import { NDKUser } from '@nostr-dev-kit/ndk';
+import { PowerIcon, UserIcon } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-export const NavbarAvatar = ({ user }: { user: NDKUser }) => {
-  const { profile } = useRealtimeProfile(user.pubkey);
+export const NavbarAvatar = ({ activeUser }: { activeUser: NDKUser }) => {
+  const { profile } = useRealtimeProfile(activeUser.pubkey);
   const { logout } = useLogin();
+
+  const navigate = useNavigate();
 
   return (
     <DropdownMenu>
@@ -26,20 +31,30 @@ export const NavbarAvatar = ({ user }: { user: NDKUser }) => {
         </Avatar>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent>
-        <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
+      <DropdownMenuContent align="end" sideOffset={8}>
+        <DropdownMenuItem onClick={() => navigate(`/profile/${activeUser.npub}`)}>
+          <UserIcon className="w-4 h-4 mr-2" />
+          Profile
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={logout}>
+          <PowerIcon className="w-4 h-4 mr-2" />
+          Logout
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 };
 
-export const Navbar = ({ user }: { user: NDKUser | null | undefined }) => {
+export const Navbar = () => {
+  const { activeUser } = useActiveUser();
+
   return (
-    <div className="border-b">
+    <div className="border-b bg-background">
       <div className="m-2 flex items-center justify-between">
         <h1>OPAL</h1>
 
-        {user ? <NavbarAvatar user={user} /> : <LoginWidget />}
+        {activeUser ? <NavbarAvatar activeUser={activeUser} /> : <LoginWidget />}
       </div>
     </div>
   );
