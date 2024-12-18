@@ -5,7 +5,7 @@ import { useEffect, useMemo } from 'react';
 export const useRealtimeProfile = (pubkey: string | undefined) => {
   const subId = pubkey ? `profile-${pubkey}` : undefined;
 
-  const { createSubscription, removeSubscription, events, isLoading } = useSubscription(subId);
+  const { createSubscription, events, isLoading } = useSubscription(subId);
 
   const profile = useMemo(() => {
     if (isLoading) return undefined;
@@ -25,12 +25,8 @@ export const useRealtimeProfile = (pubkey: string | undefined) => {
   useEffect(() => {
     if (!pubkey) return;
 
-    createSubscription([{ authors: [pubkey], kinds: [NDKKind.Metadata], limit: 1 }]);
-
-    return () => {
-      removeSubscription();
-    };
-  }, [pubkey]);
+    createSubscription({ filters: [{ authors: [pubkey], kinds: [NDKKind.Metadata], limit: 1 }] });
+  }, [pubkey, createSubscription]);
 
   return { profile };
 };

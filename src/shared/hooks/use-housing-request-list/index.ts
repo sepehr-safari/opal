@@ -9,7 +9,7 @@ import { housingRequestFromEvent } from './utils';
 export const useHousingRequestList = (housing: Housing, pehPubkey?: string) => {
   const subId = `housing-requests-${housing.id}-${pehPubkey}`;
 
-  const { createSubscription, removeSubscription, isLoading, events } = useSubscription(subId);
+  const { createSubscription, isLoading, events } = useSubscription(subId);
 
   const housingRequestList = useMemo(() => {
     if (isLoading) return undefined;
@@ -27,21 +27,19 @@ export const useHousingRequestList = (housing: Housing, pehPubkey?: string) => {
   }, [events, isLoading]);
 
   useEffect(() => {
-    createSubscription([
-      {
-        kinds: [NDKKind.AppSpecificData],
-        limit: 100,
-        authors: pehPubkey ? [pehPubkey] : undefined,
-        '#T': ['opal/v0.1/housing-request'],
-        '#a': [housing.housingEvent.tagAddress()],
-        '#s': ['Enabled'],
-      },
-    ]);
-
-    return () => {
-      removeSubscription();
-    };
-  }, [housing, pehPubkey, createSubscription, removeSubscription]);
+    createSubscription({
+      filters: [
+        {
+          kinds: [NDKKind.AppSpecificData],
+          limit: 100,
+          authors: pehPubkey ? [pehPubkey] : undefined,
+          '#T': ['opal/v0.1/housing-request'],
+          '#a': [housing.housingEvent.tagAddress()],
+          '#s': ['Enabled'],
+        },
+      ],
+    });
+  }, [housing, pehPubkey, createSubscription]);
 
   return { housingRequestList };
 };

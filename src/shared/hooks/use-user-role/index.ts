@@ -9,7 +9,7 @@ const VALID_ROLES: string[] = Object.values(UserRole);
 export const useUserRole = ({ pubkey }: { pubkey: string }) => {
   const subId = `user-role-${pubkey}`;
 
-  const { createSubscription, removeSubscription, events, isLoading } = useSubscription(subId);
+  const { createSubscription, events, isLoading } = useSubscription(subId);
 
   const role = useMemo(() => {
     if (isLoading) return undefined;
@@ -29,19 +29,17 @@ export const useUserRole = ({ pubkey }: { pubkey: string }) => {
   }, [events, isLoading]);
 
   useEffect(() => {
-    createSubscription([
-      {
-        kinds: [NDKKind.AppSpecificData],
-        limit: 1,
-        authors: [pubkey],
-        '#d': ['opal/v0.1/user-role'],
-      },
-    ]);
-
-    return () => {
-      removeSubscription();
-    };
-  }, [pubkey, createSubscription, removeSubscription]);
+    createSubscription({
+      filters: [
+        {
+          kinds: [NDKKind.AppSpecificData],
+          limit: 1,
+          authors: [pubkey],
+          '#d': ['opal/v0.1/user-role'],
+        },
+      ],
+    });
+  }, [pubkey, createSubscription]);
 
   return { role };
 };

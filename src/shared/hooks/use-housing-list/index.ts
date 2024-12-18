@@ -9,7 +9,7 @@ import { housingFromEvent } from './utils';
 export const useHousingList = (housingId?: string) => {
   const subId = `housing-${housingId}`;
 
-  const { createSubscription, removeSubscription, isLoading, events } = useSubscription(subId);
+  const { createSubscription, isLoading, events } = useSubscription(subId);
 
   const housingList = useMemo(() => {
     if (isLoading) return undefined;
@@ -27,20 +27,18 @@ export const useHousingList = (housingId?: string) => {
   }, [events, isLoading]);
 
   useEffect(() => {
-    createSubscription([
-      {
-        kinds: [NDKKind.AppSpecificData],
-        limit: 100,
-        '#T': ['opal/v0.1/housing'],
-        '#d': housingId ? [housingId] : undefined,
-        '#s': !housingId ? ['Enabled'] : undefined,
-      },
-    ]);
-
-    return () => {
-      removeSubscription();
-    };
-  }, [housingId, createSubscription, removeSubscription]);
+    createSubscription({
+      filters: [
+        {
+          kinds: [NDKKind.AppSpecificData],
+          limit: 100,
+          '#T': ['opal/v0.1/housing'],
+          '#d': housingId ? [housingId] : undefined,
+          '#s': !housingId ? ['Enabled'] : undefined,
+        },
+      ],
+    });
+  }, [housingId, createSubscription]);
 
   return { housingList };
 };
