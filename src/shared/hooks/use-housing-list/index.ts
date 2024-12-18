@@ -6,8 +6,8 @@ import { Housing } from '@/shared/types';
 
 import { housingFromEvent } from './utils';
 
-export const useHousingList = (housingId?: string) => {
-  const subId = `housing-${housingId}`;
+export const useHousingList = (params?: { housingId?: string; agencyPubkey?: string }) => {
+  const subId = `housing-${params?.housingId}-${params?.agencyPubkey}`;
 
   const { createSubscription, isLoading, events } = useSubscription(subId);
 
@@ -32,13 +32,14 @@ export const useHousingList = (housingId?: string) => {
         {
           kinds: [NDKKind.AppSpecificData],
           limit: 100,
+          authors: params?.agencyPubkey ? [params?.agencyPubkey] : undefined,
           '#T': ['opal/v0.1/housing'],
-          '#d': housingId ? [housingId] : undefined,
-          '#s': !housingId ? ['Enabled'] : undefined,
+          '#d': params?.housingId ? [params?.housingId] : undefined,
+          '#s': !params?.housingId ? ['Enabled'] : undefined,
         },
       ],
     });
-  }, [housingId, createSubscription]);
+  }, [params?.housingId, params?.agencyPubkey, createSubscription]);
 
   return { housingList };
 };

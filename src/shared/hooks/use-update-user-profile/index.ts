@@ -1,10 +1,11 @@
-import { NDKUser, NDKUserProfile } from '@nostr-dev-kit/ndk';
-import { useNdk } from 'nostr-hooks';
+import { NDKUserProfile } from '@nostr-dev-kit/ndk';
+import { useActiveUser, useNdk } from 'nostr-hooks';
 import { useCallback } from 'react';
 
 import { useToast } from '@/shared/components/ui/use-toast';
 
-export const useUpdateUserProfile = ({ user }: { user: NDKUser }) => {
+export const useUpdateUserProfile = () => {
+  const { activeUser } = useActiveUser();
   const { toast } = useToast();
 
   const { ndk } = useNdk();
@@ -13,8 +14,9 @@ export const useUpdateUserProfile = ({ user }: { user: NDKUser }) => {
     (userProfile: NDKUserProfile) => {
       if (!ndk) return;
       if (!ndk.signer) return;
+      if (!activeUser) return;
 
-      const _u = ndk.getUser({ pubkey: user.pubkey });
+      const _u = ndk.getUser({ pubkey: activeUser.pubkey });
 
       _u.profile = { ...userProfile };
 
@@ -28,7 +30,7 @@ export const useUpdateUserProfile = ({ user }: { user: NDKUser }) => {
           }),
         );
     },
-    [ndk, user, toast],
+    [ndk, activeUser, toast],
   );
 
   return { updateUserProfile };
