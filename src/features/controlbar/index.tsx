@@ -27,7 +27,7 @@ export const Controlbar = () => {
         <Button
           size="icon"
           variant="ghost"
-          onClick={() => navigate(`/profile/${activeUser?.npub}`)}
+          onClick={() => navigate(activeUser ? `/profile/${activeUser.npub}` : '/')}
         >
           <UserIcon size={24} />
         </Button>
