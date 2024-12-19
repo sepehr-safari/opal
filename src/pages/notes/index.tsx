@@ -5,19 +5,23 @@ import { Spinner } from '@/shared/components/spinner';
 export const NotesPage = () => {
   const { activeUser } = useActiveUser();
 
+  if (activeUser === undefined) {
+    return <Spinner />;
+  }
+
+  if (activeUser === null) {
+    return (
+      <div className="p-4">
+        <h4>Not logged in</h4>
+      </div>
+    );
+  }
+
   return (
     <>
-      {activeUser === undefined ? (
-        <Spinner />
-      ) : activeUser === null ? (
-        <div className="p-4">
-          <h4>Not logged in</h4>
-        </div>
-      ) : (
-        <>
-          <h4>Notes</h4>
-        </>
-      )}
+      <div className="p-4">
+        <h4>Notes</h4>
+      </div>
     </>
   );
 };

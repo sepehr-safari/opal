@@ -7,19 +7,23 @@ import { Housing } from '@/features/housing';
 export const HomePage = () => {
   const { activeUser } = useActiveUser();
 
+  if (activeUser === undefined) {
+    return <Spinner />;
+  }
+
+  if (activeUser === null) {
+    return (
+      <div className="p-4">
+        <h4>Not logged in</h4>
+      </div>
+    );
+  }
+
   return (
     <>
-      {activeUser === undefined ? (
-        <Spinner />
-      ) : activeUser === null ? (
-        <div className="p-4">
-          <h4>Not logged in</h4>
-        </div>
-      ) : (
-        <div className="p-4">
-          <Housing user={activeUser} />
-        </div>
-      )}
+      <div className="p-4">
+        <Housing user={activeUser} />
+      </div>
     </>
   );
 };
