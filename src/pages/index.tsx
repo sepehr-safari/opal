@@ -48,6 +48,12 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: '/messages/:npub',
+        async lazy() {
+          return { Component: (await MessagesPage()).MessagesPage };
+        },
+      },
+      {
         path: '/notes',
         async lazy() {
           return { Component: (await NotesPage()).NotesPage };

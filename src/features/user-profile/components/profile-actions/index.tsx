@@ -1,6 +1,7 @@
 import { NDKUser } from '@nostr-dev-kit/ndk';
 import { EllipsisIcon, KeyRoundIcon, LinkIcon, MailIcon } from 'lucide-react';
 import { useActiveUser } from 'nostr-hooks';
+import { useNavigate } from 'react-router-dom';
 import { useCopyToClipboard } from 'usehooks-ts';
 
 import { Button } from '@/shared/components/ui/button';
@@ -22,6 +23,8 @@ export const ProfileActions = ({
   targetUser: NDKUser;
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const navigate = useNavigate();
+
   const { activeUser } = useActiveUser();
 
   const [, copy] = useCopyToClipboard();
@@ -49,7 +52,12 @@ export const ProfileActions = ({
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <Button variant="secondary" className="rounded-full" size="icon">
+        <Button
+          variant="secondary"
+          className="rounded-full"
+          size="icon"
+          onClick={() => navigate(`/messages/${targetUser.npub}`)}
+        >
           <MailIcon size={18} />
         </Button>
 
