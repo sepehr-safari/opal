@@ -9,6 +9,7 @@ import {
   ProfileAvatar,
   ProfileBanner,
   ProfileEditor,
+  ProfileNotes,
   ProfileSummary,
   ProfileViewSwitcher,
 } from './components';
@@ -52,7 +53,7 @@ export const UserProfile = ({
 
             <div className="p-4">
               {view == 'housing' && <>Housing</>}
-              {view == 'notes' && <>User Notes</>}
+              {view == 'notes' && <ProfileNotes user={user} />}
               {view == 'replies' && <>User Replies</>}
               {view == 'relays' && <>User Relays</>}
             </div>
