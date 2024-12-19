@@ -10,9 +10,16 @@ import { SetupRole } from '@/features/setup-role';
 import { UserProfile } from '@/features/user-profile';
 
 export const Housing = ({ user }: { user: NDKUser }) => {
+  const { role } = useUserRole({ pubkey: user.pubkey });
   const { profile } = useRealtimeProfile(user.pubkey);
 
-  const { role } = useUserRole({ pubkey: user.pubkey });
+  if (role === undefined) {
+    return <Spinner />;
+  }
+
+  if (role === null) {
+    return <SetupRole />;
+  }
 
   if (profile === undefined) {
     return <Spinner />;
@@ -21,21 +28,13 @@ export const Housing = ({ user }: { user: NDKUser }) => {
   if (profile === null) {
     return (
       <>
-        <div className="py-4">
+        <div className="pb-4">
           <h4>Set up your profile</h4>
         </div>
 
         <UserProfile user={user} initialEditMode={true} />
       </>
     );
-  }
-
-  if (role === undefined) {
-    return <Spinner />;
-  }
-
-  if (role === null) {
-    return <SetupRole />;
   }
 
   return (
