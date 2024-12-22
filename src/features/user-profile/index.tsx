@@ -51,10 +51,10 @@ export const UserProfile = ({
 
             <ProfileViewSwitcher view={view} setView={setView} />
 
-            <div className="p-4">
+            <div className="p-2">
               {view == 'housing' && <>Housing</>}
-              {view == 'notes' && <ProfileNotes user={user} />}
-              {view == 'replies' && <>User Replies</>}
+              {view == 'notes' && <ProfileNotes user={user} notesOnly />}
+              {view == 'replies' && <ProfileNotes user={user} repliesOnly />}
               {view == 'relays' && <>User Relays</>}
             </div>
           </>
