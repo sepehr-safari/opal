@@ -1,8 +1,9 @@
-import { Button } from '@/shared/components/ui/button';
 import { NDKEvent } from '@nostr-dev-kit/ndk';
 import { BookmarkIcon, HeartIcon, MessageSquareIcon, Repeat2Icon, ZapIcon } from 'lucide-react';
 
-export const NoteFooter = ({ event }: { event: NDKEvent }) => {
+import { Button } from '@/shared/components/ui/button';
+
+export const NoteFooter = ({}: { event: NDKEvent }) => {
   return (
     <div className="">
       <div className="flex items-center justify-between gap-2">
