@@ -43,7 +43,7 @@ export const ProfileNotes = ({
             return true;
           })
           .reverse()
-          .map((event) => <NoteByEvent event={event} />)}
+          .map((event) => <NoteByEvent key={event.id} event={event} />)}
       </div>
 
       {hasMore && (
