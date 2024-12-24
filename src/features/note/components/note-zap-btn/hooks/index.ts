@@ -43,8 +43,6 @@ const useAnybodyZaps = (event: NDKEvent) => {
     [events],
   );
 
-  if (totalAmount === 1) console.log(events);
-
   useEffect(() => {
     createSubscription({ filters: [{ kinds: [NDKKind.Zap], '#e': [event.id], limit: 1000 }] });
   }, [createSubscription]);
