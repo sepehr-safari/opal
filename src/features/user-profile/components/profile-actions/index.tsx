@@ -33,7 +33,7 @@ export const ProfileActions = ({
     <>
       <div className="p-4 flex items-center justify-end gap-2">
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger asChild>
             <Button variant="secondary" className="rounded-full" size="icon">
               <EllipsisIcon size={18} />
             </Button>
