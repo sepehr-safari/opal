@@ -38,7 +38,7 @@ export const NoteHeader = ({ event }: { event: NDKEvent }) => {
           </p>
 
           <DropdownMenu>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger asChild>
               <Button variant="link" size="icon" className="opacity-40 hover:opacity-100">
                 <EllipsisIcon size={18} />
               </Button>
