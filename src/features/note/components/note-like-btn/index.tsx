@@ -15,7 +15,7 @@ export const NoteLikeBtn = ({ event }: { event: NDKEvent }) => {
       <Button
         variant="link"
         size="icon"
-        className={cn('opacity-50 hover:opacity-100', isLikedByMe && 'text-red-600')}
+        className={cn(isLikedByMe ? 'text-red-600' : 'opacity-50 hover:opacity-100')}
         onClick={like}
       >
         <HeartIcon size={18} />

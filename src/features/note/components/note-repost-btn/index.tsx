@@ -15,7 +15,7 @@ export const NoteRepostBtn = ({ event }: { event: NDKEvent }) => {
       <Button
         variant="link"
         size="icon"
-        className={cn('opacity-50 hover:opacity-100', isRepostedByMe && 'text-green-600')}
+        className={cn(isRepostedByMe ? 'text-green-600' : 'opacity-50 hover:opacity-100')}
         onClick={repost}
       >
         <Repeat2Icon size={18} />
