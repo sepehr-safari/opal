@@ -1,9 +1,9 @@
 import { NDKEvent } from '@nostr-dev-kit/ndk';
-import { BookmarkIcon, MessageSquareIcon } from 'lucide-react';
+import { MessageSquareIcon } from 'lucide-react';
 
 import { Button } from '@/shared/components/ui/button';
 
-import { NoteLikeBtn, NoteRepostBtn, NoteZapBtn } from '../';
+import { NoteBookmarkBtn, NoteLikeBtn, NoteRepostBtn, NoteZapBtn } from '../';
 
 export const NoteFooter = ({ event }: { event: NDKEvent }) => {
   return (
@@ -19,9 +19,7 @@ export const NoteFooter = ({ event }: { event: NDKEvent }) => {
 
         <NoteRepostBtn event={event} />
 
-        <Button variant="link" size="icon" className="opacity-50 hover:opacity-100">
-          <BookmarkIcon size={18} />
-        </Button>
+        <NoteBookmarkBtn event={event} />
       </div>
     </div>
   );
