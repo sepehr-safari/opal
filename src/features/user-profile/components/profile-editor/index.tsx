@@ -19,7 +19,7 @@ import { useToast } from '@/shared/components/ui/use-toast';
 
 import { Spinner } from '@/shared/components/spinner';
 
-import { useUpdateUserProfile } from '@/shared/hooks';
+import { useNip98, useUpdateUserProfile } from '@/shared/hooks';
 
 import { ProfileAvatar } from '../profile-avatar';
 import { ProfileBanner } from '../profile-banner';
@@ -45,6 +45,8 @@ export const ProfileEditor = ({
 
   const { toast } = useToast();
 
+  const { getToken } = useNip98();
+
   const { updateUserProfile } = useUpdateUserProfile();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -68,9 +70,26 @@ export const ProfileEditor = ({
     input.type = 'file';
     input.accept = 'image/*,video/*';
 
-    input.onchange = (event) => {
+    input.onchange = async (event) => {
+      const token = await getToken({
+        url: import.meta.env.VITE_NOSTR_BUILD_UPLOAD_API_ENDPOINT,
+        method: 'POST',
+      });
+
+      if (!token) {
+        toast({
+          title: 'Error',
+          description: 'Failed to upload media',
+          variant: 'destructive',
+        });
+
+        return;
+      }
+
       const file = (event.target as HTMLInputElement).files?.[0];
-      if (!file) return;
+      if (!file) {
+        return;
+      }
 
       const formData = new FormData();
       formData.append('fileToUpload', file);
@@ -80,6 +99,9 @@ export const ProfileEditor = ({
       fetch(import.meta.env.VITE_NOSTR_BUILD_UPLOAD_API_ENDPOINT, {
         method: 'POST',
         body: formData,
+        headers: {
+          Authorization: token,
+        },
       })
         .then((res) => res.json())
         .then(({ status, data }) => {
@@ -94,7 +116,11 @@ export const ProfileEditor = ({
           }
         })
         .catch(() => {
-          toast({ title: 'Error', description: 'Failed to upload media', variant: 'destructive' });
+          toast({
+            title: 'Error',
+            description: 'Failed to upload media',
+            variant: 'destructive',
+          });
         })
         .finally(() => {
           setisUploadingMedia(false);
