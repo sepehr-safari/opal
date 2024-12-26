@@ -23,10 +23,10 @@ export const UserProfile = ({
   user: NDKUser;
   initialEditMode?: boolean;
 }) => {
-  const { profile } = useProfile({ pubkey: user.pubkey });
-
   const [view, setView] = useState<ProfileView>('housing');
   const [editMode, setEditMode] = useState(initialEditMode);
+
+  const { profile } = useProfile({ pubkey: user.pubkey });
 
   if (profile === undefined) {
     return <Spinner />;
