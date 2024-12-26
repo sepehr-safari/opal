@@ -1,17 +1,17 @@
 import { NDKEvent } from '@nostr-dev-kit/ndk';
-import { MessageSquareIcon } from 'lucide-react';
+import { useState } from 'react';
 
-import { Button } from '@/shared/components/ui/button';
+import { NewNoteWidget } from '@/features/new-note-widget';
 
-import { NoteBookmarkBtn, NoteLikeBtn, NoteRepostBtn, NoteZapBtn } from '../';
+import { NoteBookmarkBtn, NoteCommentBtn, NoteLikeBtn, NoteRepostBtn, NoteZapBtn } from '..';
 
 export const NoteFooter = ({ event }: { event: NDKEvent }) => {
+  const [isCommenting, setIsCommenting] = useState(false);
+
   return (
     <div className="">
       <div className="flex items-center justify-between gap-2">
-        <Button variant="link" size="icon" className="opacity-50 hover:opacity-100">
-          <MessageSquareIcon size={18} />
-        </Button>
+        <NoteCommentBtn onClick={() => setIsCommenting((prev) => !prev)} />
 
         <NoteZapBtn event={event} />
 
@@ -21,6 +21,8 @@ export const NoteFooter = ({ event }: { event: NDKEvent }) => {
 
         <NoteBookmarkBtn event={event} />
       </div>
+
+      {isCommenting && <NewNoteWidget replyingToEvent={event} />}
     </div>
   );
 };
