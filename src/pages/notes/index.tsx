@@ -2,6 +2,8 @@ import { useActiveUser } from 'nostr-hooks';
 
 import { Spinner } from '@/shared/components/spinner';
 
+import { NotesFeed } from '@/features/notes-feed';
+
 export const NotesPage = () => {
   const { activeUser } = useActiveUser();
 
@@ -19,9 +21,7 @@ export const NotesPage = () => {
 
   return (
     <>
-      <div className="p-4">
-        <h4>Notes</h4>
-      </div>
+      <NotesFeed />
     </>
   );
 };
