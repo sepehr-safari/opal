@@ -18,7 +18,7 @@ export const NoteByEvent = ({ event }: { event: NDKEvent | null | undefined }) =
   if (event) {
     return (
       <>
-        <div className="p-2 border-b">
+        <div className="border-b">
           <NoteHeader event={event} />
           <NoteContent event={event} />
           <NoteFooter event={event} />
