@@ -1,7 +1,6 @@
 export * from './use-add-housing';
 export * from './use-housing-list';
 export * from './use-housing-request-list';
-export * from './use-nip98';
 export * from './use-realtime-profile';
 export * from './use-request-housing';
 export * from './use-update-housing';
