@@ -1,21 +1,16 @@
+import { NDKUser } from '@nostr-dev-kit/ndk';
 import { CircleXIcon, EditIcon } from 'lucide-react';
-import { useActiveUser } from 'nostr-hooks';
+import { useActiveUser, useRealtimeProfile } from 'nostr-hooks';
+import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@/shared/components/ui/button';
 
-import {
-  useHousingList,
-  useHousingRequestList,
-  useRealtimeProfile,
-  useUpdateHousing,
-} from '@/shared/hooks';
+import { useHousingList, useHousingRequestList, useUpdateHousing } from '@/shared/hooks';
 import { Housing, UserRole } from '@/shared/types';
 
 import { HousingRequestList } from '@/features/housing-request-list';
 
-import { NDKUser } from '@nostr-dev-kit/ndk';
-import { useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { PehHousingRequestButton } from './components';
 
 export const HousingListItem = ({
