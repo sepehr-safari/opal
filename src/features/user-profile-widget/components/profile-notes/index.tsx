@@ -2,7 +2,7 @@ import { NDKUser } from '@nostr-dev-kit/ndk';
 
 import { Button } from '@/shared/components/ui/button';
 
-import { NoteByEvent } from '@/features/note';
+import { NoteByEvent } from '@/features/note-widget';
 
 import { useProfileNotes } from './hooks';
 

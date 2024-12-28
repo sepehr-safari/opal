@@ -1,6 +1,4 @@
 import { NDKUser } from '@nostr-dev-kit/ndk';
-import { useProfile } from 'nostr-hooks';
-import { useState } from 'react';
 
 import { Spinner } from '@/shared/components/spinner';
 
@@ -14,19 +12,19 @@ import {
   ProfileViewSwitcher,
 } from './components';
 
-import { ProfileView } from './types';
+import { useUserProfileWidget } from './hooks';
 
-export const UserProfile = ({
+export const UserProfileWidget = ({
   user,
   initialEditMode = false,
 }: {
   user: NDKUser;
   initialEditMode?: boolean;
 }) => {
-  const [view, setView] = useState<ProfileView>('housing');
-  const [editMode, setEditMode] = useState(initialEditMode);
-
-  const { profile } = useProfile({ pubkey: user.pubkey });
+  const { profile, view, setView, editMode, setEditMode } = useUserProfileWidget({
+    user,
+    initialEditMode,
+  });
 
   if (profile === undefined) {
     return <Spinner />;
@@ -52,10 +50,9 @@ export const UserProfile = ({
             <ProfileViewSwitcher view={view} setView={setView} />
 
             <div className="p-2">
-              {view == 'housing' && <>Housing</>}
               {view == 'notes' && <ProfileNotes user={user} notesOnly />}
               {view == 'replies' && <ProfileNotes user={user} repliesOnly />}
-              {view == 'relays' && <>User Relays</>}
+              {/* {view == 'relays' && <>User Relays</>} */}
             </div>
           </>
         )}

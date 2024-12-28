@@ -1,8 +1,5 @@
 import { NDKUser } from '@nostr-dev-kit/ndk';
 import { EllipsisIcon, KeyRoundIcon, LinkIcon, MailIcon } from 'lucide-react';
-import { useActiveUser } from 'nostr-hooks';
-import { useNavigate } from 'react-router-dom';
-import { useCopyToClipboard } from 'usehooks-ts';
 
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -13,8 +10,10 @@ import {
   DropdownMenuTrigger,
 } from '@/shared/components/ui/dropdown-menu';
 
-import { EditProfileBtn } from './components/edit-profile-btn';
-import { FollowUnfollowBtn } from './components/follow-unfollow-btn';
+import { EditProfileBtn } from '../edit-profile-btn';
+import { FollowUnfollowBtn } from '../follow-unfollow-btn';
+
+import { useProfileActions } from './hooks';
 
 export const ProfileActions = ({
   targetUser,
@@ -23,11 +22,7 @@ export const ProfileActions = ({
   targetUser: NDKUser;
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const navigate = useNavigate();
-
-  const { activeUser } = useActiveUser();
-
-  const [, copy] = useCopyToClipboard();
+  const { activeUser, copy, navigate } = useProfileActions();
 
   return (
     <>

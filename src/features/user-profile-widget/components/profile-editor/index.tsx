@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NDKUserProfile } from '@nostr-dev-kit/ndk';
 import { UploadIcon } from '@radix-ui/react-icons';
-import { useNip98 } from 'nostr-hooks';
+import { useNip98, useUpdateUserProfile } from 'nostr-hooks';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -19,8 +19,6 @@ import { Input } from '@/shared/components/ui/input';
 import { useToast } from '@/shared/components/ui/use-toast';
 
 import { Spinner } from '@/shared/components/spinner';
-
-import { useUpdateUserProfile } from '@/shared/hooks';
 
 import { ProfileAvatar } from '../profile-avatar';
 import { ProfileBanner } from '../profile-banner';
