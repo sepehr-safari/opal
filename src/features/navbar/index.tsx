@@ -1,4 +1,7 @@
-import { useActiveUser, useLogin } from 'nostr-hooks';
+import { NDKUser } from '@nostr-dev-kit/ndk';
+import { PowerIcon, UserIcon } from 'lucide-react';
+import { useActiveUser, useLogin, useRealtimeProfile } from 'nostr-hooks';
+import { useNavigate } from 'react-router-dom';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/components/ui/avatar';
 import {
@@ -9,12 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '@/shared/components/ui/dropdown-menu';
 
-import { useRealtimeProfile } from '@/shared/hooks';
-
 import { LoginWidget } from '@/features/login-widget';
-import { NDKUser } from '@nostr-dev-kit/ndk';
-import { PowerIcon, UserIcon } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 export const NavbarAvatar = ({ activeUser }: { activeUser: NDKUser }) => {
   const { profile } = useRealtimeProfile(activeUser.pubkey);
