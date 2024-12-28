@@ -1,13 +1,14 @@
 import { NDKUser } from '@nostr-dev-kit/ndk';
+import { useRealtimeProfile } from 'nostr-hooks';
 
 import { Spinner } from '@/shared/components/spinner';
 
-import { useRealtimeProfile, useUserRole } from '@/shared/hooks';
+import { useUserRole } from '@/shared/hooks';
 
 import { AvailableHousingList } from '@/features/available-housing-list';
 import { CreateHousing } from '@/features/create-housing';
 import { SetupRole } from '@/features/setup-role';
-import { UserProfile } from '@/features/user-profile';
+import { UserProfileWidget } from '@/features/user-profile-widget';
 
 export const Housing = ({ user }: { user: NDKUser }) => {
   const { role } = useUserRole({ pubkey: user.pubkey });
@@ -32,7 +33,7 @@ export const Housing = ({ user }: { user: NDKUser }) => {
           <h4>Set up your profile</h4>
         </div>
 
-        <UserProfile user={user} initialEditMode={true} />
+        <UserProfileWidget user={user} initialEditMode={true} />
       </>
     );
   }
