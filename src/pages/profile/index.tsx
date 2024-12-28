@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import { Spinner } from '@/shared/components/spinner';
 
-import { UserProfile } from '@/features/user-profile';
+import { UserProfileWidget } from '@/features/user-profile-widget';
 
 export const ProfilePage = () => {
   const { activeUser } = useActiveUser();
@@ -32,7 +32,7 @@ export const ProfilePage = () => {
 
   return (
     <>
-      <UserProfile user={user} />
+      <UserProfileWidget user={user} />
     </>
   );
 };

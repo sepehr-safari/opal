@@ -1,7 +1,8 @@
-import { useRealtimeProfile } from '@/shared/hooks';
 import { NDKEvent } from '@nostr-dev-kit/ndk';
-import { useActiveUser, useNdk } from 'nostr-hooks';
+import { useActiveUser, useNdk, useRealtimeProfile } from 'nostr-hooks';
 import { useCallback, useState } from 'react';
+
+import { useToast } from '@/shared/components/ui/use-toast';
 
 export const useNewNoteWidget = ({
   replyingToEvent,
@@ -15,9 +16,12 @@ export const useNewNoteWidget = ({
 
   const { ndk } = useNdk();
 
+  const { toast } = useToast();
+
   const post = useCallback(() => {
-    if (!ndk) return;
-    if (!ndk.signer) return;
+    if (!ndk || !ndk.signer) {
+      return;
+    }
 
     const e = new NDKEvent(ndk);
     e.kind = 1;
@@ -34,8 +38,24 @@ export const useNewNoteWidget = ({
       }
     }
 
-    e.publish();
-  }, [content, ndk, replyingToEvent]);
+    e.publish()
+      .then((relaySet) => {
+        if (relaySet.size === 0) {
+          toast({
+            title: 'Error',
+            description: 'Failed to post note',
+            variant: 'destructive',
+          });
+        }
+      })
+      .catch((_) => {
+        toast({
+          title: 'Error',
+          description: 'Failed to post note',
+          variant: 'destructive',
+        });
+      });
+  }, [ndk, content, replyingToEvent, toast]);
 
   return { content, setContent, post, profile };
 };
