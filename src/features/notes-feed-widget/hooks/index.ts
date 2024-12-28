@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { NoteFeedView } from '../types';
 
-export const useNotesFeed = () => {
+export const useNotesFeedWidget = () => {
   const [view, setView] = useState<NoteFeedView>('Notes');
 
   const { activeUser } = useActiveUser();
@@ -39,7 +39,7 @@ export const useNotesFeed = () => {
 
     createSubscription({
       filters: [
-        { kinds: [1], limit: 50, authors: [activeUser.pubkey, ...follows.map((u) => u.pubkey)] },
+        { kinds: [1], limit: 20, authors: [activeUser.pubkey, ...follows.map((u) => u.pubkey)] },
       ],
     });
   }, [createSubscription, follows, activeUser]);

@@ -7,14 +7,16 @@ import {
   DropdownMenuTrigger,
 } from '@/shared/components/ui/dropdown-menu';
 
-import { NewNoteWidget } from '@/features/new-note-widget';
-import { NoteByEvent } from '@/features/note';
+import { Spinner } from '@/shared/components/spinner';
 
-import { useNotesFeed } from './hooks';
+import { NewNoteWidget } from '@/features/new-note-widget';
+import { NoteByEvent } from '@/features/note-widget';
+
+import { useNotesFeedWidget } from './hooks';
 import { NoteFeedView } from './types';
 
-export const NotesFeed = () => {
-  const { processedEvents, hasMore, loadMore, setView, view } = useNotesFeed();
+export const NotesFeedWidget = () => {
+  const { processedEvents, hasMore, loadMore, setView, view, isLoading } = useNotesFeedWidget();
 
   return (
     <>
@@ -22,7 +24,7 @@ export const NotesFeed = () => {
         <NewNoteWidget />
       </div>
 
-      <div className="py-2 border-b">
+      <div className="p-2 border-b">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="sm">
@@ -39,14 +41,16 @@ export const NotesFeed = () => {
         </DropdownMenu>
       </div>
 
-      {processedEvents ? (
+      {isLoading ? (
+        <Spinner />
+      ) : processedEvents ? (
         <div className="pt-2 flex flex-col gap-2">
           {processedEvents.map((event) => (
             <NoteByEvent key={event.id} event={event} />
           ))}
         </div>
       ) : (
-        <div className="pt-2">
+        <div className="pt-2 px-2">
           <p>No events found. Follow some users to see their notes here.</p>
         </div>
       )}

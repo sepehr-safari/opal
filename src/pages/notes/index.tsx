@@ -2,7 +2,7 @@ import { useActiveUser } from 'nostr-hooks';
 
 import { Spinner } from '@/shared/components/spinner';
 
-import { NotesFeed } from '@/features/notes-feed';
+import { NotesFeedWidget } from '@/features/notes-feed-widget';
 
 export const NotesPage = () => {
   const { activeUser } = useActiveUser();
@@ -21,7 +21,7 @@ export const NotesPage = () => {
 
   return (
     <>
-      <NotesFeed />
+      <NotesFeedWidget />
     </>
   );
 };
