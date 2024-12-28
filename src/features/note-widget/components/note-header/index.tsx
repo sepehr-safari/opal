@@ -1,9 +1,6 @@
 import { NDKEvent, NDKUser } from '@nostr-dev-kit/ndk';
 import { formatDistanceToNowStrict } from 'date-fns';
 import { EllipsisIcon, FileJsonIcon, HeartIcon, LinkIcon, TagIcon, TextIcon } from 'lucide-react';
-import { useProfile } from 'nostr-hooks';
-import { useNavigate } from 'react-router-dom';
-import { useCopyToClipboard } from 'usehooks-ts';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/components/ui/avatar';
 import { Button } from '@/shared/components/ui/button';
@@ -11,18 +8,16 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
+  // DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/shared/components/ui/dropdown-menu';
 
-import { NoteParent } from './components';
+import { NoteParentPreview } from '../note-parent-preview';
+
+import { useNoteHeader } from './hooks';
 
 export const NoteHeader = ({ event }: { event: NDKEvent }) => {
-  const [, copy] = useCopyToClipboard();
-
-  const { profile } = useProfile({ pubkey: event.pubkey });
-
-  const navigate = useNavigate();
+  const { copy, navigate, profile, nevent } = useNoteHeader(event);
 
   return (
     <>
@@ -73,7 +68,7 @@ export const NoteHeader = ({ event }: { event: NDKEvent }) => {
                 Reactions
               </DropdownMenuItem>
 
-              <DropdownMenuItem onClick={() => copy(window.location.href)}>
+              <DropdownMenuItem onClick={() => copy(`${window.location.origin}/note/${nevent}`)}>
                 <LinkIcon className="w-4 h-4 mr-2" />
                 Copy note link
               </DropdownMenuItem>
@@ -83,7 +78,7 @@ export const NoteHeader = ({ event }: { event: NDKEvent }) => {
                 Copy note text
               </DropdownMenuItem>
 
-              <DropdownMenuItem onClick={() => copy(event.id)}>
+              <DropdownMenuItem onClick={() => copy(nevent)}>
                 <TagIcon className="w-4 h-4 mr-2" />
                 Copy note ID
               </DropdownMenuItem>
@@ -93,13 +88,13 @@ export const NoteHeader = ({ event }: { event: NDKEvent }) => {
                 Copy raw data
               </DropdownMenuItem>
 
-              <DropdownMenuSeparator />
+              {/* <DropdownMenuSeparator /> */}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
       </div>
 
-      <NoteParent event={event} />
+      <NoteParentPreview event={event} />
     </>
   );
 };

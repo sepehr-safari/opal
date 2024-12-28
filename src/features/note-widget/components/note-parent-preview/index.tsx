@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { ellipsis } from '@/shared/utils';
 
-export const NoteParent = ({ event }: { event: NDKEvent }) => {
+export const NoteParentPreview = ({ event }: { event: NDKEvent }) => {
   const navigate = useNavigate();
 
   const [replyEvent, setReplyEvent] = useState<NDKEvent | null | undefined>(undefined);
