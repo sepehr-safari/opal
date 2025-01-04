@@ -18,7 +18,7 @@ export const NoteCommentsWidget = ({ event }: { event: NDKEvent }) => {
     <>
       <NewNoteWidget replyingToEvent={event} />
 
-      <div className="bg-foreground/5 pl-4 -mx-2">
+      <div className="bg-secondary/20 pl-4 -mx-2">
         {processedEvents === undefined ? (
           <Spinner />
         ) : (
