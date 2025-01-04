@@ -7,7 +7,6 @@ import {
   NoteCommentBtn,
   NoteLikeBtn,
   NoteRepostBtn,
-  NoteZapBtn,
 } from '@/features/note-widget/components';
 
 import { useNoteFooter } from './hooks';
@@ -23,8 +22,6 @@ export const NoteFooter = ({ event }: { event: NDKEvent }) => {
           event={event}
           inView={inView}
         />
-
-        <NoteZapBtn event={event} inView={inView} />
 
         <NoteLikeBtn event={event} inView={inView} />
 
