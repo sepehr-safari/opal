@@ -22,7 +22,8 @@ const Layout = () => {
 const HomePage = () => import('./home');
 const ProfilePage = () => import('./profile');
 const MessagesPage = () => import('./messages');
-const NotesPage = () => import('./notes');
+const NotesFeedPage = () => import('./notes-feed');
+const NotePage = () => import('./note');
 
 export const router = createBrowserRouter([
   {
@@ -56,7 +57,13 @@ export const router = createBrowserRouter([
       {
         path: '/notes',
         async lazy() {
-          return { Component: (await NotesPage()).NotesPage };
+          return { Component: (await NotesFeedPage()).NotesFeedPage };
+        },
+      },
+      {
+        path: '/note/:noteId',
+        async lazy() {
+          return { Component: (await NotePage()).NotePage };
         },
       },
     ],

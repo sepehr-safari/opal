@@ -4,7 +4,7 @@ import { Spinner } from '@/shared/components/spinner';
 
 import { NotesFeedWidget } from '@/features/notes-feed-widget';
 
-export const NotesPage = () => {
+export const NotesFeedPage = () => {
   const { activeUser } = useActiveUser();
 
   if (activeUser === undefined) {
