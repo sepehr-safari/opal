@@ -13,8 +13,8 @@ export const HomePage = () => {
 
   if (activeUser === null) {
     return (
-      <div className="p-4">
-        <h4>Not logged in</h4>
+      <div className="flex flex-col h-full w-full items-center justify-center">
+        <h3>Welcome to OPAL</h3>
       </div>
     );
   }

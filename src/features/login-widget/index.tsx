@@ -33,7 +33,7 @@ export const LoginWidget = () => {
     <>
       <Dialog open={isModalOpen} onOpenChange={(open) => setIsModalOpen(open)}>
         <DialogTrigger asChild>
-          <Button>Login</Button>
+          <Button className="w-full">Login</Button>
         </DialogTrigger>
 
         <DialogContent className="sm:max-w-[425px]">

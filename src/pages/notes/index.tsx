@@ -1,10 +1,14 @@
 import { useActiveUser } from 'nostr-hooks';
+import { useParams } from 'react-router-dom';
 
 import { Spinner } from '@/shared/components/spinner';
 
+import { NoteByNoteId } from '@/features/note-widget';
 import { NotesFeedWidget } from '@/features/notes-feed-widget';
 
-export const NotesFeedPage = () => {
+export const NotesPage = () => {
+  const { noteId } = useParams();
+
   const { activeUser } = useActiveUser();
 
   if (activeUser === undefined) {
@@ -19,9 +23,15 @@ export const NotesFeedPage = () => {
     );
   }
 
+  if (!noteId) {
+    return <NotesFeedWidget />;
+  }
+
   return (
     <>
-      <NotesFeedWidget />
+      <div className="p-4">
+        <NoteByNoteId noteId={noteId} />
+      </div>
     </>
   );
 };

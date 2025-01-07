@@ -68,7 +68,7 @@ export const NoteHeader = ({ event }: { event: NDKEvent }) => {
                 Reactions
               </DropdownMenuItem>
 
-              <DropdownMenuItem onClick={() => copy(`${window.location.origin}/note/${nevent}`)}>
+              <DropdownMenuItem onClick={() => copy(`${window.location.origin}/notes/${nevent}`)}>
                 <LinkIcon className="w-4 h-4 mr-2" />
                 Copy note link
               </DropdownMenuItem>
