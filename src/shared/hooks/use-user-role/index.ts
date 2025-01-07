@@ -6,8 +6,8 @@ import { UserRole } from '@/shared/types';
 
 const VALID_ROLES: UserRole[] = ['agency', 'peh'];
 
-export const useUserRole = ({ pubkey }: { pubkey: string }) => {
-  const subId = `user-role-${pubkey}`;
+export const useUserRole = (pubkey: string | undefined) => {
+  const subId = pubkey ? `user-role-${pubkey}` : undefined;
 
   const { createSubscription, events, isLoading } = useSubscription(subId);
 
@@ -29,16 +29,17 @@ export const useUserRole = ({ pubkey }: { pubkey: string }) => {
   }, [events, isLoading]);
 
   useEffect(() => {
-    createSubscription({
-      filters: [
-        {
-          kinds: [NDKKind.AppSpecificData],
-          limit: 1,
-          authors: [pubkey],
-          '#d': ['opal/v0.1/user-role'],
-        },
-      ],
-    });
+    pubkey &&
+      createSubscription({
+        filters: [
+          {
+            kinds: [NDKKind.AppSpecificData],
+            limit: 1,
+            authors: [pubkey],
+            '#d': ['opal/v0.1/user-role'],
+          },
+        ],
+      });
   }, [pubkey, createSubscription]);
 
   return { role };

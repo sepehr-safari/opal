@@ -24,7 +24,7 @@ export const HousingListItem = ({
 
   const { activeUser } = useActiveUser();
 
-  const { profile } = useRealtimeProfile(housing.agencyPubkey);
+  const { profile: agencyProfile } = useRealtimeProfile(housing.agencyPubkey);
 
   const { updateHousing } = useUpdateHousing();
 
@@ -39,7 +39,7 @@ export const HousingListItem = ({
         ? null
         : housingList[housingList.length - 1];
 
-  const npub = useMemo(
+  const agencyNpub = useMemo(
     () =>
       realtimeHousing ? new NDKUser({ pubkey: realtimeHousing.agencyPubkey }).npub : undefined,
     [realtimeHousing?.agencyPubkey],
@@ -86,14 +86,14 @@ export const HousingListItem = ({
         <div className="flex items-center justify-between">
           <p>{realtimeHousing.contact}</p>
 
-          {profile && (
+          {agencyProfile && (
             <p className="text-sm text-muted-foreground">
               <span className="">by: </span>
               <button
                 className="hover:underline hover:text-primary"
-                onClick={() => navigate(`/profile/${npub}`)}
+                onClick={() => navigate(`/profile/${agencyNpub}`)}
               >
-                {activeUser?.pubkey === realtimeHousing.agencyPubkey ? 'You' : profile.name}
+                {activeUser?.pubkey === realtimeHousing.agencyPubkey ? 'You' : agencyProfile.name}
               </button>
             </p>
           )}
@@ -106,5 +106,35 @@ export const HousingListItem = ({
 
       {/* <Separator /> */}
     </div>
+  );
+};
+
+export const ViewHousingListItemAsPeh = () => {
+  return (
+    <>
+      {
+        //
+      }
+    </>
+  );
+};
+
+export const ViewHousingListItemAsAuthor = () => {
+  return (
+    <>
+      {
+        //
+      }
+    </>
+  );
+};
+
+export const ViewHousingListItemAsAgency = () => {
+  return (
+    <>
+      {
+        //
+      }
+    </>
   );
 };

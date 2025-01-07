@@ -16,7 +16,7 @@ export const View = ({
   housingList: Housing[] | null | undefined;
   activeUserPubkey: string;
 }) => {
-  const { role } = useUserRole({ pubkey: activeUserPubkey });
+  const { role } = useUserRole(activeUserPubkey);
 
   if (role === undefined) {
     return <Spinner />;
@@ -59,11 +59,7 @@ export const AvailableHousingList = ({ agencyNpub }: { agencyNpub?: string }) =>
 
   return (
     <>
-      <div className="flex flex-col gap-4">
-        <h4 className="underline-offset-8 underline">Housing List</h4>
-
-        <View housingList={housingList} activeUserPubkey={activeUser.pubkey} />
-      </div>
+      <View housingList={housingList} activeUserPubkey={activeUser.pubkey} />
     </>
   );
 };
