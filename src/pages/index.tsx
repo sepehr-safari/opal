@@ -38,9 +38,9 @@ const Layout = () => {
           className="hidden flex-col gap-2 overflow-hidden items-center p-2 border-r w-16 md:flex lg:w-48"
         >
           <Link to="/" className="flex items-center gap-2 p-2 w-full">
-            {/* <div className="w-8 h-8">
-              <img src="/opal.png" alt="OPAL" className="w-8 h-8 object-contain" />
-            </div> */}
+            <div className="w-8 h-8">
+              <img src="/opal-logo-2.png" alt="OPAL" className="w-8 h-8 object-contain" />
+            </div>
 
             <span className="text-lg font-bold hidden lg:block">OPAL</span>
           </Link>
@@ -107,9 +107,9 @@ const Layout = () => {
           >
             <div className="flex items-center gap-2 ">
               <Link to="/" className="flex items-center gap-2">
-                {/* <div className="w-8 h-8">
-                  <img src="/opal.png" alt="OPAL" className="w-8 h-8 object-contain" />
-                </div> */}
+                <div className="w-8 h-8">
+                  <img src="/opal-logo-2.png" alt="OPAL" className="w-8 h-8 object-contain" />
+                </div>
 
                 <span className="text-lg font-bold">OPAL</span>
               </Link>
