@@ -1,5 +1,4 @@
 import { NDKUser } from '@nostr-dev-kit/ndk';
-import { CircleXIcon, EditIcon } from 'lucide-react';
 import { useActiveUser, useRealtimeProfile } from 'nostr-hooks';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -49,46 +48,10 @@ export const HousingListItem = ({
 
   return (
     <div key={realtimeHousing.id}>
-      <div className="pb-2">
-        <div className="flex items-center justify-between">
-          <b>{realtimeHousing.name}</b>
-
-          {userRole == 'peh' && realtimeHousing && activeUser?.pubkey && (
-            <PehHousingRequestButton
-              realtimeHousing={realtimeHousing}
-              pehPubkey={activeUser.pubkey}
-            />
-          )}
-
-          {userRole == 'agency' && activeUser?.pubkey === realtimeHousing.agencyPubkey && (
-            <div className="flex gap-1">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-destructive hover:text-destructive"
-                onClick={() => updateHousing({ ...realtimeHousing, status: 'Disabled' })}
-              >
-                <CircleXIcon size={18} />
-              </Button>
-
-              <Button variant="ghost" size="icon" className="text-muted-foreground">
-                <EditIcon size={18} />
-              </Button>
-            </div>
-          )}
-        </div>
-
-        <p>{realtimeHousing.description}</p>
-        <p>{realtimeHousing.location}</p>
-
-        {/* {userRole == 'agency' && <p>{realtimeHousing.status}</p>} */}
-
-        <div className="flex items-center justify-between">
-          <p>{realtimeHousing.contact}</p>
-
+      <div className="pb-2 border-b">
+        <div className="flex flex-col gap-1 justify-center">
           {agencyProfile && (
             <p className="text-sm text-muted-foreground">
-              <span className="">by: </span>
               <button
                 className="hover:underline hover:text-primary"
                 onClick={() => navigate(`/profile/${agencyNpub}`)}
@@ -97,44 +60,43 @@ export const HousingListItem = ({
               </button>
             </p>
           )}
+
+          <b>{realtimeHousing.name}</b>
+
+          <p>{realtimeHousing.description}</p>
+          <p>{realtimeHousing.location}</p>
+
+          <div className="flex items-center justify-between">
+            <p>{realtimeHousing.contact}</p>
+          </div>
+
+          {userRole == 'agency' && activeUser?.pubkey === realtimeHousing.agencyPubkey && (
+            <>
+              <div className="flex gap-1">
+                <Button
+                  variant="destructive"
+                  onClick={() => updateHousing({ ...realtimeHousing, status: 'Disabled' })}
+                >
+                  Remove Housing Item
+                </Button>
+
+                <Button>Edit</Button>
+              </div>
+            </>
+          )}
+
+          {userRole == 'agency' &&
+            activeUser?.pubkey === realtimeHousing.agencyPubkey &&
+            housingRequestList && <HousingRequestList housingRequestList={housingRequestList} />}
+
+          {userRole == 'peh' && realtimeHousing && activeUser?.pubkey && (
+            <PehHousingRequestButton
+              realtimeHousing={realtimeHousing}
+              pehPubkey={activeUser.pubkey}
+            />
+          )}
         </div>
-
-        {userRole == 'agency' && housingRequestList && (
-          <HousingRequestList housingRequestList={housingRequestList} />
-        )}
       </div>
-
-      {/* <Separator /> */}
     </div>
-  );
-};
-
-export const ViewHousingListItemAsPeh = () => {
-  return (
-    <>
-      {
-        //
-      }
-    </>
-  );
-};
-
-export const ViewHousingListItemAsAuthor = () => {
-  return (
-    <>
-      {
-        //
-      }
-    </>
-  );
-};
-
-export const ViewHousingListItemAsAgency = () => {
-  return (
-    <>
-      {
-        //
-      }
-    </>
   );
 };
