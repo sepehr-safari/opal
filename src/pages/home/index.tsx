@@ -41,7 +41,7 @@ export const HomePage = () => {
   if (profile === null) {
     return (
       <>
-        <div className="pb-4">
+        <div className="p-4">
           <h4>Set up your profile</h4>
         </div>
 
