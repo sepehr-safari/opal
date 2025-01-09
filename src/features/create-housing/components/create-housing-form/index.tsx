@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -12,7 +13,7 @@ import {
   FormMessage,
 } from '@/shared/components/ui/form';
 import { Input } from '@/shared/components/ui/input';
-import { Switch } from '@/shared/components/ui/switch';
+// import { Switch } from '@/shared/components/ui/switch';
 
 import { Housing } from '@/shared/types';
 
@@ -47,6 +48,10 @@ export const CreateHousingForm = ({
       contact: '',
     },
   });
+
+  useEffect(() => {
+    form.reset();
+  }, [form.formState.isSubmitSuccessful, form.reset]);
 
   return (
     <>
@@ -108,7 +113,7 @@ export const CreateHousingForm = ({
             )}
           />
 
-          <FormField
+          {/* <FormField
             control={form.control}
             name="status"
             render={({ field }) => (
@@ -125,7 +130,7 @@ export const CreateHousingForm = ({
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
 
           <Button type="submit" className="w-full">
             {submitLabel}

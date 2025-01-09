@@ -35,7 +35,6 @@ export const useHousingRequestList = (housing: Housing, pehPubkey?: string) => {
           authors: pehPubkey ? [pehPubkey] : undefined,
           '#T': ['opal/v0.1/housing-request'],
           '#a': [housing.housingEvent.tagAddress()],
-          '#s': ['Enabled'],
         },
       ],
     });

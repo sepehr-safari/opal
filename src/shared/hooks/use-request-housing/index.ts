@@ -2,7 +2,7 @@ import { NDKEvent, NDKKind } from '@nostr-dev-kit/ndk';
 import { useNdk } from 'nostr-hooks';
 import { useCallback } from 'react';
 
-import { Housing } from '@/shared/types';
+import { Housing, HousingRequest } from '@/shared/types';
 
 export const useRequestHousing = () => {
   const { ndk } = useNdk();
@@ -25,5 +25,21 @@ export const useRequestHousing = () => {
     [ndk],
   );
 
-  return { requestHousing };
+  const cancelHousingRequest = useCallback(
+    (housingRequest: HousingRequest) => {
+      if (!ndk) return;
+      if (!ndk.signer) return;
+
+      const e = new NDKEvent(ndk);
+      e.kind = NDKKind.AppSpecificData;
+      e.tags = [...housingRequest.housingRequestEvent.tags];
+      e.removeTag('s');
+      e.tags.push(['s', 'Disabled']);
+
+      e.publish();
+    },
+    [ndk],
+  );
+
+  return { requestHousing, cancelHousingRequest };
 };

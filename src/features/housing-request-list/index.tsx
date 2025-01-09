@@ -21,7 +21,10 @@ export const HousingRequestList = ({
 
   return (
     <>
-      <Collapsible open={open} onOpenChange={setOpen}>
+      <Collapsible
+        open={open}
+        onOpenChange={(open) => setOpen(housingRequestList.length > 0 ? open : false)}
+      >
         <CollapsibleTrigger>
           <Button className="flex gap-2">
             {housingRequestList.length === 0
@@ -30,7 +33,9 @@ export const HousingRequestList = ({
                 ? 'Your housing has 1 request'
                 : `Your housing has ${housingRequestList.length} requests`}
 
-            <ChevronDownIcon size={16} className={open ? 'transform rotate-180' : ''} />
+            {housingRequestList.length > 0 && (
+              <ChevronDownIcon size={16} className={open ? 'transform rotate-180' : ''} />
+            )}
           </Button>
         </CollapsibleTrigger>
 

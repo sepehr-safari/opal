@@ -10,7 +10,7 @@ import { Housing, UserRole } from '@/shared/types';
 
 import { HousingRequestList } from '@/features/housing-request-list';
 
-import { PehHousingRequestButton } from './components';
+import { PehHousingRequestButton } from '../peh-housing-request-button';
 
 export const HousingListItem = ({
   housing,
@@ -30,6 +30,11 @@ export const HousingListItem = ({
   const { housingList } = useHousingList({ housingId: housing.id });
 
   const { housingRequestList } = useHousingRequestList(housing);
+
+  const filteredHousingRequestList = useMemo(
+    () => housingRequestList?.filter((hr) => hr.status === 'Enabled'),
+    [housingRequestList],
+  );
 
   const realtimeHousing =
     housingList === undefined
@@ -87,7 +92,9 @@ export const HousingListItem = ({
 
           {userRole == 'agency' &&
             activeUser?.pubkey === realtimeHousing.agencyPubkey &&
-            housingRequestList && <HousingRequestList housingRequestList={housingRequestList} />}
+            filteredHousingRequestList && (
+              <HousingRequestList housingRequestList={filteredHousingRequestList} />
+            )}
 
           {userRole == 'peh' && realtimeHousing && activeUser?.pubkey && (
             <PehHousingRequestButton

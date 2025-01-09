@@ -20,8 +20,8 @@ export type HousingRequest = {
   housingRequestEvent: NDKEvent;
 };
 
-export type HousingRequestStatus = {
+export type HousingRequestResult = {
   id: string;
-  status: string;
-  housingRequestStatusEvent: NDKEvent;
+  result: string;
+  housingRequestResultEvent: NDKEvent;
 };

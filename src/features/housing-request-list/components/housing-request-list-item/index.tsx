@@ -8,7 +8,7 @@ import { Button } from '@/shared/components/ui/button';
 
 import { Spinner } from '@/shared/components/spinner';
 
-import { useHousingRequestStatus, useManageHousingRequest } from '@/shared/hooks';
+import { useHousingRequestResult, useManageHousingRequest } from '@/shared/hooks';
 import { HousingRequest } from '@/shared/types';
 
 export const HousingRequestListItem = ({ housingRequest }: { housingRequest: HousingRequest }) => {
@@ -17,7 +17,7 @@ export const HousingRequestListItem = ({ housingRequest }: { housingRequest: Hou
   const { approveHousingRequest, rejectHousingRequest, stallHousingRequest } =
     useManageHousingRequest();
 
-  const { housingRequestStatus } = useHousingRequestStatus(housingRequest);
+  const { housingRequestResult } = useHousingRequestResult(housingRequest);
 
   const npub = useMemo(
     () => new NDKUser({ pubkey: housingRequest.pehPubkey }).npub,
@@ -46,7 +46,9 @@ export const HousingRequestListItem = ({ housingRequest }: { housingRequest: Hou
         </button>
 
         <div className="ml-auto flex items-center gap-2">
-          {!housingRequestStatus || housingRequestStatus.status === 'Stalled' ? (
+          {housingRequestResult === undefined ? (
+            <Spinner />
+          ) : housingRequestResult === null || housingRequestResult.result === 'Stalled' ? (
             <>
               <Button onClick={() => approveHousingRequest(housingRequest)} size="sm">
                 Approve
@@ -62,9 +64,9 @@ export const HousingRequestListItem = ({ housingRequest }: { housingRequest: Hou
             </>
           ) : (
             <>
-              {housingRequestStatus.status === 'Approved' ? (
+              {housingRequestResult.result === 'Approved' ? (
                 <span className="text-sm text-primary">Approved</span>
-              ) : housingRequestStatus.status === 'Rejected' ? (
+              ) : housingRequestResult.result === 'Rejected' ? (
                 <span className="text-sm text-destructive">Rejected</span>
               ) : null}
 
