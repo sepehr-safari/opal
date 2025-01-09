@@ -1,6 +1,4 @@
-import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import {
-  ArrowRightIcon,
   BellIcon,
   HomeIcon,
   MailIcon,
@@ -166,20 +164,6 @@ const Layout = () => {
 
                 <DropdownMenuContent>
                   <DropdownMenuItem>
-                    <Button variant="ghost" asChild>
-                      <a
-                        href="https://osty.dev"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex gap-2"
-                      >
-                        <ArrowRightIcon size={18} />
-                        Powered by Osty
-                      </a>
-                    </Button>
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem>
                     {theme === 'dark' ? (
                       <Button
                         variant="ghost"
@@ -201,21 +185,6 @@ const Layout = () => {
                         <span>Switch to dark</span>
                       </Button>
                     )}
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem>
-                    <Button variant="ghost" asChild>
-                      <a
-                        href="https://github.com/ostyjs/create-osty"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center gap-2"
-                      >
-                        <GitHubLogoIcon />
-
-                        <span>GitHub</span>
-                      </a>
-                    </Button>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
