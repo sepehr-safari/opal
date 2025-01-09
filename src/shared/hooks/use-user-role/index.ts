@@ -36,7 +36,7 @@ export const useUserRole = (pubkey: string | undefined) => {
             kinds: [NDKKind.AppSpecificData],
             limit: 1,
             authors: [pubkey],
-            '#d': ['opal/v0.1/user-role'],
+            '#d': ['opal/v0.2/user-role'],
           },
         ],
       });

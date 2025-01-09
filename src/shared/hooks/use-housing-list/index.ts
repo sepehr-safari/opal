@@ -33,7 +33,7 @@ export const useHousingList = (params?: { housingId?: string; agencyPubkey?: str
           kinds: [NDKKind.AppSpecificData],
           limit: 100,
           authors: params?.agencyPubkey ? [params?.agencyPubkey] : undefined,
-          '#T': ['opal/v0.1/housing'],
+          '#T': ['opal/v0.2/housing'],
           '#d': params?.housingId ? [params?.housingId] : undefined,
           '#s': !params?.housingId ? ['Enabled'] : undefined,
         },

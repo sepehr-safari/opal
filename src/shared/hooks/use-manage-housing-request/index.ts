@@ -15,7 +15,7 @@ export const useManageHousingRequest = () => {
       const e = new NDKEvent(ndk);
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
-        ['T', 'opal/v0.1/housing-request-result'],
+        ['T', 'opal/v0.2/housing-request-result'],
         ['a', housingRequest.housingRequestEvent.tagAddress()],
         ['r', 'Approved'],
       ];
@@ -33,7 +33,7 @@ export const useManageHousingRequest = () => {
       const e = new NDKEvent(ndk);
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
-        ['T', 'opal/v0.1/housing-request-result'],
+        ['T', 'opal/v0.2/housing-request-result'],
         ['a', housingRequest.housingRequestEvent.tagAddress()],
         ['r', 'Rejected'],
       ];
@@ -51,7 +51,7 @@ export const useManageHousingRequest = () => {
       const e = new NDKEvent(ndk);
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
-        ['T', 'opal/v0.1/housing-request-result'],
+        ['T', 'opal/v0.2/housing-request-result'],
         ['a', housingRequest.housingRequestEvent.tagAddress()],
         ['r', 'Stalled'],
       ];

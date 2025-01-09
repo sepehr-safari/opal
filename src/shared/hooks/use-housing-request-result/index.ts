@@ -29,7 +29,7 @@ export const useHousingRequestResult = (housingRequest: HousingRequest | null | 
           {
             kinds: [NDKKind.AppSpecificData],
             limit: 1,
-            '#T': ['opal/v0.1/housing-request-result'],
+            '#T': ['opal/v0.2/housing-request-result'],
             '#a': [housingRequest.housingRequestEvent.tagAddress()],
           },
         ],

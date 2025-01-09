@@ -33,7 +33,7 @@ export const useHousingRequestList = (housing: Housing, pehPubkey?: string) => {
           kinds: [NDKKind.AppSpecificData],
           limit: 100,
           authors: pehPubkey ? [pehPubkey] : undefined,
-          '#T': ['opal/v0.1/housing-request'],
+          '#T': ['opal/v0.2/housing-request'],
           '#a': [housing.housingEvent.tagAddress()],
         },
       ],
