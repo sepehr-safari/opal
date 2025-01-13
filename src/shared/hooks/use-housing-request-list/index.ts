@@ -27,17 +27,18 @@ export const useHousingRequestList = (housing: Housing, pehPubkey?: string) => {
   }, [events, isLoading]);
 
   useEffect(() => {
-    createSubscription({
-      filters: [
-        {
-          kinds: [NDKKind.AppSpecificData],
-          limit: 100,
-          authors: pehPubkey ? [pehPubkey] : undefined,
-          '#T': ['opal/v0.2/housing-request'],
-          '#a': [housing.housingEvent.tagAddress()],
-        },
-      ],
-    });
+    housing.housingEvent &&
+      createSubscription({
+        filters: [
+          {
+            kinds: [NDKKind.AppSpecificData],
+            limit: 100,
+            authors: pehPubkey ? [pehPubkey] : undefined,
+            '#T': ['opal/v0.2/housing-request'],
+            '#a': [housing.housingEvent.tagAddress()],
+          },
+        ],
+      });
   }, [housing, pehPubkey, createSubscription]);
 
   return { housingRequestList };

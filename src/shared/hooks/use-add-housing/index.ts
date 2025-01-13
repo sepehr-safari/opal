@@ -20,7 +20,13 @@ export const useAddHousing = () => {
         ['description', housing.description],
         ['location', housing.location],
         ['s', housing.status],
-        ['contact', housing.contact],
+        ['contactPhone', housing.contactPhone],
+        ['contactEmail', housing.contactEmail || ''],
+        ['contactFullname', housing.contactFullname || ''],
+        ['contactPosition', housing.contactPosition || ''],
+        ['totalUnits', housing.totalUnits.toString()],
+        ['availableUnits', housing.availableUnits.toString()],
+        ['maxStay', housing.maxStay.toString()],
       ];
 
       e.publish();

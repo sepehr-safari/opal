@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -15,19 +14,7 @@ import {
 import { Input } from '@/shared/components/ui/input';
 // import { Switch } from '@/shared/components/ui/switch';
 
-import { Housing } from '@/shared/types';
-
-const formSchema = z.object({
-  id: z.string().optional(),
-  name: z.string().min(1, { message: 'Required' }),
-  description: z.string().min(1, { message: 'Required' }),
-  location: z.string().min(1, { message: 'Required' }),
-  status: z.string(),
-  contact: z
-    .string()
-    .min(1, { message: 'Required' })
-    .regex(/^\+/, { message: 'Contact number must start with a +' }),
-});
+import { Housing, housingSchema } from '@/shared/types';
 
 export const CreateHousingForm = ({
   defaultValues,
@@ -35,17 +22,23 @@ export const CreateHousingForm = ({
   submitLabel = 'Submit',
 }: {
   defaultValues?: Housing;
-  onSubmit: (values: z.infer<typeof formSchema>) => void;
+  onSubmit: (values: Housing) => void;
   submitLabel?: string;
 }) => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<Housing>({
+    resolver: zodResolver(housingSchema),
     defaultValues: defaultValues || {
+      status: 'Enabled',
       name: '',
       description: '',
       location: '',
-      status: 'Enabled',
-      contact: '',
+      totalUnits: 0,
+      availableUnits: 0,
+      maxStay: 0,
+      contactPhone: '',
+      contactFullname: '',
+      contactEmail: '',
+      contactPosition: '',
     },
   });
 
@@ -101,12 +94,96 @@ export const CreateHousingForm = ({
 
           <FormField
             control={form.control}
-            name="contact"
+            name="totalUnits"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Contact</FormLabel>
+                <FormLabel>Total Units (Beds)</FormLabel>
+                <FormControl>
+                  <Input type="number" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="availableUnits"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Available Units (Beds)</FormLabel>
+                <FormControl>
+                  <Input type="number" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="maxStay"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Maximum Stay Allowed (days)</FormLabel>
+                <FormControl>
+                  <Input type="number" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="contactPhone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Contact Phone</FormLabel>
                 <FormControl>
                   <Input placeholder="+123456789" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="contactFullname"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Contact Full Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="John Doe" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="contactEmail"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Contact Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="email@domain.com" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="contactPosition"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Contact Position</FormLabel>
+                <FormControl>
+                  <Input placeholder="Manager" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

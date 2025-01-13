@@ -16,7 +16,7 @@ export const useRequestHousing = () => {
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
         ['T', 'opal/v0.2/housing-request'],
-        ['a', housing.housingEvent.tagAddress()],
+        ['a', housing.housingEvent!.tagAddress()],
         ['s', 'Enabled'],
       ];
 

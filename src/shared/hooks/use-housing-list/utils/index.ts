@@ -18,20 +18,39 @@ export const housingFromEvent = (event: NDKEvent) => {
   const status = event.getMatchingTags('s')?.[0]?.[1] || undefined;
   if (!status) return null;
 
-  const contact = event.getMatchingTags('contact')?.[0]?.[1] || undefined;
-  if (!contact) return null;
+  const contactPhone = event.getMatchingTags('contactPhone')?.[0]?.[1] || undefined;
+  if (!contactPhone) return null;
 
-  // contact should be a string starting with a + and followed by numbers
-  if (!contact.match(/^\+\d+$/)) return null;
+  // contactPhone should be a string starting with a + and followed by numbers
+  if (!contactPhone.match(/^\+\d+$/)) return null;
+
+  const contactEmail = event.getMatchingTags('contactEmail')?.[0]?.[1] || undefined;
+  const contactFullname = event.getMatchingTags('contactFullname')?.[0]?.[1] || undefined;
+  const contactPosition = event.getMatchingTags('contactPosition')?.[0]?.[1] || undefined;
+
+  const totalUnits = parseInt(event.getMatchingTags('totalUnits')?.[0]?.[1] || '');
+  if (!totalUnits) return null;
+
+  const availableUnits = parseInt(event.getMatchingTags('availableUnits')?.[0]?.[1] || '');
+  if (!availableUnits) return null;
+
+  const maxStay = parseInt(event.getMatchingTags('maxStay')?.[0]?.[1] || '');
+  if (!maxStay) return null;
 
   return {
     id: dTag,
+    housingEvent: event,
     agencyPubkey: event.pubkey,
+    status,
     name,
     description,
     location,
-    status,
-    contact,
-    housingEvent: event,
+    contactPhone,
+    contactEmail,
+    contactFullname,
+    contactPosition,
+    totalUnits,
+    availableUnits,
+    maxStay,
   } as Housing;
 };

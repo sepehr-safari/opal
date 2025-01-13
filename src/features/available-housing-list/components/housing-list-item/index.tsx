@@ -71,8 +71,18 @@ export const HousingListItem = ({
           <p>{realtimeHousing.description}</p>
           <p>{realtimeHousing.location}</p>
 
-          <div className="flex items-center justify-between">
-            <p>{realtimeHousing.contact}</p>
+          <div>
+            <p>
+              {realtimeHousing.availableUnits}/{realtimeHousing.totalUnits} units available
+            </p>
+            <p>Maximum stay allowed: {realtimeHousing.maxStay} days</p>
+          </div>
+
+          <div>
+            <p>{realtimeHousing.contactPhone}</p>
+            {realtimeHousing.contactEmail && <p>{realtimeHousing.contactEmail}</p>}
+            {realtimeHousing.contactFullname && <p>{realtimeHousing.contactFullname}</p>}
+            {realtimeHousing.contactPosition && <p>{realtimeHousing.contactPosition}</p>}
           </div>
 
           {userRole == 'agency' && activeUser?.pubkey === realtimeHousing.agencyPubkey && (
@@ -85,7 +95,7 @@ export const HousingListItem = ({
                   Remove Housing Item
                 </Button>
 
-                <Button>Edit</Button>
+                {/* <Button>Edit</Button> */}
               </div>
             </>
           )}

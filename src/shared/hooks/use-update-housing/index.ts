@@ -15,13 +15,19 @@ export const useUpdateHousing = () => {
       const e = new NDKEvent(ndk);
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
-        ['d', housing.id],
+        ['d', housing.id!],
         ['T', 'opal/v0.2/housing'],
         ['N', housing.name],
         ['description', housing.description],
         ['location', housing.location],
         ['s', housing.status],
-        ['contact', housing.contact],
+        ['contactPhone', housing.contactPhone],
+        ['contactEmail', housing.contactEmail || ''],
+        ['contactFullname', housing.contactFullname || ''],
+        ['contactPosition', housing.contactPosition || ''],
+        ['totalUnits', housing.totalUnits.toString()],
+        ['availableUnits', housing.availableUnits.toString()],
+        ['maxStay', housing.maxStay.toString()],
       ];
 
       e.publish();
