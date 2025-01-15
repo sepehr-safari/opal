@@ -32,7 +32,9 @@ export const ProfilePage = () => {
 
   return (
     <>
-      <UserProfileWidget user={user} />
+      <div className="h-full w-full overflow-y-auto">
+        <UserProfileWidget user={user} />
+      </div>
     </>
   );
 };

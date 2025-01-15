@@ -1,32 +1,13 @@
-import {
-  BellIcon,
-  HomeIcon,
-  MailIcon,
-  MenuIcon,
-  MoonIcon,
-  NotepadTextIcon,
-  SunIcon,
-} from 'lucide-react';
+import { BellIcon, HomeIcon, MailIcon, NotepadTextIcon, SearchIcon } from 'lucide-react';
 import { useActiveUser } from 'nostr-hooks';
 import { Link, Outlet, createBrowserRouter } from 'react-router-dom';
 
-import { Button } from '@/shared/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/shared/components/ui/dropdown-menu';
-
-import { useTheme } from '@/shared/components/theme-provider';
-
 import { ActiveUserWidget } from '@/features/active-user-widget';
 import { LoginWidget } from '@/features/login-widget';
+import { SearchWidget } from '@/features/search-widget';
 
 const Layout = () => {
   const { activeUser } = useActiveUser();
-
-  const { setTheme, theme } = useTheme();
 
   return (
     <>
@@ -89,6 +70,16 @@ const Layout = () => {
 
               <span className="hidden lg:block">Notifications</span>
             </Link>
+
+            <SearchWidget>
+              <div className="flex items-center gap-2 p-2 rounded-lg w-full hover:bg-muted hover:cursor-pointer">
+                <div>
+                  <SearchIcon size={24} />
+                </div>
+
+                <span className="hidden lg:block">Search</span>
+              </div>
+            </SearchWidget>
           </div>
 
           <div className="mt-auto w-full">
@@ -131,6 +122,14 @@ const Layout = () => {
                 </div>
               </Link>
 
+              <SearchWidget>
+                <div className="flex items-center gap-2 text-primary/60 hover:text-primary hover:cursor-pointer">
+                  <div>
+                    <SearchIcon size={28} strokeWidth={1.4} />
+                  </div>
+                </div>
+              </SearchWidget>
+
               <Link
                 to="/notes"
                 className="flex items-center gap-2 text-primary/60 hover:text-primary"
@@ -155,7 +154,7 @@ const Layout = () => {
                 </div>
               </Link>
 
-              <DropdownMenu>
+              {/* <DropdownMenu>
                 <DropdownMenuTrigger>
                   <div className="flex items-center gap-2 text-primary/60 hover:text-primary">
                     <MenuIcon size={28} strokeWidth={1.4} />
@@ -187,7 +186,7 @@ const Layout = () => {
                     )}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
-              </DropdownMenu>
+              </DropdownMenu> */}
             </div>
           </div>
         </div>
