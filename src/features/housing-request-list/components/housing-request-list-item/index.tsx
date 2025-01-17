@@ -38,7 +38,7 @@ export const HousingRequestListItem = ({ housingRequest }: { housingRequest: Hou
     <>
       <div className="w-full flex items-center gap-2">
         <Avatar className="bg-muted">
-          <AvatarImage src={profile.image} alt={profile.name} />
+          <AvatarImage src={profile.image?.toString()} alt={profile.name} />
         </Avatar>
 
         <button className="hover:underline" onClick={() => navigate(`/profile/${npub}`)}>

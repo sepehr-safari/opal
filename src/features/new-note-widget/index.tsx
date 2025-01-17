@@ -25,7 +25,11 @@ export const NewNoteWidget = ({ replyingToEvent }: { replyingToEvent?: NDKEvent 
           )}
 
           <Avatar>
-            <AvatarImage src={profile?.image} alt={profile?.name} className="object-cover" />
+            <AvatarImage
+              src={profile?.image?.toString()}
+              alt={profile?.name?.toString()}
+              className="object-cover"
+            />
             <AvatarFallback className="bg-muted" />
           </Avatar>
 

@@ -26,7 +26,11 @@ export const NoteHeader = ({ event }: { event: NDKEvent }) => {
           className="bg-foreground/10 hover:cursor-pointer"
           onClick={() => navigate(`/profile/${new NDKUser({ pubkey: event.pubkey }).npub}`)}
         >
-          <AvatarImage src={profile?.image} alt={profile?.name} className="object-cover" />
+          <AvatarImage
+            src={profile?.image?.toString()}
+            alt={profile?.name?.toString()}
+            className="object-cover"
+          />
           <AvatarFallback />
         </Avatar>
 
@@ -35,14 +39,14 @@ export const NoteHeader = ({ event }: { event: NDKEvent }) => {
             className="w-fit font-semibold leading-tight hover:cursor-pointer"
             onClick={() => navigate(`/profile/${new NDKUser({ pubkey: event.pubkey }).npub}`)}
           >
-            {profile?.name}
+            {profile?.name?.toString()}
           </p>
 
           <p
             className="w-fit text-xs text-gray-500 leading-tight hover:cursor-pointer"
             onClick={() => navigate(`/profile/${new NDKUser({ pubkey: event.pubkey }).npub}`)}
           >
-            {profile?.nip05}
+            {profile?.nip05?.toString()}
           </p>
         </div>
 

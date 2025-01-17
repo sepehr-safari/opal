@@ -29,14 +29,18 @@ export const ActiveUserWidget = () => {
       <DropdownMenuTrigger>
         <div className="flex items-center gap-2 cursor-pointer bg-secondary rounded-full lg:pl-1 lg:pr-2 lg:py-1">
           <Avatar>
-            <AvatarImage src={profile?.image} alt={profile?.name} className="object-cover" />
+            <AvatarImage
+              src={profile?.image?.toString()}
+              alt={profile?.name?.toString()}
+              className="object-cover"
+            />
             <AvatarFallback className="bg-background/50" />
           </Avatar>
 
           <div className="text-start pr-2 hidden lg:block">
-            {profile?.name && <div className="text-sm">{profile.name}</div>}
+            {profile?.name && <div className="text-sm">{profile.name.toString()}</div>}
             <div className="text-xs text-primary/70">
-              {profile?.nip05 || ellipsis(activeUser.npub, 10)}
+              {profile?.nip05?.toString() || ellipsis(activeUser.npub, 10)}
             </div>
           </div>
         </div>
