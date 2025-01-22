@@ -18,7 +18,7 @@ const Layout = () => {
         >
           <Link to="/" className="flex items-center gap-2 p-2 w-full">
             <div className="w-8 h-8">
-              <img src="/opal-logo-2.png" alt="OPAL" className="w-8 h-8 object-contain" />
+              <img src="/opal.svg" alt="OPAL" className="w-8 h-8 object-contain" />
             </div>
 
             <span className="text-lg font-bold hidden lg:block">OPAL</span>
@@ -97,7 +97,7 @@ const Layout = () => {
             <div className="flex items-center gap-2 ">
               <Link to="/" className="flex items-center gap-2">
                 <div className="w-8 h-8">
-                  <img src="/opal-logo-2.png" alt="OPAL" className="w-8 h-8 object-contain" />
+                  <img src="/opal.svg" alt="OPAL" className="w-8 h-8 object-contain" />
                 </div>
 
                 <span className="text-lg font-bold">OPAL</span>
