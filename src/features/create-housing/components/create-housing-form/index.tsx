@@ -28,7 +28,7 @@ export const CreateHousingForm = ({
   const form = useForm<Housing>({
     resolver: zodResolver(housingSchema),
     defaultValues: defaultValues || {
-      status: 'Enabled',
+      status: 'Available',
       name: '',
       description: '',
       location: '',
@@ -198,9 +198,9 @@ export const CreateHousingForm = ({
                 <FormLabel>Available</FormLabel>
                 <FormControl>
                   <Switch
-                    checked={field.value === 'Enabled'}
+                    checked={field.value === 'Available'}
                     onCheckedChange={(checked) => {
-                      form.setValue('status', checked ? 'Enabled' : 'Disabled');
+                      form.setValue('status', checked ? 'Available' : 'NotAvailable');
                     }}
                   />
                 </FormControl>

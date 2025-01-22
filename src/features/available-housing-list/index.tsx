@@ -4,10 +4,10 @@ import { useMemo } from 'react';
 
 import { Spinner } from '@/shared/components/spinner';
 
-import { useHousingList, useUserRole } from '@/shared/hooks';
+import { useAllHousingList, useHousingListByAgency, useUserRole } from '@/shared/hooks';
 import { Housing } from '@/shared/types';
 
-import { HousingListItem } from './components';
+import { HousingWidget } from '@/features/housing-widget';
 
 export const View = ({
   housingList,
@@ -37,21 +37,16 @@ export const View = ({
   return (
     <div className="flex flex-col gap-2">
       {housingList.map((housing) => (
-        <HousingListItem key={housing.id} housing={housing} userRole={role} />
+        <HousingWidget key={housing.id} housing={housing} userRole={role} />
       ))}
     </div>
   );
 };
 
-export const AvailableHousingList = ({ agencyNpub }: { agencyNpub?: string }) => {
+export const AllAvailableHousingList = () => {
   const { activeUser } = useActiveUser();
 
-  const agencyPubkey = useMemo(
-    () => (agencyNpub ? new NDKUser({ npub: agencyNpub }).pubkey : undefined),
-    [agencyNpub],
-  );
-
-  const { housingList } = useHousingList({ agencyPubkey });
+  const { allHousingList } = useAllHousingList();
 
   if (!activeUser) {
     return null;
@@ -59,7 +54,28 @@ export const AvailableHousingList = ({ agencyNpub }: { agencyNpub?: string }) =>
 
   return (
     <>
-      <View housingList={housingList} activeUserPubkey={activeUser.pubkey} />
+      <View housingList={allHousingList} activeUserPubkey={activeUser.pubkey} />
+    </>
+  );
+};
+
+export const AvailableHousingListByAgency = ({ agencyNpub }: { agencyNpub?: string }) => {
+  const { activeUser } = useActiveUser();
+
+  const agencyPubkey = useMemo(
+    () => (agencyNpub ? new NDKUser({ npub: agencyNpub }).pubkey : undefined),
+    [agencyNpub],
+  );
+
+  const { housingListByAgency } = useHousingListByAgency({ agencyPubkey });
+
+  if (!activeUser) {
+    return null;
+  }
+
+  return (
+    <>
+      <View housingList={housingListByAgency} activeUserPubkey={activeUser.pubkey} />
     </>
   );
 };

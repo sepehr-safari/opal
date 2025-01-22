@@ -8,14 +8,14 @@ import {
   CollapsibleTrigger,
 } from '@/shared/components/ui/collapsible';
 
-import { useAddHousing } from '@/shared/hooks';
+import { useMutateHousing } from '@/shared/hooks';
 
 import { CreateHousingForm } from './components';
 
 export const CreateHousing = () => {
   const [open, setOpen] = useState(false);
 
-  const { addHousing } = useAddHousing();
+  const { addHousing } = useMutateHousing();
 
   return (
     <>
