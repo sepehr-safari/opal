@@ -34,10 +34,18 @@ export const UsersList = memo(() => {
       .map((e) => e.pubkey);
   }, [events, activeUser]);
 
+  if (!activeUser) {
+    return null;
+  }
+
+  if (uniquePubkeys.length === 0) {
+    return <div className="flex items-center justify-center h-full text-foreground/40">Empty</div>;
+  }
+
   return (
     <>
       <div className="flex flex-col w-full h-full overflow-y-auto overflow-x-hidden">
-        {(uniquePubkeys || []).map((p) => (
+        {uniquePubkeys.map((p) => (
           <UserItem key={p.toString()} pubkey={p} />
         ))}
       </div>

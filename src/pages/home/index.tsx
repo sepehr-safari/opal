@@ -21,7 +21,8 @@ export const HomePage = () => {
   if (activeUser === null) {
     return (
       <div className="flex flex-col h-full w-full items-center justify-center">
-        <h3>Welcome to OPAL</h3>
+        <h3>Welcome to OPAL!</h3>
+        <p>Sign in to see housing items</p>
       </div>
     );
   }

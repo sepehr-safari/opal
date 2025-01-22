@@ -75,7 +75,7 @@ export const ChatsList = memo(
       <>
         <div className="w-full h-full overflow-hidden flex flex-col justify-between gap-4">
           <div className="flex flex-col gap-4 overflow-y-auto h-full w-full p-4">
-            {(chats || []).map((chat) => (
+            {chats.map((chat) => (
               <ChatItem key={chat.id} chat={chat} targetUser={targetUser} />
             ))}
           </div>

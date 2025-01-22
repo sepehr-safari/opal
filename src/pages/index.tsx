@@ -25,7 +25,10 @@ const Layout = () => {
           </Link>
 
           <div className="flex flex-col gap-2 w-full items-center lg:items-start">
-            <Link to="/" className="flex items-center gap-2 p-2 rounded-lg w-full hover:bg-muted">
+            <Link
+              to="/"
+              className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
+            >
               <div>
                 <HomeIcon size={24} />
               </div>
@@ -35,7 +38,7 @@ const Layout = () => {
 
             <Link
               to="/notes"
-              className="flex items-center gap-2 p-2 rounded-lg w-full hover:bg-muted"
+              className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
             >
               <div>
                 <NotepadTextIcon size={24} />
@@ -46,7 +49,7 @@ const Layout = () => {
 
             <Link
               to="/messages"
-              className="flex items-center gap-2 p-2 rounded-lg w-full hover:bg-muted"
+              className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
             >
               <div>
                 <MailIcon size={24} />
@@ -55,7 +58,7 @@ const Layout = () => {
               <span className="hidden lg:block">Messages</span>
             </Link>
 
-            {/* <Link to="/" className="flex items-center gap-2 p-2 rounded-lg w-full hover:bg-muted">
+            {/* <Link to="/" className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary">
               <div>
                 <BookmarkIcon size={24} />
               </div>
@@ -63,7 +66,10 @@ const Layout = () => {
               <span className="hidden lg:block">Bookmarks</span>
             </Link> */}
 
-            <Link to="/" className="flex items-center gap-2 p-2 rounded-lg w-full hover:bg-muted">
+            <Link
+              to="/notifications"
+              className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
+            >
               <div>
                 <BellIcon size={24} />
               </div>
@@ -72,7 +78,7 @@ const Layout = () => {
             </Link>
 
             <SearchWidget>
-              <div className="flex items-center gap-2 p-2 rounded-lg w-full hover:bg-muted hover:cursor-pointer">
+              <div className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary hover:cursor-pointer">
                 <div>
                   <SearchIcon size={24} />
                 </div>
@@ -116,14 +122,17 @@ const Layout = () => {
             className="fixed overflow-hidden w-full border-t px-4 py-2 bottom-0 z-10 bg-background md:hidden"
           >
             <div className="flex flex-row gap-2 w-full items-center justify-between">
-              <Link to="/" className="flex items-center gap-2 text-primary/60 hover:text-primary">
+              <Link
+                to="/"
+                className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
+              >
                 <div>
                   <HomeIcon size={28} strokeWidth={1.4} />
                 </div>
               </Link>
 
               <SearchWidget>
-                <div className="flex items-center gap-2 text-primary/60 hover:text-primary hover:cursor-pointer">
+                <div className="flex items-center gap-2 text-foreground/60 hover:text-foreground hover:cursor-pointer">
                   <div>
                     <SearchIcon size={28} strokeWidth={1.4} />
                   </div>
@@ -132,7 +141,7 @@ const Layout = () => {
 
               <Link
                 to="/notes"
-                className="flex items-center gap-2 text-primary/60 hover:text-primary"
+                className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
               >
                 <div>
                   <NotepadTextIcon size={28} strokeWidth={1.4} />
@@ -141,14 +150,17 @@ const Layout = () => {
 
               <Link
                 to="/messages"
-                className="flex items-center gap-2 text-primary/60 hover:text-primary"
+                className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
               >
                 <div>
                   <MailIcon size={28} strokeWidth={1.4} />
                 </div>
               </Link>
 
-              <Link to="/" className="flex items-center gap-2 text-primary/60 hover:text-primary">
+              <Link
+                to="/notifications"
+                className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
+              >
                 <div>
                   <BellIcon size={28} strokeWidth={1.4} />
                 </div>
@@ -156,7 +168,8 @@ const Layout = () => {
 
               {/* <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <div className="flex items-center gap-2 text-primary/60 hover:text-primary">
+                  <div               className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
+>
                     <MenuIcon size={28} strokeWidth={1.4} />
                   </div>
                 </DropdownMenuTrigger>
@@ -199,6 +212,7 @@ const HomePage = () => import('./home');
 const NotesPage = () => import('./notes');
 const ProfilePage = () => import('./profile');
 const MessagesPage = () => import('./messages');
+const NotificationsPage = () => import('./notifications');
 
 export const router = createBrowserRouter([
   {
@@ -239,6 +253,12 @@ export const router = createBrowserRouter([
         path: '/messages/:npub',
         async lazy() {
           return { Component: (await MessagesPage()).MessagesPage };
+        },
+      },
+      {
+        path: '/notifications',
+        async lazy() {
+          return { Component: (await NotificationsPage()).NotificationsPage };
         },
       },
     ],

@@ -1,8 +1,6 @@
 import { NDKUser, NDKUserProfile } from '@nostr-dev-kit/ndk';
 import { useFollows } from 'nostr-hooks';
 
-import { Muted } from '@/shared/components/ui/typography/muted';
-
 export const ProfileSummary = ({
   profile,
   user,
@@ -19,17 +17,17 @@ export const ProfileSummary = ({
           <h4>{profile?.name}</h4>
 
           <div className="ml-auto flex items-center gap-2">
-            <Muted>
+            <div className="text-xs">
               <span className="font-bold">{0}</span> Followers
-            </Muted>
-            <Muted>
+            </div>
+            <div className="text-xs">
               <span className="font-bold">{follows?.length || 0}</span> Following
-            </Muted>
+            </div>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
-          <Muted>{profile?.nip05?.toString()}</Muted>
+          <span className="text-xs">{profile?.nip05?.toString()}</span>
 
           {/* <div className="ml-auto flex items-center gap-2">
             <Muted>placeholder</Muted>

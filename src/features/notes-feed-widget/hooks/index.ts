@@ -41,7 +41,7 @@ export const useNotesFeedWidget = () => {
       filters: [
         {
           kinds: [1],
-          limit: 10,
+          limit: 30,
           authors: [activeUser.pubkey, ...(follows || []).map((u) => u.pubkey)],
         },
       ],

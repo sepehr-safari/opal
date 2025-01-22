@@ -1,5 +1,6 @@
-import { NDKEvent, NDKUser } from '@nostr-dev-kit/ndk';
+import { EventPointer, NDKEvent, NDKUser } from '@nostr-dev-kit/ndk';
 import { useRealtimeProfile } from 'nostr-hooks';
+import { neventEncode } from 'nostr-tools/nip19';
 import { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -14,12 +15,11 @@ export const NoteContent = memo(
     const { chunks, inView, ref } = useNoteContent(event.content);
 
     return (
-      <div className="pb-2" ref={ref}>
+      <div ref={ref}>
         {chunks.map((chunk, index) => {
           switch (chunk.type) {
             case 'text':
             case 'naddr':
-            case 'nevent':
               return (
                 <span key={index} className="[overflow-wrap:anywhere]">
                   {chunk.content}
@@ -32,7 +32,7 @@ export const NoteContent = memo(
                   src={chunk.content}
                   alt="Image"
                   loading="lazy"
-                  className="w-full"
+                  className="w-full rounded-sm"
                 />
               );
             case 'video':
@@ -60,10 +60,29 @@ export const NoteContent = memo(
                   {chunk.content}
                 </a>
               );
+            case 'nevent':
+              if (!inView) {
+                return null;
+              }
+
+              const parsedEvent = JSON.parse(chunk.content) as EventPointer;
+              if (parsedEvent.kind === 1) {
+                return (
+                  <div className="-mx-2 py-2">
+                    <NoteByNoteId key={index} noteId={parsedEvent.id} />
+                  </div>
+                );
+              } else {
+                return (
+                  <span key={index} className="[overflow-wrap:anywhere]">
+                    {`nostr:${neventEncode(parsedEvent)}`}
+                  </span>
+                );
+              }
             case 'note':
               if (inView) {
                 return (
-                  <div className="p-4 bg-secondary/50">
+                  <div className="-mx-2 py-2">
                     <NoteByNoteId key={index} noteId={chunk.content} />
                   </div>
                 );

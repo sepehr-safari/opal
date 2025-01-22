@@ -1,6 +1,14 @@
 import { NDKEvent, NDKUser } from '@nostr-dev-kit/ndk';
 import { formatDistanceToNowStrict } from 'date-fns';
-import { EllipsisIcon, FileJsonIcon, HeartIcon, LinkIcon, TagIcon, TextIcon } from 'lucide-react';
+import {
+  EllipsisIcon,
+  FileJsonIcon,
+  HeartIcon,
+  LinkIcon,
+  SquareArrowOutUpRight,
+  TagIcon,
+  TextIcon,
+} from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/components/ui/avatar';
 import { Button } from '@/shared/components/ui/button';
@@ -21,16 +29,12 @@ export const NoteHeader = ({ event }: { event: NDKEvent }) => {
 
   return (
     <>
-      <div className="pb-2 flex justify-between gap-2" ref={ref}>
+      <div className="pt-2 flex justify-between gap-2" ref={ref}>
         <Avatar
           className="bg-foreground/10 hover:cursor-pointer"
           onClick={() => navigate(`/profile/${new NDKUser({ pubkey: event.pubkey }).npub}`)}
         >
-          <AvatarImage
-            src={profile?.image?.toString()}
-            alt={profile?.name?.toString()}
-            className="object-cover"
-          />
+          <AvatarImage src={profile?.image} alt={profile?.name} className="object-cover" />
           <AvatarFallback />
         </Avatar>
 
@@ -63,6 +67,11 @@ export const NoteHeader = ({ event }: { event: NDKEvent }) => {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent align="end" sideOffset={8}>
+              <DropdownMenuItem onClick={() => navigate(`/note/${nevent}`)}>
+                <SquareArrowOutUpRight className="w-4 h-4 mr-2" />
+                Open
+              </DropdownMenuItem>
+
               <DropdownMenuItem
                 onClick={() => {
                   // TODO
@@ -98,7 +107,9 @@ export const NoteHeader = ({ event }: { event: NDKEvent }) => {
         </div>
       </div>
 
-      <NoteParentPreview event={event} />
+      <div className="pt-2">
+        <NoteParentPreview event={event} />
+      </div>
     </>
   );
 };

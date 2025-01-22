@@ -1,13 +1,10 @@
 import { useActiveUser } from 'nostr-hooks';
-import { useParams } from 'react-router-dom';
 
 import { Spinner } from '@/shared/components/spinner';
 
-import { MessagesWidget } from '@/features/messages-widget';
+import { NotificationsWidget } from '@/features/notifications-widget';
 
-export const MessagesPage = () => {
-  const { npub } = useParams();
-
+export const NotificationsPage = () => {
   const { activeUser } = useActiveUser();
 
   if (activeUser === undefined) {
@@ -18,16 +15,14 @@ export const MessagesPage = () => {
     return (
       <div className="flex flex-col h-full w-full items-center justify-center">
         <h3>Welcome to OPAL!</h3>
-        <p>Sign in to see your messages</p>
+        <p>Sign in to see your notifications</p>
       </div>
     );
   }
 
   return (
-    <>
-      <div className="h-full w-full">
-        <MessagesWidget npub={npub} />
-      </div>
-    </>
+    <div className="h-full w-full overflow-y-auto">
+      <NotificationsWidget />
+    </div>
   );
 };

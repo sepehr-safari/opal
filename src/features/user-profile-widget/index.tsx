@@ -39,9 +39,9 @@ export const UserProfileWidget = ({
           </>
         ) : (
           <>
-            <ProfileBanner banner={profile?.banner?.toString()} />
+            <ProfileBanner banner={profile?.banner} />
 
-            <ProfileAvatar image={profile?.image?.toString()} />
+            <ProfileAvatar image={profile?.image} />
 
             <ProfileActions targetUser={user} setEditMode={setEditMode} />
 
