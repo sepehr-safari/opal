@@ -3,9 +3,21 @@ import { memo, useEffect, useMemo } from 'react';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
 
-import { MentionsAndReplies, Reactions, Reposts, Zaps } from './components';
+import { UserRole } from '@/shared/types';
 
-export const NotificationsWidget = memo(() => {
+import {
+  useHousingApplicationListByAgency,
+  useHousingApplicationReviewListByPeh,
+} from '@/shared/hooks';
+import {
+  HousingApplicationListByAgency,
+  HousingApplicationReviewListByPeh,
+  MentionsAndReplies,
+  Reactions,
+  Reposts,
+} from './components';
+
+export const NotificationsWidget = memo(({ role }: { role: UserRole }) => {
   const { activeUser } = useActiveUser();
 
   const subId = activeUser ? `notifications-${activeUser.pubkey}` : undefined;
@@ -15,9 +27,32 @@ export const NotificationsWidget = memo(() => {
   useEffect(() => {
     activeUser &&
       createSubscription({
-        filters: [{ kinds: [1, 6, 7, 9735], '#p': [activeUser.pubkey], limit: 100 }],
+        filters: [{ kinds: [1, 6, 7], '#p': [activeUser.pubkey], limit: 100 }],
       });
   }, [activeUser, createSubscription]);
+
+  const { housingApplicationReviewListByPeh } = useHousingApplicationReviewListByPeh({
+    pehPubkey: role === 'peh' ? activeUser?.pubkey : undefined,
+  });
+  const { housingApplicationListByAgency } = useHousingApplicationListByAgency({
+    agencyPubkey: role === 'agency' ? activeUser?.pubkey : undefined,
+  });
+
+  const filteredHousingApplicationReviewListByPeh = useMemo(
+    () =>
+      housingApplicationReviewListByPeh?.filter(
+        (housingApplication) => housingApplication.status !== 'Stalled',
+      ),
+    [housingApplicationReviewListByPeh],
+  );
+
+  const filteredHousingApplicationListByAgency = useMemo(
+    () =>
+      housingApplicationListByAgency?.filter(
+        (housingApplication) => housingApplication.status === 'Applied',
+      ),
+    [housingApplicationListByAgency],
+  );
 
   const mentionsAndReplies = useMemo(
     () =>
@@ -40,49 +75,26 @@ export const NotificationsWidget = memo(() => {
         .sort((a, b) => b.created_at! - a.created_at!),
     [events, activeUser?.pubkey],
   );
-  const zaps = useMemo(
-    () =>
-      events
-        ?.filter((event) => event.kind === 9735 && event.pubkey !== activeUser?.pubkey)
-        .sort((a, b) => b.created_at! - a.created_at!),
-    [events, activeUser?.pubkey],
-  );
-  const all = useMemo(
-    () =>
-      [
-        ...(mentionsAndReplies || []),
-        ...(reposts || []),
-        ...(reactions || []),
-        ...(zaps || []),
-      ].sort((a, b) => b.created_at! - a.created_at!),
-    [mentionsAndReplies, reposts, reactions, zaps],
-  );
 
   return (
     <div>
-      <Tabs defaultValue="all">
+      <Tabs defaultValue="housing">
         <TabsList className="w-full rounded-none">
-          <TabsTrigger value="all">All</TabsTrigger>
+          <TabsTrigger value="housing">Housing</TabsTrigger>
           <TabsTrigger value="mentions-replies">Mentions and Replies</TabsTrigger>
           <TabsTrigger value="reposts">Reposts</TabsTrigger>
           <TabsTrigger value="reactions">Reactions</TabsTrigger>
-          <TabsTrigger value="zaps">Zaps</TabsTrigger>
         </TabsList>
-        <TabsContent value="all">
-          {all?.map((event) => {
-            switch (event.kind) {
-              case 1:
-                return <MentionsAndReplies key={event.id} mentionsAndReplies={[event]} />;
-              case 6:
-                return <Reposts key={event.id} reposts={[event]} />;
-              case 7:
-                return <Reactions key={event.id} reactions={[event]} />;
-              case 9735:
-                return <Zaps key={event.id} zaps={[event]} />;
-              default:
-                return null;
-            }
-          })}
+        <TabsContent value="housing">
+          {role === 'peh' ? (
+            <HousingApplicationReviewListByPeh
+              housingApplicationReviewListByPeh={filteredHousingApplicationReviewListByPeh}
+            />
+          ) : (
+            <HousingApplicationListByAgency
+              housingApplicationListByAgency={filteredHousingApplicationListByAgency}
+            />
+          )}
         </TabsContent>
         <TabsContent value="mentions-replies">
           <MentionsAndReplies mentionsAndReplies={mentionsAndReplies} />
@@ -92,9 +104,6 @@ export const NotificationsWidget = memo(() => {
         </TabsContent>
         <TabsContent value="reactions">
           <Reactions reactions={reactions} />
-        </TabsContent>
-        <TabsContent value="zaps">
-          <Zaps zaps={zaps} />
         </TabsContent>
       </Tabs>
     </div>
