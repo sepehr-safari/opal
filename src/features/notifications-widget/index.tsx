@@ -40,17 +40,25 @@ export const NotificationsWidget = memo(({ role }: { role: UserRole }) => {
 
   const filteredHousingApplicationReviewListByPeh = useMemo(
     () =>
-      housingApplicationReviewListByPeh?.filter(
-        (housingApplication) => housingApplication.status !== 'Stalled',
-      ),
+      housingApplicationReviewListByPeh === undefined
+        ? undefined
+        : housingApplicationReviewListByPeh === null
+          ? null
+          : housingApplicationReviewListByPeh.filter(
+              (housingApplication) => housingApplication.status !== 'Stalled',
+            ),
     [housingApplicationReviewListByPeh],
   );
 
   const filteredHousingApplicationListByAgency = useMemo(
     () =>
-      housingApplicationListByAgency?.filter(
-        (housingApplication) => housingApplication.status === 'Applied',
-      ),
+      housingApplicationListByAgency === undefined
+        ? undefined
+        : housingApplicationListByAgency === null
+          ? null
+          : housingApplicationListByAgency.filter(
+              (housingApplication) => housingApplication.status === 'Applied',
+            ),
     [housingApplicationListByAgency],
   );
 
