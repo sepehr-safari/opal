@@ -7,7 +7,7 @@ export const housingSchema = z.object({
   id: z.string().optional(),
   agencyPubkey: z.string().optional(),
   housingEvent: z.instanceof(NDKEvent).optional(),
-  status: z.string(),
+  status: z.enum(['Available', 'NotAvailable']),
   name: z.string().min(1, { message: 'Required' }),
   description: z.string().min(1, { message: 'Required' }),
   location: z.string().min(1, { message: 'Required' }),
@@ -25,15 +25,17 @@ export const housingSchema = z.object({
 
 export type Housing = z.infer<typeof housingSchema>;
 
-export type HousingRequest = {
-  id: string;
-  pehPubkey: string;
-  status: string;
-  housingRequestEvent: NDKEvent;
+export type HousingApplication = {
+  eventAddress: string;
+  status: 'Applied' | 'NotApplied';
+  housingEventAddress: string;
+  ndkEvent: NDKEvent;
 };
 
-export type HousingRequestResult = {
-  id: string;
-  result: string;
-  housingRequestResultEvent: NDKEvent;
+export type HousingApplicationReview = {
+  eventAddress: string;
+  status: 'Approved' | 'Rejected' | 'Stalled';
+  housingEventAddress: string;
+  housingApplicationEventAddress: string;
+  ndkEvent: NDKEvent;
 };
