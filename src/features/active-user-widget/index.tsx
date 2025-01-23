@@ -1,5 +1,8 @@
-import { PowerIcon, UserIcon } from 'lucide-react';
+import { pdf } from '@react-pdf/renderer';
+import { saveAs } from 'file-saver';
+import { KeySquareIcon, PowerIcon, UserIcon } from 'lucide-react';
 import { useActiveUser, useLogin, useRealtimeProfile } from 'nostr-hooks';
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/components/ui/avatar';
@@ -13,12 +16,23 @@ import {
 
 import { ellipsis } from '@/shared/utils';
 
+import { CredentialsDocument } from '@/features/credentials-document';
+
 export const ActiveUserWidget = () => {
   const { activeUser } = useActiveUser();
   const { profile } = useRealtimeProfile(activeUser?.pubkey);
-  const { logout } = useLogin();
+  const { logout, loginData } = useLogin();
 
   const navigate = useNavigate();
+
+  const downloadCredentials = useCallback(
+    async ({ npub, nsec }: { npub: string; nsec: string }) => {
+      const fileName = 'opal-credentials.pdf';
+      const blob = await pdf(<CredentialsDocument npub={npub} nsec={nsec} />).toBlob();
+      saveAs(blob, fileName);
+    },
+    [],
+  );
 
   if (!activeUser) {
     return null;
@@ -50,6 +64,14 @@ export const ActiveUserWidget = () => {
         <DropdownMenuItem onClick={() => navigate(`/profile/${activeUser.npub}`)}>
           <UserIcon className="w-4 h-4 mr-2" />
           Profile
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() =>
+            downloadCredentials({ npub: activeUser.npub, nsec: loginData.privateKey || '' })
+          }
+        >
+          <KeySquareIcon className="w-4 h-4 mr-2" />
+          Credentials (PDF)
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={logout}>
