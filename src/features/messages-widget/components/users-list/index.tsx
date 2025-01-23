@@ -39,7 +39,11 @@ export const UsersList = memo(() => {
   }
 
   if (uniquePubkeys.length === 0) {
-    return <div className="flex items-center justify-center h-full text-foreground/40">Empty</div>;
+    return (
+      <div className="flex items-center justify-center h-full text-foreground/40 w-full px-12">
+        Empty
+      </div>
+    );
   }
 
   return (

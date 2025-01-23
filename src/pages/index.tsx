@@ -124,7 +124,7 @@ const Layout = () => {
             <div className="flex flex-row gap-2 w-full items-center justify-between">
               <Link
                 to="/"
-                className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
+                className="w-full flex items-center justify-center gap-2 p-2 rounded-lg transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground hover:bg-secondary"
               >
                 <div>
                   <HomeIcon size={28} strokeWidth={1.4} />
@@ -132,7 +132,7 @@ const Layout = () => {
               </Link>
 
               <SearchWidget>
-                <div className="flex items-center gap-2 text-foreground/60 hover:text-foreground hover:cursor-pointer">
+                <div className="w-full flex items-center justify-center gap-2 p-2 rounded-lg transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground hover:bg-secondary hover:cursor-pointer">
                   <div>
                     <SearchIcon size={28} strokeWidth={1.4} />
                   </div>
@@ -141,7 +141,7 @@ const Layout = () => {
 
               <Link
                 to="/notes"
-                className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
+                className="w-full flex items-center justify-center gap-2 p-2 rounded-lg transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground hover:bg-secondary"
               >
                 <div>
                   <NotepadTextIcon size={28} strokeWidth={1.4} />
@@ -150,7 +150,7 @@ const Layout = () => {
 
               <Link
                 to="/messages"
-                className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
+                className="w-full flex items-center justify-center gap-2 p-2 rounded-lg transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground hover:bg-secondary"
               >
                 <div>
                   <MailIcon size={28} strokeWidth={1.4} />
@@ -159,7 +159,7 @@ const Layout = () => {
 
               <Link
                 to="/notifications"
-                className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
+                className="w-full flex items-center justify-center gap-2 p-2 rounded-lg transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground hover:bg-secondary"
               >
                 <div>
                   <BellIcon size={28} strokeWidth={1.4} />
@@ -168,7 +168,7 @@ const Layout = () => {
 
               {/* <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <div               className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
+                  <div               className="w-full flex items-center gap-2 p-2 rounded-lg transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground hover:bg-secondary"
 >
                     <MenuIcon size={28} strokeWidth={1.4} />
                   </div>
