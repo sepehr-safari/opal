@@ -59,7 +59,12 @@ export const AllAvailableHousingList = memo(() => {
   const { allHousingList } = useAllHousingList();
 
   const availableHousingList = useMemo(
-    () => allHousingList?.filter((h) => h.status === 'Available'),
+    () =>
+      allHousingList === undefined
+        ? undefined
+        : allHousingList === null || allHousingList.length === 0
+          ? null
+          : allHousingList.filter((h) => h.status === 'Available'),
     [allHousingList],
   );
 
