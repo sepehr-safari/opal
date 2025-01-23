@@ -70,7 +70,7 @@ export const useMutateHousing = () => {
   );
 
   const applyHousing = useCallback(
-    (housing: Housing) => {
+    ({ housing, stayDuration, ssn }: { housing: Housing; stayDuration: number; ssn: number }) => {
       if (!ndk) return;
       if (!ndk.signer) return;
 
@@ -80,6 +80,8 @@ export const useMutateHousing = () => {
         ['T', OpalTag.HousingApplication],
         ['d', housing.housingEvent!.tagAddress()],
         ['p', housing.housingEvent!.pubkey],
+        ['ssn', ssn.toString()],
+        ['stayDuration', stayDuration.toString()],
         ['s', 'Applied'],
       ];
 
@@ -95,7 +97,7 @@ export const useMutateHousing = () => {
 
       const e = new NDKEvent(ndk);
       e.kind = NDKKind.AppSpecificData;
-      e.tags = [...housingApplication.ndkEvent.tags];
+      e.tags = [...housingApplication.ndkEvent!.tags];
       e.removeTag('s');
       e.tags.push(['s', 'NotApplied']);
 
@@ -113,9 +115,9 @@ export const useMutateHousing = () => {
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
         ['T', OpalTag.HousingApplicationReview],
-        ['d', housingApplication.eventAddress],
-        ['h', housingApplication.housingEventAddress],
-        ['p', housingApplication.ndkEvent.pubkey],
+        ['d', housingApplication.eventAddress!],
+        ['h', housingApplication.housingEventAddress!],
+        ['p', housingApplication.ndkEvent!.pubkey],
         ['s', 'Approved'],
       ];
 
@@ -133,9 +135,9 @@ export const useMutateHousing = () => {
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
         ['T', OpalTag.HousingApplicationReview],
-        ['d', housingApplication.eventAddress],
-        ['h', housingApplication.housingEventAddress],
-        ['p', housingApplication.ndkEvent.pubkey],
+        ['d', housingApplication.eventAddress!],
+        ['h', housingApplication.housingEventAddress!],
+        ['p', housingApplication.ndkEvent!.pubkey],
         ['s', 'Rejected'],
       ];
 
@@ -153,9 +155,9 @@ export const useMutateHousing = () => {
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
         ['T', OpalTag.HousingApplicationReview],
-        ['d', housingApplication.eventAddress],
-        ['h', housingApplication.housingEventAddress],
-        ['p', housingApplication.ndkEvent.pubkey],
+        ['d', housingApplication.eventAddress!],
+        ['h', housingApplication.housingEventAddress!],
+        ['p', housingApplication.ndkEvent!.pubkey],
         ['s', 'Stalled'],
       ];
 

@@ -1,15 +1,26 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useMemo } from 'react';
+import { useForm } from 'react-hook-form';
 
 import { Button } from '@/shared/components/ui/button';
 
 import { Spinner } from '@/shared/components/spinner';
 
 import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/shared/components/ui/form';
+import { Input } from '@/shared/components/ui/input';
+import {
   useHousingApplicationListByHousingAndPeh,
   useHousingApplicationReviewListByHousing,
   useMutateHousing,
 } from '@/shared/hooks';
-import { Housing, HousingApplication } from '@/shared/types';
+import { Housing, HousingApplication, housingApplicationSchema } from '@/shared/types';
 
 const useApplication = (realtimeHousing: Housing, pehPubkey: string) => {
   const { housingApplicationListByHousingAndPeh } = useHousingApplicationListByHousingAndPeh({
@@ -49,7 +60,7 @@ const useReview = (application: HousingApplication | null | undefined) => {
   return { review };
 };
 
-export const PehHousingApplyButton = ({
+export const PehApplicationForm = ({
   realtimeHousing,
   pehPubkey,
 }: {
@@ -61,20 +72,73 @@ export const PehHousingApplyButton = ({
   const { application } = useApplication(realtimeHousing, pehPubkey);
   const { review } = useReview(application);
 
+  const form = useForm<HousingApplication>({
+    resolver: zodResolver(housingApplicationSchema),
+    defaultValues: {
+      status: 'NotApplied',
+      ssn: 0,
+      stayDuration: 0,
+    },
+  });
+
+  const onSubmit = (values: HousingApplication) => {
+    applyHousing({
+      housing: realtimeHousing,
+      stayDuration: values.stayDuration,
+      ssn: values.ssn,
+    });
+  };
+
   if (application === undefined) return <Spinner />;
 
   if (application === null || application.status === 'NotApplied') {
     return (
       <>
-        <Button
-          className="w-full"
-          variant="default"
-          size="sm"
-          disabled={realtimeHousing.status !== 'Available'}
-          onClick={() => applyHousing(realtimeHousing)}
-        >
-          {realtimeHousing.status === 'Available' ? 'Apply' : 'Unavailable'}
-        </Button>
+        <div className="p-4 border rounded-md shadow-md bg-background space-y-4">
+          <div className="font-bold">Application Form</div>
+
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="stayDuration"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Duration of stay</FormLabel>
+                    <FormControl>
+                      <Input type="number" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="ssn"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Social Security Number</FormLabel>
+                    <FormControl>
+                      <Input type="number" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <Button
+                type="submit"
+                className="w-full"
+                variant="default"
+                size="sm"
+                disabled={realtimeHousing.status !== 'Available'}
+              >
+                {realtimeHousing.status === 'Available' ? 'Apply' : 'Unavailable'}
+              </Button>
+            </form>
+          </Form>
+        </div>
       </>
     );
   }

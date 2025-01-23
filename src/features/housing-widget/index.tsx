@@ -14,7 +14,7 @@ import { Housing, UserRole } from '@/shared/types';
 
 import { HousingApplicationList } from '@/features/housing-application-list';
 
-import { PehHousingApplyButton } from './components';
+import { PehApplicationForm } from './components';
 
 export const HousingWidget = ({ housing, userRole }: { housing: Housing; userRole: UserRole }) => {
   const navigate = useNavigate();
@@ -102,10 +102,7 @@ export const HousingWidget = ({ housing, userRole }: { housing: Housing; userRol
             )}
 
           {userRole == 'peh' && realtimeHousing && activeUser?.pubkey && (
-            <PehHousingApplyButton
-              realtimeHousing={realtimeHousing}
-              pehPubkey={activeUser.pubkey}
-            />
+            <PehApplicationForm realtimeHousing={realtimeHousing} pehPubkey={activeUser.pubkey} />
           )}
         </div>
       </div>

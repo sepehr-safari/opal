@@ -42,12 +42,14 @@ export const HousingApplicationListByAgency = memo(
                 <BedIcon size={18} />
 
                 <Peh
-                  pubkey={housingApplication.ndkEvent.pubkey}
-                  npub={housingApplication.ndkEvent.author.npub}
+                  pubkey={housingApplication.ndkEvent!.pubkey}
+                  npub={housingApplication.ndkEvent!.author.npub}
                 />
               </div>
 
-              <HousingByEventAddress housingEventAddress={housingApplication.housingEventAddress} />
+              <HousingByEventAddress
+                housingEventAddress={housingApplication.housingEventAddress!}
+              />
             </div>
           </div>
         ))}

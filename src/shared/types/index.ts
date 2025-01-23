@@ -25,12 +25,16 @@ export const housingSchema = z.object({
 
 export type Housing = z.infer<typeof housingSchema>;
 
-export type HousingApplication = {
-  eventAddress: string;
-  status: 'Applied' | 'NotApplied';
-  housingEventAddress: string;
-  ndkEvent: NDKEvent;
-};
+export const housingApplicationSchema = z.object({
+  eventAddress: z.string().optional(),
+  status: z.enum(['Applied', 'NotApplied']),
+  housingEventAddress: z.string().optional(),
+  ndkEvent: z.instanceof(NDKEvent).optional(),
+  stayDuration: z.coerce.number().int().min(1, { message: 'Must be at least 1' }),
+  ssn: z.coerce.number().int().min(1, { message: 'Must be at least 1' }),
+});
+
+export type HousingApplication = z.infer<typeof housingApplicationSchema>;
 
 export type HousingApplicationReview = {
   eventAddress: string;

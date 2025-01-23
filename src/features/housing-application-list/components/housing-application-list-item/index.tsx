@@ -30,11 +30,11 @@ export const HousingApplicationListItem = ({
     });
 
   const npub = useMemo(
-    () => new NDKUser({ pubkey: housingApplication.ndkEvent.pubkey }).npub,
-    [housingApplication.ndkEvent.pubkey],
+    () => new NDKUser({ pubkey: housingApplication.ndkEvent!.pubkey }).npub,
+    [housingApplication.ndkEvent!.pubkey],
   );
 
-  const { profile } = useRealtimeProfile(housingApplication.ndkEvent.pubkey);
+  const { profile } = useRealtimeProfile(housingApplication.ndkEvent!.pubkey);
 
   if (profile === undefined) {
     return <Spinner />;
@@ -46,13 +46,20 @@ export const HousingApplicationListItem = ({
 
   return (
     <>
-      <div className="w-full flex items-center gap-2">
-        <Avatar className="bg-muted">
-          <AvatarImage src={profile.image?.toString()} alt={profile.name} />
-        </Avatar>
+      <div className="w-full flex items-center">
+        <button
+          className="hover:underline flex items-center gap-2"
+          onClick={() => navigate(`/profile/${npub}`)}
+        >
+          <Avatar className="bg-muted h-16 w-16">
+            <AvatarImage src={profile.image?.toString()} alt={profile.name} />
+          </Avatar>
 
-        <button className="hover:underline" onClick={() => navigate(`/profile/${npub}`)}>
-          {profile.name}
+          <div className="text-start">
+            <p className="font-bold">{profile.name}</p>
+            <p className="text-sm">SSN: {housingApplication.ssn}</p>
+            <p className="text-sm">{housingApplication.stayDuration} days</p>
+          </div>
         </button>
 
         <div className="ml-auto flex items-center gap-2">
