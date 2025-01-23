@@ -16,7 +16,7 @@ export const App = () => {
   useEffect(() => {
     initNdk({
       explicitRelayUrls: [
-        'wss://nos.lol',
+        // 'wss://nos.lol',
         'wss://relay.primal.net',
         'wss://relay.damus.io',
         'wss://relay.nostr.band',
