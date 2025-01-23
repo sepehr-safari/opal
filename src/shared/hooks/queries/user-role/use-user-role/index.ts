@@ -2,7 +2,7 @@ import { NDKKind } from '@nostr-dev-kit/ndk';
 import { useSubscription } from 'nostr-hooks';
 import { useEffect, useMemo } from 'react';
 
-import { UserRole } from '@/shared/types';
+import { OpalTag, UserRole } from '@/shared/types';
 
 const VALID_ROLES: UserRole[] = ['agency', 'peh'];
 
@@ -36,7 +36,7 @@ export const useUserRole = (pubkey: string | undefined) => {
             kinds: [NDKKind.AppSpecificData],
             limit: 1,
             authors: [pubkey],
-            '#d': ['opal/v0.21/user-role'],
+            '#d': [OpalTag.UserRole],
           },
         ],
       });

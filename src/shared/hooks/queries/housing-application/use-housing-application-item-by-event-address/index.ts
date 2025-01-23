@@ -2,6 +2,7 @@ import { NDKKind } from '@nostr-dev-kit/ndk';
 import { useSubscription } from 'nostr-hooks';
 import { useEffect, useMemo } from 'react';
 
+import { OpalTag } from '@/shared/types';
 import { parseEventAddress, parseHousingApplication } from '@/shared/utils';
 
 export const useHousingApplicationItemByEventAddress = ({
@@ -40,7 +41,7 @@ export const useHousingApplicationItemByEventAddress = ({
           kinds: [NDKKind.AppSpecificData],
           limit: 100,
           authors: [parsedEventAddress.pubkey],
-          '#T': ['opal/v0.21/housing-application'],
+          '#T': [OpalTag.HousingApplication],
           '#d': [parsedEventAddress.identifier],
         },
       ],

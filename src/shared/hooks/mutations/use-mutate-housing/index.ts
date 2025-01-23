@@ -2,7 +2,7 @@ import { NDKEvent, NDKKind } from '@nostr-dev-kit/ndk';
 import { useNdk } from 'nostr-hooks';
 import { useCallback } from 'react';
 
-import { Housing, HousingApplication } from '@/shared/types';
+import { Housing, HousingApplication, OpalTag } from '@/shared/types';
 
 export const useMutateHousing = () => {
   const { ndk } = useNdk();
@@ -15,7 +15,7 @@ export const useMutateHousing = () => {
       const e = new NDKEvent(ndk);
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
-        ['T', 'opal/v0.21/housing'],
+        ['T', OpalTag.Housing],
         ['N', housing.name],
         ['description', housing.description],
         ['location', housing.location],
@@ -43,7 +43,7 @@ export const useMutateHousing = () => {
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
         ['d', housing.id!],
-        ['T', 'opal/v0.21/housing'],
+        ['T', OpalTag.Housing],
         ['N', housing.name],
         ['description', housing.description],
         ['location', housing.location],
@@ -77,7 +77,7 @@ export const useMutateHousing = () => {
       const e = new NDKEvent(ndk);
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
-        ['T', 'opal/v0.21/housing-application'],
+        ['T', OpalTag.HousingApplication],
         ['d', housing.housingEvent!.tagAddress()],
         ['p', housing.housingEvent!.pubkey],
         ['s', 'Applied'],
@@ -112,7 +112,7 @@ export const useMutateHousing = () => {
       const e = new NDKEvent(ndk);
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
-        ['T', 'opal/v0.21/housing-application-review'],
+        ['T', OpalTag.HousingApplicationReview],
         ['d', housingApplication.eventAddress],
         ['h', housingApplication.housingEventAddress],
         ['p', housingApplication.ndkEvent.pubkey],
@@ -132,7 +132,7 @@ export const useMutateHousing = () => {
       const e = new NDKEvent(ndk);
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
-        ['T', 'opal/v0.21/housing-application-review'],
+        ['T', OpalTag.HousingApplicationReview],
         ['d', housingApplication.eventAddress],
         ['h', housingApplication.housingEventAddress],
         ['p', housingApplication.ndkEvent.pubkey],
@@ -152,7 +152,7 @@ export const useMutateHousing = () => {
       const e = new NDKEvent(ndk);
       e.kind = NDKKind.AppSpecificData;
       e.tags = [
-        ['T', 'opal/v0.21/housing-application-review'],
+        ['T', OpalTag.HousingApplicationReview],
         ['d', housingApplication.eventAddress],
         ['h', housingApplication.housingEventAddress],
         ['p', housingApplication.ndkEvent.pubkey],

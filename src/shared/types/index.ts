@@ -39,3 +39,10 @@ export type HousingApplicationReview = {
   housingApplicationEventAddress: string;
   ndkEvent: NDKEvent;
 };
+
+export enum OpalTag {
+  Housing = 'opal/v0.22/housing',
+  HousingApplication = 'opal/v0.22/housing-application',
+  HousingApplicationReview = 'opal/v0.22/housing-application-review',
+  UserRole = 'opal/v0.22/user-role',
+}

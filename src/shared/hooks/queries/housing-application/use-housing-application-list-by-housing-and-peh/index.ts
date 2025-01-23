@@ -2,7 +2,7 @@ import { NDKKind } from '@nostr-dev-kit/ndk';
 import { useSubscription } from 'nostr-hooks';
 import { useEffect, useMemo } from 'react';
 
-import { HousingApplication } from '@/shared/types';
+import { HousingApplication, OpalTag } from '@/shared/types';
 import { parseHousingApplication } from '@/shared/utils';
 
 export const useHousingApplicationListByHousingAndPeh = ({
@@ -44,7 +44,7 @@ export const useHousingApplicationListByHousingAndPeh = ({
           kinds: [NDKKind.AppSpecificData],
           limit: 100,
           authors: [pehPubkey],
-          '#T': ['opal/v0.21/housing-application'],
+          '#T': [OpalTag.HousingApplication],
           '#d': [housingEventAddress],
         },
       ],

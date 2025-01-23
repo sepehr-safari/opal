@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 
 import { useToast } from '@/shared/components/ui/use-toast';
 
-import { UserRole } from '@/shared/types';
+import { OpalTag, UserRole } from '@/shared/types';
 
 export const useMutateUserRole = () => {
   const { toast } = useToast();
@@ -18,7 +18,7 @@ export const useMutateUserRole = () => {
 
       const event = new NDKEvent(ndk);
       event.kind = NDKKind.AppSpecificData;
-      event.dTag = 'opal/v0.21/user-role';
+      event.dTag = OpalTag.UserRole;
       event.tags.push(['r', role.toString()]);
 
       event.publish().then(

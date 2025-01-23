@@ -2,7 +2,7 @@ import { NDKKind } from '@nostr-dev-kit/ndk';
 import { useSubscription } from 'nostr-hooks';
 import { useEffect, useMemo } from 'react';
 
-import { HousingApplicationReview } from '@/shared/types';
+import { HousingApplicationReview, OpalTag } from '@/shared/types';
 import { parseHousingApplicationReview } from '@/shared/utils';
 
 export const useHousingApplicationReviewListByAgency = ({
@@ -39,7 +39,7 @@ export const useHousingApplicationReviewListByAgency = ({
             kinds: [NDKKind.AppSpecificData],
             limit: 100,
             authors: [agencyPubkey],
-            '#T': ['opal/v0.21/housing-application-review'],
+            '#T': [OpalTag.HousingApplicationReview],
           },
         ],
       });
