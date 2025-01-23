@@ -39,7 +39,11 @@ export const Reactions = memo(({ reactions }: { reactions: NDKEvent[] | undefine
   }
 
   if (reactions.length === 0) {
-    return <div>No reactions yet</div>;
+    return (
+      <div className="p-4 border rounded-md shadow-md bg-background">
+        <div>No reactions yet</div>
+      </div>
+    );
   }
 
   return (
