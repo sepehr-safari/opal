@@ -55,11 +55,17 @@ export const HomePage = () => {
     <>
       <div className="overflow-y-auto h-full">
         <div className="p-4 border-b">
-          <h4>Available Housing List</h4>
+          <h4>Welcome to OPAL!</h4>
         </div>
 
         <div className="p-4 flex flex-col gap-4">
-          {role === 'agency' && <CreateHousing />}
+          {role === 'agency' && (
+            <div className="p-4 border rounded-md shadow-md flex w-full items-center">
+              <div className="w-full">
+                <CreateHousing />
+              </div>
+            </div>
+          )}
 
           <AllAvailableHousingList />
         </div>
