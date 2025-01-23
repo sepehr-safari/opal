@@ -13,7 +13,7 @@ export const useHousingApplicationListByHousingAndPeh = ({
   pehPubkey: string | undefined;
 }) => {
   const subId = housingEventAddress
-    ? `housing-application-list-by-housing-${housingEventAddress}`
+    ? `housing-application-list-by-housing-and-peh-${housingEventAddress}`
     : undefined;
 
   const { createSubscription, isLoading, events } = useSubscription(subId);

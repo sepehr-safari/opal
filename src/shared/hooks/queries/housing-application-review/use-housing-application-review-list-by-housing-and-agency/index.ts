@@ -13,7 +13,7 @@ export const useHousingApplicationReviewListByHousingAndAgency = ({
   agencyPubkey: string | undefined;
 }) => {
   const subId = housingEventAddress
-    ? `housing-application-review-list-by-housing-${housingEventAddress}`
+    ? `housing-application-review-list-by-housing-and-agency-${housingEventAddress}`
     : undefined;
 
   const { createSubscription, isLoading, events } = useSubscription(subId);
