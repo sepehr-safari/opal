@@ -28,10 +28,10 @@ export const HousingApplicationList = ({
         <CollapsibleTrigger>
           <Button className="flex gap-2">
             {housingApplicationList.length === 0
-              ? 'Your housing has no requests yet'
+              ? 'No applications yet'
               : housingApplicationList.length === 1
-                ? 'Your housing has 1 request'
-                : `Your housing has ${housingApplicationList.length} requests`}
+                ? 'Your housing has 1 application'
+                : `Your housing has ${housingApplicationList.length} applications`}
 
             {housingApplicationList.length > 0 && (
               <ChevronDownIcon size={16} className={open ? 'transform rotate-180' : ''} />
