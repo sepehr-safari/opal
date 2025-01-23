@@ -1,11 +1,13 @@
 import { NDKUser } from '@nostr-dev-kit/ndk';
 import { useFollows } from 'nostr-hooks';
-import { memo, useMemo } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 
 import { Button } from '@/shared/components/ui/button';
 
 export const FollowUnfollowBtn = memo(
   ({ targetUser, activeUser }: { targetUser: NDKUser; activeUser: NDKUser }) => {
+    const [label, setLabel] = useState<string>('Follow');
+
     const { follows } = useFollows({ pubkey: activeUser.pubkey });
 
     const isFollowed = useMemo(
@@ -17,15 +19,26 @@ export const FollowUnfollowBtn = memo(
       return null;
     }
 
+    useEffect(() => {
+      if (isFollowed) {
+        setLabel('Unfollow');
+      } else {
+        setLabel('Follow');
+      }
+    }, [isFollowed, setLabel]);
+
     if (isFollowed) {
       return (
         <>
           <Button
             variant="secondary"
             className="rounded-full"
-            onClick={() => activeUser.unfollow(targetUser)}
+            onClick={() => {
+              activeUser.unfollow(targetUser);
+              setLabel('Follow');
+            }}
           >
-            Unfollow
+            {label}
           </Button>
         </>
       );
@@ -35,9 +48,12 @@ export const FollowUnfollowBtn = memo(
           <Button
             variant="secondary"
             className="rounded-full"
-            onClick={() => activeUser.follow(targetUser)}
+            onClick={() => {
+              activeUser.follow(targetUser);
+              setLabel('Unfollow');
+            }}
           >
-            Follow
+            {label}
           </Button>
         </>
       );
