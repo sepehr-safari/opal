@@ -40,8 +40,10 @@ export const Reactions = memo(({ reactions }: { reactions: NDKEvent[] | undefine
 
   if (reactions.length === 0) {
     return (
-      <div className="p-4 border rounded-md shadow-md bg-background">
-        <div>No reactions yet</div>
+      <div className="p-4">
+        <div className="p-4 border rounded-md shadow-md bg-background">
+          <div>No reactions yet</div>
+        </div>
       </div>
     );
   }

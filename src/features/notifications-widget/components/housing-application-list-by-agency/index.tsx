@@ -27,7 +27,7 @@ export const HousingApplicationListByAgency = memo(
       return (
         <div className="p-4">
           <div className="p-4 border rounded-md shadow-md bg-background">
-            <div>No housing applications yet</div>
+            <p>No housing applications yet</p>
           </div>
         </div>
       );

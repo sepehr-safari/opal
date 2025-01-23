@@ -27,7 +27,13 @@ export const HousingApplicationReviewListByPeh = memo(
       housingApplicationReviewListByPeh === null ||
       housingApplicationReviewListByPeh.length === 0
     ) {
-      return <div>No reviews yet</div>;
+      return (
+        <div className="p-4">
+          <div className="p-4 border rounded-md shadow-md bg-background">
+            <p>No reviews yet</p>
+          </div>
+        </div>
+      );
     }
 
     return (

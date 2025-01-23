@@ -40,8 +40,10 @@ export const Reposts = memo(({ reposts }: { reposts: NDKEvent[] | undefined }) =
 
   if (reposts.length === 0) {
     return (
-      <div className="p-4 border rounded-md shadow-md bg-background">
-        <div>No reposts yet</div>
+      <div className="p-4">
+        <div className="p-4 border rounded-md shadow-md bg-background">
+          <div>No reposts yet</div>
+        </div>
       </div>
     );
   }
