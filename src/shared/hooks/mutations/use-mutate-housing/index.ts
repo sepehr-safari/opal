@@ -88,7 +88,7 @@ export const useMutateHousing = () => {
     [ndk],
   );
 
-  const unApplyHousing = useCallback(
+  const withdrawHousingApplication = useCallback(
     (housingApplication: HousingApplication) => {
       if (!ndk) return;
       if (!ndk.signer) return;
@@ -172,6 +172,6 @@ export const useMutateHousing = () => {
     rejectHousingApplication,
     stallHousingApplication,
     applyHousing,
-    unApplyHousing,
+    withdrawHousingApplication,
   };
 };

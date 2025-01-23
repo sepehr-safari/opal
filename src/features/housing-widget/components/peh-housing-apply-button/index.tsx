@@ -56,7 +56,7 @@ export const PehHousingApplyButton = ({
   realtimeHousing: Housing;
   pehPubkey: string;
 }) => {
-  const { applyHousing, unApplyHousing } = useMutateHousing();
+  const { applyHousing, withdrawHousingApplication } = useMutateHousing();
 
   const { application } = useApplication(realtimeHousing, pehPubkey);
   const { review } = useReview(application);
@@ -87,9 +87,9 @@ export const PehHousingApplyButton = ({
           variant="destructive"
           size="sm"
           disabled={realtimeHousing.status !== 'Available'}
-          onClick={() => unApplyHousing(application)}
+          onClick={() => withdrawHousingApplication(application)}
         >
-          Cancel Your Request
+          Withdraw your application
         </Button>
       </>
     );
