@@ -12,7 +12,7 @@ export const useAllHousingList = () => {
 
   const allHousingList = useMemo(() => {
     if (isLoading) return undefined;
-    if (!events || !events.length) return null;
+    if (!events || events.length === 0) return null;
 
     const list = events.reduce((list: Housing[], event) => {
       const housing = parseHousing(event);
@@ -22,7 +22,7 @@ export const useAllHousingList = () => {
       return list;
     }, []);
 
-    return list.length ? list : null;
+    return list.length > 0 ? list : null;
   }, [events, isLoading]);
 
   useEffect(() => {

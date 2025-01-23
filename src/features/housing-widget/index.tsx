@@ -51,7 +51,7 @@ export const HousingWidget = ({ housing, userRole }: { housing: Housing; userRol
 
   return (
     <div key={realtimeHousing.id}>
-      <div className="p-2 border rounded-sm shadow-md bg-background transition-colors duration-500 ease-out hover:border-primary/30">
+      <div className="p-4 border rounded-sm shadow-md bg-background transition-colors duration-500 ease-out hover:border-primary/30">
         <div className="flex flex-col gap-1 justify-center">
           {agencyProfile && (
             <p className="text-sm text-muted-foreground">
