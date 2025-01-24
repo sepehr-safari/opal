@@ -3,12 +3,7 @@ import { memo } from 'react';
 
 import { NoteCommentsWidget } from '@/features/note-comments-widget';
 
-import {
-  NoteBookmarkBtn,
-  NoteCommentBtn,
-  NoteLikeBtn,
-  NoteRepostBtn,
-} from '@/features/note-widget/components';
+import { NoteCommentBtn, NoteLikeBtn, NoteRepostBtn } from '@/features/note-widget/components';
 
 import { useNoteFooter } from './hooks';
 
@@ -28,8 +23,6 @@ export const NoteFooter = memo(
           <NoteLikeBtn event={event} inView={inView} />
 
           <NoteRepostBtn event={event} inView={inView} />
-
-          <NoteBookmarkBtn event={event} inView={inView} />
         </div>
 
         {showingComments && (

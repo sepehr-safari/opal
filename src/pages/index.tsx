@@ -58,14 +58,6 @@ const Layout = () => {
               <span className="hidden lg:block">Messages</span>
             </Link>
 
-            {/* <Link to="/" className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary">
-              <div>
-                <BookmarkIcon size={24} />
-              </div>
-
-              <span className="hidden lg:block">Bookmarks</span>
-            </Link> */}
-
             <Link
               to="/notifications"
               className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
