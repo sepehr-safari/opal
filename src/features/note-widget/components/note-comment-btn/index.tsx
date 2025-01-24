@@ -18,12 +18,12 @@ export const NoteCommentBtn = ({
 
   return (
     <>
-      <Button variant="link" size="icon" className="opacity-50 hover:opacity-100" onClick={onClick}>
+      <Button variant="link" className="px-0 opacity-50 hover:opacity-100" onClick={onClick}>
         <div>
           <MessageSquareIcon size={18} />
         </div>
 
-        <span className="ml-1 text-xs">{count < 10 ? count : '10+'}</span>
+        <div className="ml-1 text-xs">{count < 10 ? count : '10+'}</div>
       </Button>
     </>
   );

@@ -13,7 +13,7 @@ export const NoteFooter = memo(
 
     return (
       <>
-        <div className="flex items-center justify-between gap-2" ref={ref}>
+        <div className="flex items-center gap-4" ref={ref}>
           <NoteCommentBtn
             onClick={() => setShowingComments((prev) => !prev)}
             event={event}
