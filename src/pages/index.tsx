@@ -37,14 +37,14 @@ const Layout = () => {
             </Link>
 
             <Link
-              to="/notes"
+              to="/posts"
               className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
             >
               <div>
                 <NotepadTextIcon size={24} />
               </div>
 
-              <span className="hidden lg:block">Notes</span>
+              <span className="hidden lg:block">Posts</span>
             </Link>
 
             <Link
@@ -132,7 +132,7 @@ const Layout = () => {
               </SearchWidget>
 
               <Link
-                to="/notes"
+                to="/posts"
                 className="w-full flex items-center justify-center gap-2 p-2 rounded-lg transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground hover:bg-secondary"
               >
                 <div>
@@ -218,13 +218,13 @@ export const router = createBrowserRouter([
         },
       },
       {
-        path: '/notes',
+        path: '/posts',
         async lazy() {
           return { Component: (await NotesPage()).NotesPage };
         },
       },
       {
-        path: '/notes/:noteId',
+        path: '/posts/:noteId',
         async lazy() {
           return { Component: (await NotesPage()).NotesPage };
         },

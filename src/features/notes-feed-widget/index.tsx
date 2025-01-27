@@ -30,7 +30,7 @@ export const NotesFeedWidget = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm">
-                  {view === 'Notes' ? 'Notes' : 'Replies'}
+                  {view === 'Posts' ? 'Posts' : 'Replies'}
                 </Button>
               </DropdownMenuTrigger>
 
@@ -39,7 +39,7 @@ export const NotesFeedWidget = () => {
                   value={view}
                   onValueChange={(v) => setView(v as NoteFeedView)}
                 >
-                  <DropdownMenuRadioItem value="Notes">Notes</DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="Posts">Posts</DropdownMenuRadioItem>
                   <DropdownMenuRadioItem value="Replies">Replies</DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
               </DropdownMenuContent>
@@ -57,7 +57,7 @@ export const NotesFeedWidget = () => {
           </div>
         ) : (
           <div className="pt-2 px-2">
-            <p>No events found. Follow some users to see their notes here.</p>
+            <p>No events found. Follow some users to see their posts here.</p>
           </div>
         )}
 

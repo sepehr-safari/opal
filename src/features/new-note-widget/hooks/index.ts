@@ -51,7 +51,7 @@ export const useNewNoteWidget = ({
         if (relaySet.size === 0) {
           toast({
             title: 'Error',
-            description: 'Failed to post note',
+            description: 'Failed to publish post',
             variant: 'destructive',
           });
         }
@@ -59,7 +59,7 @@ export const useNewNoteWidget = ({
       .catch((_) => {
         toast({
           title: 'Error',
-          description: 'Failed to post note',
+          description: 'Failed to publish post',
           variant: 'destructive',
         });
       });

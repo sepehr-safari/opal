@@ -67,7 +67,7 @@ export const NoteHeader = ({ event }: { event: NDKEvent }) => {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent align="end" sideOffset={8}>
-              <DropdownMenuItem onClick={() => navigate(`/note/${nevent}`)}>
+              <DropdownMenuItem onClick={() => navigate(`/posts/${nevent}`)}>
                 <SquareArrowOutUpRight className="w-4 h-4 mr-2" />
                 Open
               </DropdownMenuItem>
@@ -81,19 +81,19 @@ export const NoteHeader = ({ event }: { event: NDKEvent }) => {
                 Reactions
               </DropdownMenuItem>
 
-              <DropdownMenuItem onClick={() => copy(`${window.location.origin}/notes/${nevent}`)}>
+              <DropdownMenuItem onClick={() => copy(`${window.location.origin}/posts/${nevent}`)}>
                 <LinkIcon className="w-4 h-4 mr-2" />
-                Copy note link
+                Copy post link
               </DropdownMenuItem>
 
               <DropdownMenuItem onClick={() => copy(event.content)}>
                 <TextIcon className="w-4 h-4 mr-2" />
-                Copy note text
+                Copy post text
               </DropdownMenuItem>
 
               <DropdownMenuItem onClick={() => copy(nevent)}>
                 <TagIcon className="w-4 h-4 mr-2" />
-                Copy note ID
+                Copy post ID
               </DropdownMenuItem>
 
               <DropdownMenuItem onClick={() => copy(JSON.stringify(event.rawEvent()))}>

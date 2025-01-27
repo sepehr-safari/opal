@@ -50,7 +50,7 @@ export const UserProfileWidget = ({
             <ProfileViewSwitcher view={view} setView={setView} />
 
             <div className="p-2">
-              {view == 'notes' && <ProfileNotes user={user} notesOnly />}
+              {view == 'posts' && <ProfileNotes user={user} notesOnly />}
               {view == 'replies' && <ProfileNotes user={user} repliesOnly />}
               {/* {view == 'relays' && <>User Relays</>} */}
             </div>

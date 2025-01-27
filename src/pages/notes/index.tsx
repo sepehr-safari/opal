@@ -25,7 +25,7 @@ export const NotesPage = () => {
     return (
       <div className="flex flex-col h-full w-full items-center justify-center">
         <h3>Welcome to OPAL!</h3>
-        <p>Sign in to see notes</p>
+        <p>Sign in to see posts</p>
       </div>
     );
   }

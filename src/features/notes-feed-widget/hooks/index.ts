@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { NoteFeedView } from '../types';
 
 export const useNotesFeedWidget = () => {
-  const [view, setView] = useState<NoteFeedView>('Notes');
+  const [view, setView] = useState<NoteFeedView>('Posts');
 
   const { activeUser } = useActiveUser();
 
@@ -18,7 +18,7 @@ export const useNotesFeedWidget = () => {
     () =>
       events
         ?.filter((e) => {
-          if (view === 'Notes') {
+          if (view === 'Posts') {
             return e.getMatchingTags('e').length == 0;
           }
 

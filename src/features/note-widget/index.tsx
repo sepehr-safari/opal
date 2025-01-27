@@ -13,7 +13,7 @@ export const NoteByEvent = memo(
     }
 
     if (event === null) {
-      return <div className="px-2 border-b">Note not found</div>;
+      return <div className="px-2 border-b">Post not found</div>;
     }
 
     if (event) {

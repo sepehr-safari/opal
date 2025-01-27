@@ -1,1 +1,1 @@
-export type NoteFeedView = 'Notes' | 'Replies';
+export type NoteFeedView = 'Posts' | 'Replies';
