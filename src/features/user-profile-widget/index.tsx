@@ -8,6 +8,7 @@ import {
   ProfileBanner,
   ProfileEditor,
   ProfileNotes,
+  ProfileRelays,
   ProfileSummary,
   ProfileViewSwitcher,
 } from './components';
@@ -52,7 +53,7 @@ export const UserProfileWidget = ({
             <div className="p-2">
               {view == 'posts' && <ProfileNotes user={user} notesOnly />}
               {view == 'replies' && <ProfileNotes user={user} repliesOnly />}
-              {/* {view == 'relays' && <>User Relays</>} */}
+              {view == 'relays' && <ProfileRelays user={user} />}
             </div>
           </>
         )}
