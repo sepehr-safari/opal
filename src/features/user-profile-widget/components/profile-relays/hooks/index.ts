@@ -3,17 +3,17 @@ import { useNdk } from 'nostr-hooks';
 import { useEffect, useState } from 'react';
 
 export const useProfileRelays = ({ user }: { user: NDKUser }) => {
-  const [relays, setRelays] = useState<string[] | undefined>(undefined);
+  const [relays, setRelays] = useState<string[] | null | undefined>(undefined);
 
   const { ndk } = useNdk();
 
   useEffect(() => {
     ndk?.fetchEvent({ authors: [user.pubkey], kinds: [NDKKind.RelayList] }).then((event) => {
-      if (!event) {
-        return;
+      if (event) {
+        setRelays(event.tags.filter((tag) => tag[0] === 'r').map((tag) => tag[1]));
+      } else {
+        setRelays(null);
       }
-
-      setRelays(event.tags.filter((tag) => tag[0] === 'r').map((tag) => tag[1]));
     });
   }, [user, ndk, setRelays]);
 

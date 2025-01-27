@@ -5,6 +5,7 @@ import { Button } from '@/shared/components/ui/button';
 
 import { NoteByEvent } from '@/features/note-widget';
 
+import { Spinner } from '@/shared/components/spinner';
 import { useProfileNotes } from './hooks';
 
 export const ProfileNotes = memo(
@@ -22,6 +23,14 @@ export const ProfileNotes = memo(
       notesOnly,
       repliesOnly,
     });
+
+    if (processedEvents === undefined) {
+      return <Spinner />;
+    }
+
+    if (processedEvents.length === 0) {
+      return <p className="text-xs">Empty list</p>;
+    }
 
     return (
       <>
