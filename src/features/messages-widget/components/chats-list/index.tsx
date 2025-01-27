@@ -83,20 +83,17 @@ export const ChatsList = memo(
           <div className="flex items-center gap-2 border-t p-4">
             <Input
               type="text"
+              className="w-full"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="w-full"
-            />
-
-            <Button
-              onClick={sendMessage}
-              disabled={!input}
               onKeyUp={(e) => {
                 if (e.key === 'Enter') {
                   sendMessage();
                 }
               }}
-            >
+            />
+
+            <Button onClick={sendMessage} disabled={!input}>
               Send
             </Button>
           </div>
