@@ -14,10 +14,10 @@ export const HelpPage = () => {
 
         <div className="grid grid-cols-1 gap-4 p-4">
           <div className="p-4 border rounded-md shadow-md">
-            <h4 className="border-b py-2">Using OPAL</h4>
+            <h4 className="border-b pb-2">Using OPAL</h4>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 How do I get started with OPAL?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -36,7 +36,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What steps are involved in OPAL’s login process?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -52,7 +52,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 How can I list a Shelter on OPAL?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -63,7 +63,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 How can I book a shelter on OPAL?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -76,7 +76,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What services can I find or access using OPAL?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -86,7 +86,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Does OPAL send notifications for healthcare appointments?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -100,7 +100,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 How can I update or modify my listings?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -110,7 +110,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Is the OPAL platform mobile-friendly?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -122,7 +122,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Can I schedule appointments with healthcare providers directly in OPAL?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -133,7 +133,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Is there an offline mode available in OPAL?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -143,7 +143,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What types of filters can I use to refine my searches on OPAL?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -153,7 +153,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Does OPAL allow real-time group communication?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -164,7 +164,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Can users report listings or messages they find inappropriate?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -175,7 +175,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What is OPAL’s support for payments or billing?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -186,7 +186,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 How does OPAL help with connecting to local resources?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -199,10 +199,10 @@ export const HelpPage = () => {
           </div>
 
           <div className="p-4 border rounded-md shadow-md">
-            <h4 className="border-b py-2">Managing Your Account</h4>
+            <h4 className="border-b pb-2">Managing Your Account</h4>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 How can I copy and securely store my public and private Nostr keys?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -216,7 +216,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What happens if I lose access to my private key?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -226,7 +226,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 How can I reset my account password?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -239,7 +239,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 How do I check my connected relays?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -249,7 +249,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Can I update my personal profile details?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -260,7 +260,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Is it possible to deactivate my OPAL account?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -273,7 +273,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 How do I permanently delete my OPAL account?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -288,7 +288,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Can I switch to a different language on OPAL?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -299,7 +299,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What do I do if my account is hacked or compromised?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -314,7 +314,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Can I recover listings deleted accidentally?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -326,10 +326,10 @@ export const HelpPage = () => {
           </div>
 
           <div className="p-4 border rounded-md shadow-md">
-            <h4 className="border-b py-2">Nostr and OPAL</h4>
+            <h4 className="border-b pb-2">Nostr and OPAL</h4>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What role does the Nostr protocol play in OPAL’s architecture?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -343,7 +343,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 How is Nostr integrated into OPAL’s features?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -357,7 +357,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What is a Nostr relay, and why is it important?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -371,7 +371,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Do I need to set up my own relay to use OPAL?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -381,7 +381,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What are the advantages of using OPAL with Nostr keys?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -396,7 +396,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Does OPAL comply with Nostr Improvement Proposals (NIPs)?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -409,7 +409,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Can I access the same account on multiple Nostr-compatible clients?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -427,7 +427,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Can OPAL users interact with content from other Nostr applications?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -437,7 +437,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What resources are available for learning about the Nostr protocol?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -451,7 +451,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Does Nostr ensure that OPAL is censorship-resistant?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -463,7 +463,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 How does OPAL handle message encryption via Nostr?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -479,7 +479,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="font-bold hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What future Nostr integrations are planned for OPAL?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -492,10 +492,10 @@ export const HelpPage = () => {
           </div>
 
           <div className="p-4 border rounded-md shadow-md">
-            <h4 className="border-b py-2">Rules and Policies</h4>
+            <h4 className="border-b pb-2">Rules and Policies</h4>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 How does OPAL ensure user privacy?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -506,7 +506,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What data does OPAL collect, and why?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -517,7 +517,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Does OPAL comply with international data protection regulations?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -527,7 +527,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Is OPAL open-source?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -537,7 +537,7 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Are there restrictions on the types of listings I can post?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
@@ -547,28 +547,28 @@ export const HelpPage = () => {
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What policies protect against harassment?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">TODO: Add content</CollapsibleContent>
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Are external service providers on OPAL vetted?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">TODO: Add content</CollapsibleContent>
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What happens if OPAL’s terms are updated?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">TODO: Add content</CollapsibleContent>
             </Collapsible>
 
             <Collapsible className="border-b py-2">
-              <CollapsibleTrigger className="hover:underline">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Does OPAL support user feedback on rules?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
