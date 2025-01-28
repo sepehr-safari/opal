@@ -2,6 +2,7 @@ import { NDKUser } from '@nostr-dev-kit/ndk';
 import { memo } from 'react';
 
 import { Spinner } from '@/shared/components/spinner';
+
 import { useProfileRelays } from './hooks';
 
 export const ProfileRelays = memo(

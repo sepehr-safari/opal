@@ -1,4 +1,11 @@
-import { BellIcon, HomeIcon, MailIcon, NotepadTextIcon, SearchIcon } from 'lucide-react';
+import {
+  BellIcon,
+  HelpCircleIcon,
+  HomeIcon,
+  MailIcon,
+  NotepadTextIcon,
+  SearchIcon,
+} from 'lucide-react';
 import { useActiveUser } from 'nostr-hooks';
 import { Link, Outlet, createBrowserRouter } from 'react-router-dom';
 
@@ -78,6 +85,17 @@ const Layout = () => {
                 <span className="hidden lg:block">Search</span>
               </div>
             </SearchWidget>
+
+            <Link
+              to="/help"
+              className="flex items-center gap-2 p-2 transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground w-full rounded-lg hover:bg-secondary"
+            >
+              <div>
+                <HelpCircleIcon size={24} />
+              </div>
+
+              <span className="hidden lg:block">Help</span>
+            </Link>
           </div>
 
           <div className="mt-auto w-full">
@@ -123,14 +141,6 @@ const Layout = () => {
                 </div>
               </Link>
 
-              <SearchWidget>
-                <div className="w-full flex items-center justify-center gap-2 p-2 rounded-lg transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground hover:bg-secondary hover:cursor-pointer">
-                  <div>
-                    <SearchIcon size={28} strokeWidth={1.4} />
-                  </div>
-                </div>
-              </SearchWidget>
-
               <Link
                 to="/posts"
                 className="w-full flex items-center justify-center gap-2 p-2 rounded-lg transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground hover:bg-secondary"
@@ -155,6 +165,23 @@ const Layout = () => {
               >
                 <div>
                   <BellIcon size={28} strokeWidth={1.4} />
+                </div>
+              </Link>
+
+              <SearchWidget>
+                <div className="w-full flex items-center justify-center gap-2 p-2 rounded-lg transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground hover:bg-secondary hover:cursor-pointer">
+                  <div>
+                    <SearchIcon size={28} strokeWidth={1.4} />
+                  </div>
+                </div>
+              </SearchWidget>
+
+              <Link
+                to="/help"
+                className="w-full flex items-center justify-center gap-2 p-2 rounded-lg transition-colors duration-500 ease-out text-foreground/60 hover:text-foreground hover:bg-secondary"
+              >
+                <div>
+                  <HelpCircleIcon size={28} strokeWidth={1.4} />
                 </div>
               </Link>
 
@@ -205,6 +232,7 @@ const NotesPage = () => import('./notes');
 const ProfilePage = () => import('./profile');
 const MessagesPage = () => import('./messages');
 const NotificationsPage = () => import('./notifications');
+const HelpPage = () => import('./help');
 
 export const router = createBrowserRouter([
   {
@@ -251,6 +279,12 @@ export const router = createBrowserRouter([
         path: '/notifications',
         async lazy() {
           return { Component: (await NotificationsPage()).NotificationsPage };
+        },
+      },
+      {
+        path: '/help',
+        async lazy() {
+          return { Component: (await HelpPage()).HelpPage };
         },
       },
     ],
