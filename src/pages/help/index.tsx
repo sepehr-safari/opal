@@ -550,22 +550,31 @@ export const HelpPage = () => {
               <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What policies protect against harassment?
               </CollapsibleTrigger>
-              <CollapsibleContent className="text-sm">TODO: Add content</CollapsibleContent>
+              <CollapsibleContent className="text-sm">
+                Currently, OPAL does not include built-in harassment moderation features. However,
+                we plan to implement blocking and muting in future updates to give users more
+                control over their experience.
+              </CollapsibleContent>
             </Collapsible>
 
             <Collapsible className="border-b py-2">
               <CollapsibleTrigger className="text-start font-bold hover:underline">
                 Are external service providers on OPAL vetted?
               </CollapsibleTrigger>
-              <CollapsibleContent className="text-sm">TODO: Add content</CollapsibleContent>
+              <CollapsibleContent className="text-sm">
+                OPAL connects to specific relays for message transmission. However, OPAL does not
+                formally vet or certify external service providers, including relays. Users are
+                encouraged to review and choose additional relays based on their own preferences and
+                trust.
+              </CollapsibleContent>
             </Collapsible>
 
-            <Collapsible className="border-b py-2">
+            {/* <Collapsible className="border-b py-2">
               <CollapsibleTrigger className="text-start font-bold hover:underline">
                 What happens if OPAL’s terms are updated?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">TODO: Add content</CollapsibleContent>
-            </Collapsible>
+            </Collapsible> */}
 
             <Collapsible className="border-b py-2">
               <CollapsibleTrigger className="text-start font-bold hover:underline">
