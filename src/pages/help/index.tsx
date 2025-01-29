@@ -30,8 +30,9 @@ export const HelpPage = () => {
                 your first login or signup, the OPAL application will ask whether you’d like to
                 offer help to those in need or seek assistance yourself. Choose the option that best
                 suits your situation and proceed to set up your account. During the setup, you will
-                be prompted to input your name, upload a profile photo, and choose a banner photo.
-                Once completed, you’ll be all set to start using OPAL.
+                be prompted to input your name, and personalize your account with an optional
+                profile photo and/or banner photo. Once completed, you’ll be all set to start using
+                OPAL.
               </CollapsibleContent>
             </Collapsible>
 
@@ -53,7 +54,7 @@ export const HelpPage = () => {
 
             <Collapsible className="border-b py-2">
               <CollapsibleTrigger className="text-start font-bold hover:underline">
-                How can I list a Shelter on OPAL?
+                How can I list shelter or housing availability on OPAL?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
                 You can post housing opportunities through the “Housing” section on the dashboard.
@@ -64,7 +65,7 @@ export const HelpPage = () => {
 
             <Collapsible className="border-b py-2">
               <CollapsibleTrigger className="text-start font-bold hover:underline">
-                How can I book a shelter on OPAL?
+                How can I book a shelter or housing on OPAL?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
                 To book a shelter on OPAL, begin by browsing the available housing list to find one
@@ -154,23 +155,26 @@ export const HelpPage = () => {
 
             <Collapsible className="border-b py-2">
               <CollapsibleTrigger className="text-start font-bold hover:underline">
-                Does OPAL allow real-time group communication?
+                Does OPAL allow group messaging?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
-                Currently, real-time group communication is not supported on OPAL. However, we are
-                planning to introduce this feature in future updates to enhance interaction and
-                collaboration on the platform.
+                Currently, group messaging is not supported on OPAL. However, we are planning to
+                introduce this feature in future updates to enhance interaction and collaboration on
+                the platform. In the meantime, direct messaging (Messages) and public messaging
+                (Posts) are available.
               </CollapsibleContent>
             </Collapsible>
 
             <Collapsible className="border-b py-2">
               <CollapsibleTrigger className="text-start font-bold hover:underline">
-                Can users report listings or messages they find inappropriate?
+                Can users report listings or messages they find inappropriate or inaccurate?
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
-                At this time, the option to report inappropriate listings or messages is not
-                available on OPAL. However, we are working on implementing this feature in future
-                updates to ensure a safe and respectful environment for all users.
+                At this time, the option to report inappropriate or inaccurate listings or messages
+                is not available on OPAL. However, we are working on implementing this feature in
+                future updates to ensure a safe and respectful environment for all users. In the
+                meantime, please notify your community coordinators if you find anything
+                inappropriate or inaccurate within OPAL.
               </CollapsibleContent>
             </Collapsible>
 
@@ -180,8 +184,11 @@ export const HelpPage = () => {
               </CollapsibleTrigger>
               <CollapsibleContent className="text-sm">
                 Currently, OPAL does not support payments or billing. However, we plan to implement
-                payment and billing features in upcoming versions, utilizing Nostr and the same ZAP
-                technology for seamless integration.
+                payment and billing features in upcoming versions, utilizing Nostr and the Lightning
+                Network for sending and receiving payments as subunits of Bitcoin (BTC) called
+                Satoshis (SATS). In the meantime, OPAL users may use their Nostr Secret Keys to
+                access these payment features on other Nostr supported apps, like Amethyst, Nostur,
+                or Damus, to name a few.
               </CollapsibleContent>
             </Collapsible>
 
@@ -194,6 +201,16 @@ export const HelpPage = () => {
                 healthcare providers, shelters, and other relevant services based on your location
                 and preferences. This feature is currently being developed to make it easier for
                 users to access essential local resources.
+              </CollapsibleContent>
+            </Collapsible>
+
+            <Collapsible className="border-b py-2">
+              <CollapsibleTrigger className="text-start font-bold hover:underline">
+                What else can OPAL do?
+              </CollapsibleTrigger>
+              <CollapsibleContent className="text-sm">
+                Currently in development, OPAL will also be able to allow its users to send and
+                receive their own verifiable Electronic Health Records (EHR) via OPAL Messages.
               </CollapsibleContent>
             </Collapsible>
           </div>
