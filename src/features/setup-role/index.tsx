@@ -7,12 +7,12 @@ export const SetupRole = () => {
 
   return (
     <div className="p-4 flex flex-col items-center gap-2">
-      <h4>Do you need help or want to provide help?</h4>
+      <h4>What are you looking for?</h4>
 
       <div className="flex items-center gap-4">
-        <Button onClick={() => updateUserRole('peh')}>Need Help</Button>
+        <Button onClick={() => updateUserRole('peh')}>I Need Housing</Button>
 
-        <Button onClick={() => updateUserRole('agency')}>Want to Help</Button>
+        <Button onClick={() => updateUserRole('agency')}>I Have Housing to Offer</Button>
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ export const HomePage = () => {
     return (
       <div className="flex flex-col h-full w-full items-center justify-center">
         <h3>Welcome to OPAL!</h3>
-        <p>Sign in to see housing items</p>
+        <p>Login to Create or View Housing Options</p>
       </div>
     );
   }
@@ -42,18 +42,20 @@ export const HomePage = () => {
   if (profile === null) {
     return (
       <>
-        <div className="p-4">
-          <h4>Set up your profile</h4>
-        </div>
+        <div className="h-full overflow-y-auto">
+          <div className="p-4">
+            <h4>Set up your profile</h4>
+          </div>
 
-        <UserProfileWidget user={activeUser} initialEditMode={true} />
+          <UserProfileWidget user={activeUser} initialEditMode={true} />
+        </div>
       </>
     );
   }
 
   return (
     <>
-      <div className="overflow-y-auto h-full">
+      <div className="h-full overflow-y-auto">
         <div className="p-4 border-b">
           <h4>Welcome to OPAL!</h4>
         </div>
