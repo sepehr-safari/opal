@@ -21,8 +21,8 @@ export const parseHousing = (event: NDKEvent) => {
   const contactPhone = event.getMatchingTags('contactPhone')?.[0]?.[1] || undefined;
   if (!contactPhone) return null;
 
-  // contactPhone should be a string starting with a + and followed by numbers
-  if (!contactPhone.match(/^\+\d+$/)) return null;
+  // contactPhone should be a string of numbers
+  if (!/^\d+$/.test(contactPhone)) return null;
 
   const contactEmail = event.getMatchingTags('contactEmail')?.[0]?.[1] || undefined;
   const contactFullname = event.getMatchingTags('contactFullname')?.[0]?.[1] || undefined;

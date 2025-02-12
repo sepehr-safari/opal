@@ -141,7 +141,7 @@ export const CreateHousingForm = ({
               <FormItem>
                 <FormLabel>Contact Phone</FormLabel>
                 <FormControl>
-                  <Input placeholder="+123456789" {...field} />
+                  <Input placeholder="123456789" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

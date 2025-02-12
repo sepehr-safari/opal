@@ -14,10 +14,7 @@ export const housingSchema = z.object({
   totalUnits: z.coerce.number().int().min(1, { message: 'Must be at least 1' }),
   availableUnits: z.coerce.number().int().min(0, { message: 'Must be at least 0' }),
   maxStay: z.coerce.number().int().min(1, { message: 'Must be at least 1' }),
-  contactPhone: z
-    .string()
-    .min(1, { message: 'Required' })
-    .regex(/^\+/, { message: 'Phone number must start with a +' }),
+  contactPhone: z.string().min(1, { message: 'Required' }),
   contactFullname: z.string().optional(),
   contactEmail: z.string().optional(),
   contactPosition: z.string().optional(),
