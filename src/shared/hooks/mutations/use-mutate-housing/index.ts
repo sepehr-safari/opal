@@ -70,7 +70,7 @@ export const useMutateHousing = () => {
   );
 
   const applyHousing = useCallback(
-    ({ housing, stayDuration, ssn }: { housing: Housing; stayDuration: number; ssn: number }) => {
+    ({ housing, stayDuration }: { housing: Housing; stayDuration: number }) => {
       if (!ndk) return;
       if (!ndk.signer) return;
 
@@ -80,7 +80,6 @@ export const useMutateHousing = () => {
         ['T', OpalTag.HousingApplication],
         ['d', housing.housingEvent!.tagAddress()],
         ['p', housing.housingEvent!.pubkey],
-        ['ssn', ssn.toString()],
         ['stayDuration', stayDuration.toString()],
         ['s', 'Applied'],
       ];

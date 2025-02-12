@@ -57,7 +57,6 @@ export const HousingApplicationListItem = ({
 
           <div className="text-start">
             <p className="font-bold">{profile.name}</p>
-            <p className="text-sm">SSN: {housingApplication.ssn}</p>
             <p className="text-sm">{housingApplication.stayDuration} days</p>
           </div>
         </button>

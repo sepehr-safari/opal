@@ -12,15 +12,11 @@ export const parseHousingApplication = (event: NDKEvent) => {
   const stayDuration = event.getMatchingTags('stayDuration')?.[0]?.[1] || undefined;
   if (!stayDuration) return null;
 
-  const ssn = event.getMatchingTags('ssn')?.[0]?.[1] || undefined;
-  if (!ssn) return null;
-
   return {
     eventAddress: event.tagAddress(),
     housingEventAddress: dTag,
     ndkEvent: event,
     status,
     stayDuration: Number(stayDuration),
-    ssn: Number(ssn),
   } as HousingApplication;
 };

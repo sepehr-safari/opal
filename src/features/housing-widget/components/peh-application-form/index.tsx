@@ -76,7 +76,6 @@ export const PehApplicationForm = ({
     resolver: zodResolver(housingApplicationSchema),
     defaultValues: {
       status: 'NotApplied',
-      ssn: 0,
       stayDuration: 0,
     },
   });
@@ -85,7 +84,6 @@ export const PehApplicationForm = ({
     applyHousing({
       housing: realtimeHousing,
       stayDuration: values.stayDuration,
-      ssn: values.ssn,
     });
   };
 
@@ -105,20 +103,6 @@ export const PehApplicationForm = ({
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Duration of stay</FormLabel>
-                    <FormControl>
-                      <Input type="number" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="ssn"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Social Security Number</FormLabel>
                     <FormControl>
                       <Input type="number" {...field} />
                     </FormControl>

@@ -31,7 +31,6 @@ export const housingApplicationSchema = z.object({
   housingEventAddress: z.string().optional(),
   ndkEvent: z.instanceof(NDKEvent).optional(),
   stayDuration: z.coerce.number().int().min(1, { message: 'Must be at least 1' }),
-  ssn: z.coerce.number().int().min(1, { message: 'Must be at least 1' }),
 });
 
 export type HousingApplication = z.infer<typeof housingApplicationSchema>;
