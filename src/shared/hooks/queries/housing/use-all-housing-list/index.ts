@@ -5,8 +5,8 @@ import { useEffect, useMemo } from 'react';
 import { Housing, OpalTag } from '@/shared/types';
 import { parseHousing } from '@/shared/utils';
 
-export const useAllHousingList = () => {
-  const subId = `all-housing-list`;
+export const useAllHousingList = (opts?: { since?: number | undefined }) => {
+  const subId = opts?.since ? `all-housing-list-since-${opts?.since}` : 'all-housing-list';
 
   const { createSubscription, isLoading, events } = useSubscription(subId);
 
@@ -32,10 +32,11 @@ export const useAllHousingList = () => {
           kinds: [NDKKind.AppSpecificData],
           limit: 100,
           '#T': [OpalTag.Housing],
+          since: opts?.since,
         },
       ],
     });
-  }, [createSubscription]);
+  }, [createSubscription, opts?.since]);
 
   return { allHousingList };
 };

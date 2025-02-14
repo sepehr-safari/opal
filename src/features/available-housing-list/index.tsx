@@ -1,6 +1,6 @@
 import { NDKUser } from '@nostr-dev-kit/ndk';
 import { useActiveUser } from 'nostr-hooks';
-import { memo, useMemo } from 'react';
+import { memo, useMemo, useState } from 'react';
 
 import { Spinner } from '@/shared/components/spinner';
 
@@ -54,9 +54,11 @@ export const View = memo(
 );
 
 export const AllAvailableHousingList = memo(() => {
+  const [since, setSince] = useState(new Date(Date.now() - 10 * 24 * 60 * 60 * 1000));
+
   const { activeUser } = useActiveUser();
 
-  const { allHousingList } = useAllHousingList();
+  const { allHousingList } = useAllHousingList({ since: Math.floor(since.getTime() / 1000) });
 
   const availableHousingList = useMemo(
     () =>
@@ -74,6 +76,21 @@ export const AllAvailableHousingList = memo(() => {
 
   return (
     <>
+      <div className="p-4 border rounded-md shadow-md bg-background">
+        <b>Filters</b>
+
+        <div>
+          <label htmlFor="since">Since: </label>
+          <input
+            type="date"
+            id="since"
+            name="since"
+            value={since.toISOString().split('T')[0]}
+            onChange={(e) => setSince(new Date(e.target.value))}
+          />
+        </div>
+      </div>
+
       <View housingList={availableHousingList} activeUserPubkey={activeUser.pubkey} />
     </>
   );
