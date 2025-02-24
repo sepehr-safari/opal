@@ -125,7 +125,7 @@ export const useMutateHousing = () => {
     [ndk],
   );
 
-  const rejectHousingApplication = useCallback(
+  const declineHousingApplication = useCallback(
     (housingApplication: HousingApplication) => {
       if (!ndk) return;
       if (!ndk.signer) return;
@@ -137,7 +137,7 @@ export const useMutateHousing = () => {
         ['d', housingApplication.eventAddress!],
         ['h', housingApplication.housingEventAddress!],
         ['p', housingApplication.ndkEvent!.pubkey],
-        ['s', 'Rejected'],
+        ['s', 'Declined'],
       ];
 
       e.publish();
@@ -170,7 +170,7 @@ export const useMutateHousing = () => {
     updateHousing,
     removeHousing,
     approveHousingApplication,
-    rejectHousingApplication,
+    declineHousingApplication,
     stallHousingApplication,
     applyHousing,
     withdrawHousingApplication,

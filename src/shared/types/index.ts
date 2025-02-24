@@ -34,7 +34,7 @@ export type HousingApplication = z.infer<typeof housingApplicationSchema>;
 
 export type HousingApplicationReview = {
   eventAddress: string;
-  status: 'Approved' | 'Rejected' | 'Stalled';
+  status: 'Approved' | 'Declined' | 'Stalled';
   housingEventAddress: string;
   housingApplicationEventAddress: string;
   ndkEvent: NDKEvent;

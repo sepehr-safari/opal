@@ -72,7 +72,7 @@ export const HelpPage = () => {
                 that suits your needs. Once you’ve selected the shelter, click on the "Request"
                 button to send a booking request to the housing agency. Upon receiving your request,
                 the agency will review it and, depending on the shelter's availability, will either
-                "Approve" or "Reject" your booking.
+                "Approve" or "Decline" your booking.
               </CollapsibleContent>
             </Collapsible>
 
@@ -94,7 +94,7 @@ export const HelpPage = () => {
                 Yes, OPAL sends notifications based on your role and actions within the platform. If
                 you are a housing agency, you will receive notifications when someone requests
                 housing. If you are seeking assistance, you will be notified when your housing
-                request is approved or rejected. Additionally, OPAL sends other notifications such
+                request is approved or declined. Additionally, OPAL sends other notifications such
                 as mentions, replies, reposts, and notes, keeping you updated on all relevant
                 activities.
               </CollapsibleContent>

@@ -21,7 +21,7 @@ export const HousingApplicationListItem = ({
 }) => {
   const navigate = useNavigate();
 
-  const { approveHousingApplication, rejectHousingApplication, stallHousingApplication } =
+  const { approveHousingApplication, declineHousingApplication, stallHousingApplication } =
     useMutateHousing();
 
   const { housingApplicationReviewListByHousingApplication } =
@@ -75,11 +75,11 @@ export const HousingApplicationListItem = ({
               </Button>
 
               <Button
-                onClick={() => rejectHousingApplication(housingApplication)}
+                onClick={() => declineHousingApplication(housingApplication)}
                 size="sm"
                 variant="destructive"
               >
-                Reject
+                Decline
               </Button>
             </>
           ) : (
@@ -90,8 +90,8 @@ export const HousingApplicationListItem = ({
                 <span className="text-sm text-primary">Approved</span>
               ) : housingApplicationReviewListByHousingApplication[
                   housingApplicationReviewListByHousingApplication.length - 1
-                ].status === 'Rejected' ? (
-                <span className="text-sm text-destructive">Rejected</span>
+                ].status === 'Declined' ? (
+                <span className="text-sm text-destructive">Declined</span>
               ) : null}
 
               <Button

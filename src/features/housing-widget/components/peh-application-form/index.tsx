@@ -153,10 +153,10 @@ export const PehApplicationForm = ({
     );
   }
 
-  if (review === 'Rejected') {
+  if (review === 'Declined') {
     return (
       <>
-        <div className="w-full font-bold text-destructive">Rejected</div>
+        <div className="w-full font-bold text-destructive">Declined</div>
       </>
     );
   }
