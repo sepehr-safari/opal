@@ -10,9 +10,9 @@ export const SetupRole = () => {
       <h4>What are you looking for?</h4>
 
       <div className="flex items-center gap-4">
-        <Button onClick={() => updateUserRole('peh')}>I Need Housing</Button>
+        <Button onClick={() => updateUserRole('peh')}>I need shelter or housing</Button>
 
-        <Button onClick={() => updateUserRole('agency')}>I Have Housing to Offer</Button>
+        <Button onClick={() => updateUserRole('agency')}>I have shelter or housing to offer</Button>
       </div>
     </div>
   );
