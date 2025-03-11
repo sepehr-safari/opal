@@ -12,7 +12,9 @@ export const housingSchema = z.object({
   description: z.string().min(1, { message: 'Required' }),
   location: z.string().min(1, { message: 'Required' }),
   totalUnits: z.coerce.number().int().min(1, { message: 'Must be at least 1' }),
-  availableUnits: z.coerce.number().int().min(0, { message: 'Must be at least 0' }),
+  availableUnitsMale: z.coerce.number().int().min(0, { message: 'Must be at least 0' }),
+  availableUnitsFemale: z.coerce.number().int().min(0, { message: 'Must be at least 0' }),
+  availableUnitsNonBinary: z.coerce.number().int().min(0, { message: 'Must be at least 0' }),
   maxStay: z.coerce.number().int().min(1, { message: 'Must be at least 1' }),
   contactPhone: z.string().min(1, { message: 'Required' }),
   contactFullname: z.string().optional(),
@@ -46,3 +48,5 @@ export enum OpalTag {
   HousingApplicationReview = 'opal/v0.23/housing-application-review',
   UserRole = 'opal/v0.23/user-role',
 }
+
+export type Gender = 'male' | 'female' | 'non-binary';

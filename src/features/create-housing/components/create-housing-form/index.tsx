@@ -33,7 +33,9 @@ export const CreateHousingForm = ({
       description: '',
       location: '',
       totalUnits: 0,
-      availableUnits: 0,
+      availableUnitsMale: 0,
+      availableUnitsFemale: 0,
+      availableUnitsNonBinary: 0,
       maxStay: 0,
       contactPhone: '',
       contactFullname: '',
@@ -108,10 +110,38 @@ export const CreateHousingForm = ({
 
           <FormField
             control={form.control}
-            name="availableUnits"
+            name="availableUnitsMale"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Available Units (Beds)</FormLabel>
+                <FormLabel>Available Units (Beds) [Male]</FormLabel>
+                <FormControl>
+                  <Input type="number" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="availableUnitsFemale"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Available Units (Beds) [Female]</FormLabel>
+                <FormControl>
+                  <Input type="number" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="availableUnitsNonBinary"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Available Units (Beds) [Non-binary]</FormLabel>
                 <FormControl>
                   <Input type="number" {...field} />
                 </FormControl>

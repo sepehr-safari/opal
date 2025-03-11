@@ -71,7 +71,16 @@ export const HousingWidget = ({ housing, userRole }: { housing: Housing; userRol
 
           <div>
             <p>
-              {realtimeHousing.availableUnits}/{realtimeHousing.totalUnits} units available
+              {realtimeHousing.availableUnitsMale}/{realtimeHousing.totalUnits} units available
+              [Male]
+            </p>
+            <p>
+              {realtimeHousing.availableUnitsFemale}/{realtimeHousing.totalUnits} units available
+              [Female]
+            </p>
+            <p>
+              {realtimeHousing.availableUnitsNonBinary}/{realtimeHousing.totalUnits} units available
+              [Non-binary]
             </p>
             <p>Maximum stay allowed: {realtimeHousing.maxStay} days</p>
           </div>

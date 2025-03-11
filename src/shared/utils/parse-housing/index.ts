@@ -31,8 +31,15 @@ export const parseHousing = (event: NDKEvent) => {
   const totalUnits = parseInt(event.getMatchingTags('totalUnits')?.[0]?.[1] || '');
   if (!totalUnits) return null;
 
-  const availableUnits = parseInt(event.getMatchingTags('availableUnits')?.[0]?.[1] || '');
-  if (!availableUnits) return null;
+  const availableUnitsMale = parseInt(event.getMatchingTags('availableUnitsMale')?.[0]?.[1] || '');
+
+  const availableUnitsFemale = parseInt(
+    event.getMatchingTags('availableUnitsFemale')?.[0]?.[1] || '',
+  );
+
+  const availableUnitsNonBinary = parseInt(
+    event.getMatchingTags('availableUnitsNonBinary')?.[0]?.[1] || '',
+  );
 
   const maxStay = parseInt(event.getMatchingTags('maxStay')?.[0]?.[1] || '');
   if (!maxStay) return null;
@@ -50,7 +57,9 @@ export const parseHousing = (event: NDKEvent) => {
     contactFullname,
     contactPosition,
     totalUnits,
-    availableUnits,
+    availableUnitsMale,
+    availableUnitsFemale,
+    availableUnitsNonBinary,
     maxStay,
   } as Housing;
 };
