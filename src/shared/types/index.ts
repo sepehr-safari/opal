@@ -43,10 +43,10 @@ export type HousingApplicationReview = {
 };
 
 export enum OpalTag {
-  Housing = 'opal/v0.23/housing',
-  HousingApplication = 'opal/v0.23/housing-application',
-  HousingApplicationReview = 'opal/v0.23/housing-application-review',
-  UserRole = 'opal/v0.23/user-role',
+  Housing = 'opal/v0.24/housing',
+  HousingApplication = 'opal/v0.24/housing-application',
+  HousingApplicationReview = 'opal/v0.24/housing-application-review',
+  UserRole = 'opal/v0.24/user-role',
 }
 
 export type Gender = 'male' | 'female' | 'non-binary';
