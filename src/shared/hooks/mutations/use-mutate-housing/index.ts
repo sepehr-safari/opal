@@ -2,7 +2,7 @@ import { NDKEvent, NDKKind } from '@nostr-dev-kit/ndk';
 import { useNdk } from 'nostr-hooks';
 import { useCallback } from 'react';
 
-import { Housing, HousingApplication, OpalTag } from '@/shared/types';
+import { Gender, Housing, HousingApplication, OpalTag } from '@/shared/types';
 
 export const useMutateHousing = () => {
   const { ndk } = useNdk();
@@ -25,7 +25,9 @@ export const useMutateHousing = () => {
         ['contactFullname', housing.contactFullname || ''],
         ['contactPosition', housing.contactPosition || ''],
         ['totalUnits', housing.totalUnits.toString()],
-        ['availableUnits', housing.availableUnits.toString()],
+        ['availableUnitsMale', housing.availableUnitsMale.toString()],
+        ['availableUnitsFemale', housing.availableUnitsFemale.toString()],
+        ['availableUnitsNonBinary', housing.availableUnitsNonBinary.toString()],
         ['maxStay', housing.maxStay.toString()],
       ];
 
@@ -53,7 +55,9 @@ export const useMutateHousing = () => {
         ['contactFullname', housing.contactFullname || ''],
         ['contactPosition', housing.contactPosition || ''],
         ['totalUnits', housing.totalUnits.toString()],
-        ['availableUnits', housing.availableUnits.toString()],
+        ['availableUnitsMale', housing.availableUnitsMale.toString()],
+        ['availableUnitsFemale', housing.availableUnitsFemale.toString()],
+        ['availableUnitsNonBinary', housing.availableUnitsNonBinary.toString()],
         ['maxStay', housing.maxStay.toString()],
       ];
 
@@ -70,7 +74,15 @@ export const useMutateHousing = () => {
   );
 
   const applyHousing = useCallback(
-    ({ housing, stayDuration }: { housing: Housing; stayDuration: number }) => {
+    ({
+      housing,
+      gender,
+      stayDuration,
+    }: {
+      housing: Housing;
+      gender: Gender;
+      stayDuration: number;
+    }) => {
       if (!ndk) return;
       if (!ndk.signer) return;
 
@@ -80,6 +92,7 @@ export const useMutateHousing = () => {
         ['T', OpalTag.HousingApplication],
         ['d', housing.housingEvent!.tagAddress()],
         ['p', housing.housingEvent!.pubkey],
+        ['gender', gender.toString()],
         ['stayDuration', stayDuration.toString()],
         ['s', 'Applied'],
       ];

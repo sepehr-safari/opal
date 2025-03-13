@@ -29,6 +29,9 @@ export const housingApplicationSchema = z.object({
   status: z.enum(['Applied', 'NotApplied']),
   housingEventAddress: z.string().optional(),
   ndkEvent: z.instanceof(NDKEvent).optional(),
+  gender: z.string().refine((value) => ['male', 'female', 'non-binary'].includes(value), {
+    message: 'Please select a gender',
+  }),
   stayDuration: z.coerce.number().int().min(1, { message: 'Must be at least 1' }),
 });
 
