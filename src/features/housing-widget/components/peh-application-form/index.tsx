@@ -2,9 +2,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { Button } from '@/shared/components/ui/button';
-
 import { Spinner } from '@/shared/components/spinner';
+import { Button } from '@/shared/components/ui/button';
 
 import {
   Form,
@@ -16,11 +15,19 @@ import {
 } from '@/shared/components/ui/form';
 import { Input } from '@/shared/components/ui/input';
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/shared/components/ui/select';
+
+import {
   useHousingApplicationListByHousingAndPeh,
   useHousingApplicationReviewListByHousing,
   useMutateHousing,
 } from '@/shared/hooks';
-import { Housing, HousingApplication, housingApplicationSchema } from '@/shared/types';
+import { Gender, Housing, HousingApplication, housingApplicationSchema } from '@/shared/types';
 
 const useApplication = (realtimeHousing: Housing, pehPubkey: string) => {
   const { housingApplicationListByHousingAndPeh } = useHousingApplicationListByHousingAndPeh({
@@ -76,6 +83,7 @@ export const PehApplicationForm = ({
     resolver: zodResolver(housingApplicationSchema),
     defaultValues: {
       status: 'NotApplied',
+      gender: '',
       stayDuration: 0,
     },
   });
@@ -83,6 +91,7 @@ export const PehApplicationForm = ({
   const onSubmit = (values: HousingApplication) => {
     applyHousing({
       housing: realtimeHousing,
+      gender: values.gender as Gender,
       stayDuration: values.stayDuration,
     });
   };
@@ -97,6 +106,46 @@ export const PehApplicationForm = ({
 
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="gender"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Apply as</FormLabel>
+                    <FormControl>
+                      <Select {...field} onValueChange={field.onChange} defaultValue={field.value}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a gender" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem
+                            value="male"
+                            disabled={realtimeHousing.availableUnitsMale < 1}
+                          >
+                            Male
+                          </SelectItem>
+
+                          <SelectItem
+                            value="female"
+                            disabled={realtimeHousing.availableUnitsFemale < 1}
+                          >
+                            Female
+                          </SelectItem>
+
+                          <SelectItem
+                            value="non-binary"
+                            disabled={realtimeHousing.availableUnitsNonBinary < 1}
+                          >
+                            Non-binary
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               <FormField
                 control={form.control}
                 name="stayDuration"
